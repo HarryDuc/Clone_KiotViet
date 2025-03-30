@@ -4,42 +4,63 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { User, UserDocument } from '../schemas/user.schema';
-import { Branch, BranchDocument } from '../schemas/branch.schema';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
-    @InjectModel(Branch.name) private branchModel: Model<BranchDocument>,
   ) { }
 
-  async register(name: string, email: string, password: string, role: string, branch: string, phone: string) {
-    const existingUser = await this.userModel.findOne({ email });
+  async create(createUserDto: any): Promise<User> {
+    const existingUser = await this.userModel.findOne({ email: createUserDto.email });
     if (existingUser) {
       throw new ConflictException('Email already exists');
     }
 
-    // Kiểm tra xem branch có tồn tại không
-    const branchExists = await this.branchModel.findById(branch);
-    if (!branchExists) {
-      throw new NotFoundException('Branch not found');
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    const createdUser = new this.userModel({
+      ...createUserDto,
+      password: hashedPassword
+    });
+    return createdUser.save();
+  }
+
+  async findAll(): Promise<User[]> {
+    return this.userModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async update(id: string, updateUserDto: any): Promise<User> {
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new this.userModel({
-      name,
-      email,
-      password: hashedPassword,
-      role,
-      branch,
-      phone
-    });
-    await user.save();
-    return { message: 'User registered successfully' };
+    const user = await this.userModel
+      .findByIdAndUpdate(id, updateUserDto, { new: true })
+      .exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async remove(id: string): Promise<User> {
+    const user = await this.userModel.findByIdAndDelete(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
   }
 
   async login(email: string, password: string) {
-    const user = await this.userModel.findOne({ email }).populate('branch');
+    const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
@@ -49,7 +70,31 @@ export class UserService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const token = jwt.sign({ userId: user._id, branchId: user.branch._id, isAdmin: user.isAdmin }, 'your-secret-key', { expiresIn: '1h' });
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        role: user.role,
+        isActive: user.isActive
+      },
+      'your-secret-key',
+      { expiresIn: '1h' }
+    );
+
     return { token, user };
+  }
+
+  async register(registerDto: any) {
+    const existingUser = await this.userModel.findOne({ email: registerDto.email });
+    if (existingUser) {
+      throw new ConflictException('Email already exists');
+    }
+
+    const hashedPassword = await bcrypt.hash(registerDto.password, 10);
+    const user = new this.userModel({
+      ...registerDto,
+      password: hashedPassword,
+    });
+    await user.save();
+    return { message: 'User registered successfully' };
   }
 }

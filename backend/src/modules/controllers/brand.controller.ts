@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { BrandService } from '../services/brand.service';
 import { Brand } from '../schemas/brand.schema';
 
@@ -7,20 +7,27 @@ export class BrandController {
   constructor(private readonly brandService: BrandService) { }
 
   @Post()
-  async create(@Body() createBrandDto: { name: string; location: string }): Promise<Brand> {
-    if (!createBrandDto.name || !createBrandDto.location) {
-      throw new BadRequestException('Name and location are required');
-    }
+  create(@Body() createBrandDto: any) {
     return this.brandService.create(createBrandDto);
   }
 
   @Get()
-  async findAll(): Promise<Brand[]> {
+  findAll() {
     return this.brandService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Brand> {
+  findOne(@Param('id') id: string) {
     return this.brandService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateBrandDto: any) {
+    return this.brandService.update(id, updateBrandDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.brandService.remove(id);
   }
 }

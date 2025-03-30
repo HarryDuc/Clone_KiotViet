@@ -1,24 +1,43 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from '../services/user.service';
+import { User } from '../schemas/user.schema';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
+  @Post()
+  create(@Body() createUserDto: any) {
+    return this.userService.create(createUserDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.userService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: any) {
+    return this.userService.update(id, updateUserDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.userService.remove(id);
+  }
+
   @Post('register')
-  async register(
-    @Body('name') name: string,
-    @Body('email') email: string,
-    @Body('password') password: string,
-    @Body('role') role: string,
-    @Body('branch') branch: string,
-    @Body('phone') phone: string,
-  ) {
-    return this.userService.register(name, email, password, role, branch, phone);
+  register(@Body() registerDto: any) {
+    return this.userService.register(registerDto);
   }
 
   @Post('login')
-  async login(@Body('email') email: string, @Body('password') password: string) {
-    return this.userService.login(email, password);
+  login(@Body() loginDto: any) {
+    return this.userService.login(loginDto.email, loginDto.password);
   }
 }

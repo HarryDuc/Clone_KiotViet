@@ -18,4 +18,4 @@ export class Categories {
   updatedAt: Date;
 }
 
-export const BranchSchema = SchemaFactory.createForClass(Categories);
+export const CategoriesSchema = SchemaFactory.createForClass(Categories);

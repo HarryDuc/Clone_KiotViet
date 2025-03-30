@@ -60,4 +60,4 @@ export class Product {
   updatedAt: Date;
 }
 
-export const BranchSchema = SchemaFactory.createForClass(Product);
+export const ProductSchema = SchemaFactory.createForClass(Product);

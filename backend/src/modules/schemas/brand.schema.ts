@@ -15,4 +15,4 @@ export class Brand {
   updatedAt: Date;
 }
 
-export const BranchSchema = SchemaFactory.createForClass(Brand);
+export const BrandSchema = SchemaFactory.createForClass(Brand);

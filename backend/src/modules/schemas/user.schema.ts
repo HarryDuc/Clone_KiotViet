@@ -1,39 +1,41 @@
-import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
-import { Branch } from './branch.schema';
-
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
-@Schema()
+
+@Schema({ timestamps: true })
 export class User {
-  @Prop({ unique: true })
+  @Prop({ required: true })
   userId: string;
 
   @Prop({ required: true })
-  name: string;
-
-  @Prop({ required: true, unique: true })
-  email: string;
+  username: string;
 
   @Prop({ required: true })
   password: string;
 
   @Prop({ required: true })
-  role: string;
+  email: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'Branch', required: true })
-  branch: Types.ObjectId;
+  @Prop()
+  fullName: string;
 
-  @Prop({ required: true })
+  @Prop()
   phone: string;
 
-  @Prop({ required: true, default: false })
-  isAdmin: boolean;
+  @Prop({ enum: ['Admin', 'Manager', 'Staff'], default: 'Staff' })
+  role: string;
 
-  @Prop({ required: true, default: Date.now })
+  @Prop({ type: Boolean, default: true })
+  isActive: boolean;
+
+  @Prop({ type: Date })
+  lastLogin: Date;
+
+  @Prop({ default: Date.now })
   createdAt: Date;
 
-  @Prop({ required: true, default: Date.now })
+  @Prop({ default: Date.now })
   updatedAt: Date;
 }
 
