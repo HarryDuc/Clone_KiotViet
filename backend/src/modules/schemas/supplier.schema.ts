@@ -1,10 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type SupplierDocument = Supplier & Document;
-
 @Schema()
-export class Supplier {
+export class Supplier extends Document {
   @Prop({ unique: true })
   supplierId: string;
 
@@ -20,7 +18,7 @@ export class Supplier {
   @Prop()
   address: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'SupplierGroup' })
+  @Prop({ type: Types.ObjectId, ref: 'SupplierGroups' })
   group: Types.ObjectId;
 
   @Prop({ default: 0 })

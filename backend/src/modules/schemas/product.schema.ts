@@ -1,63 +1,55 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type ProductDocument = Product & Document;
-
-@Schema()
-export class Product {
-  @Prop({unique: true})
-  productId: String;
+@Schema({ timestamps: true })
+export class Product extends Document {
+  @Prop({ unique: true })
+  productId: string;
 
   @Prop()
-  barcode: String;
+  barcode: string;
 
-  @Prop({unique: true, required: true})
-  name: String;
+  @Prop({ required: true })
+  name: string;
 
-  @Prop({ required: true})
-  price: Number; // Giá bán
-
-  @Prop()
-  cost: Number; // Giá von
-
-  @Prop({ default: 0})
-  stock: Number;
-
-  @Prop()
-  location: String;
-
-  @Prop()
-  minStock: Number;
-
-  @Prop()
-  maxStock: Number;;
-
-  @Prop({enum: ["Cho phép kinh doanh", "Ngừng kinh doanh"], default: "Cho phép kinh doanh"})
-  status: String;
-
-  @Prop()
-  image: String;
-
-  @Prop()
-  wetght: Number;
-
-  @Prop()
-  unit: String;
-
-  @Prop()
-  description: String;
-
-  @Prop({type: Types.ObjectId, ref: "Categories", required: true})
+  @Prop({ type: Types.ObjectId, ref: 'Categories' })
   category: Types.ObjectId;
 
-  @Prop({type: Types.ObjectId, ref: "Brands", required: true})
+  @Prop({ type: Types.ObjectId, ref: 'Brands' })
   brand: Types.ObjectId;
 
-  @Prop({ default: Date.now })
-  createdAt: Date;
+  @Prop({ required: true })
+  price: number;
 
-  @Prop({ default: Date.now })
-  updatedAt: Date;
+  @Prop()
+  cost: number;
+
+  @Prop({ default: 0 })
+  stock: number;
+
+  @Prop()
+  location: string;
+
+  @Prop()
+  minStock: number;
+
+  @Prop()
+  maxStock: number;
+
+  @Prop({ enum: ['Cho phép kinh doanh', 'Ngừng kinh doanh'], default: 'Cho phép kinh doanh' })
+  status: string;
+
+  @Prop()
+  image: string;
+
+  @Prop()
+  weight: number;
+
+  @Prop()
+  unit: string;
+
+  @Prop()
+  description: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

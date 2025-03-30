@@ -1,65 +1,107 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Branch } from './branch.schema';
-import { Customer } from './customer.schema';
-import { User } from './user.schema';
+import { Document, Types } from 'mongoose';
 
-export type SocialMediaConversationDocument = SocialMediaConversation & Document;
-
-@Schema({ timestamps: true })
-export class SocialMediaConversation {
-  @Prop({ required: true })
-  conversationId: string;
-
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Branch', required: true })
-  branch: Branch;
-
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Customer' })
-  customer: Customer;
-
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
-  assignedTo: User;
-
-  @Prop({ required: true })
-  channel: string;
-
-  @Prop({ required: true })
-  platform: string;
-
-  @Prop({
-    type: [{
-      messageId: String,
-      senderId: String,
-      senderName: String,
-      content: String,
-      timestamp: Date,
-      attachments: [String],
-      isFromCustomer: Boolean
-    }]
-  })
-  messages: Array<{
-    messageId: string;
-    senderId: string;
-    senderName: string;
-    content: string;
-    timestamp: Date;
-    attachments: string[];
-    isFromCustomer: boolean;
-  }>;
-
-  @Prop({ default: 'open', enum: ['open', 'in_progress', 'resolved', 'closed'] })
-  status: string;
-
-  @Prop({ type: Object })
-  metadata: {
-    lastMessageAt: Date;
-    unreadCount: number;
-    priority: string;
-    tags: string[];
-  };
+@Schema()
+export class Message {
+  @Prop()
+  platformMessageId: string;
 
   @Prop()
-  note: string;
+  sender: string;
+
+  @Prop()
+  content: string;
+
+  @Prop()
+  type: string;
+
+  @Prop([String])
+  attachments: string[];
+
+  @Prop()
+  createdAt: Date;
+}
+
+export const MessageSchema = SchemaFactory.createForClass(Message);
+
+@Schema({ timestamps: true })
+export class SocialMediaConversation extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'SalesChannels', required: true })
+  channelId: Types.ObjectId;
+
+  @Prop()
+  platformConversationId: string;
+
+  @Prop({
+    type: {
+      platformUserId: String,
+      name: String,
+      avatar: String,
+      phone: String,
+      email: String,
+    },
+  })
+  customer: {
+    platformUserId: string;
+    name: string;
+    avatar: string;
+    phone: string;
+    email: string;
+  };
+
+  @Prop({ enum: ['Tin nhắn trực tiếp', 'Bình luận', 'Đánh giá', 'Khiếu nại'], required: true })
+  type: string;
+
+  @Prop({ enum: ['Mới', 'Đang xử lý', 'Đã hoàn thành', 'Đã đóng'], default: 'Mới' })
+  status: string;
+
+  @Prop({ enum: ['Thấp', 'Trung bình', 'Cao', 'Khẩn cấp'], default: 'Trung bình' })
+  priority: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Employees' })
+  assignedTo: Types.ObjectId;
+
+  @Prop({ type: [MessageSchema] })
+  messages: Message[];
+
+  @Prop([String])
+  tags: string[];
+
+  @Prop([String])
+  notes: string[];
+
+  @Prop({
+    type: [{ orderId: { type: Types.ObjectId, ref: 'Orders' }, orderCode: String }],
+  })
+  relatedOrders: { orderId: Types.ObjectId; orderCode: string }[];
+
+  @Prop({
+    type: [{ productId: { type: Types.ObjectId, ref: 'Products' }, name: String }],
+  })
+  relatedProducts: { productId: Types.ObjectId; name: string }[];
+
+  @Prop({
+    type: {
+      responseTime: Number,
+      resolutionTime: Number,
+      customerSatisfaction: Number,
+    },
+  })
+  metrics: {
+    responseTime: number;
+    resolutionTime: number;
+    customerSatisfaction: number;
+  };
 }
 
 export const SocialMediaConversationSchema = SchemaFactory.createForClass(SocialMediaConversation);
+
+SocialMediaConversationSchema.index({ storeId: 1 });
+SocialMediaConversationSchema.index({ channelId: 1 });
+SocialMediaConversationSchema.index({ status: 1 });
+SocialMediaConversationSchema.index({ assignedTo: 1 });
+SocialMediaConversationSchema.index({ 'customer.platformUserId': 1 });
+SocialMediaConversationSchema.index({ createdAt: 1 });

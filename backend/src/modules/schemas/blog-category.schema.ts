@@ -1,13 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Branch } from './branch.schema';
-
-export type BlogCategoryDocument = BlogCategory & Document;
+import { Document, Types } from 'mongoose';
 
 @Schema({ timestamps: true })
-export class BlogCategory {
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Stores', required: true })
-  storeId: Branch;
+export class BlogCategory extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
 
   @Prop({ required: true })
   name: string;
@@ -18,25 +15,31 @@ export class BlogCategory {
   @Prop()
   description: string;
 
-  @Prop()
-  thumbnail: string;
+  @Prop({ type: Types.ObjectId, ref: 'BlogCategories' })
+  parentCategory: Types.ObjectId;
 
-  @Prop({ type: Object })
+  @Prop({ default: 0 })
+  order: number;
+
+  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  status: string;
+
+  @Prop({
+    type: {
+      metaTitle: String,
+      metaDescription: String,
+    },
+  })
   seo: {
     metaTitle: string;
     metaDescription: string;
-    ogImage: string;
   };
-
-  @Prop({ default: true })
-  isActive: boolean;
-
-  @Prop()
-  note: string;
 }
 
 export const BlogCategorySchema = SchemaFactory.createForClass(BlogCategory);
 
-// Add indexes
 BlogCategorySchema.index({ storeId: 1 });
 BlogCategorySchema.index({ slug: 1 }, { unique: true });
+BlogCategorySchema.index({ parentCategory: 1 });
+BlogCategorySchema.index({ status: 1 });
+BlogCategorySchema.index({ order: 1 });

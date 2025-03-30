@@ -1,15 +1,27 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-export type SocialMediaPostDocument = SocialMediaPost & Document;
+@Schema()
+export class Media {
+  @Prop({ enum: ['image', 'video', 'link'] })
+  type: string;
+
+  @Prop()
+  url: string;
+
+  @Prop()
+  caption: string;
+}
+
+export const MediaSchema = SchemaFactory.createForClass(Media);
 
 @Schema({ timestamps: true })
-export class SocialMediaPost {
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Store', required: true })
-  storeId: MongooseSchema.Types.ObjectId;
+export class SocialMediaPost extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'SalesChannel', required: true })
-  channelId: MongooseSchema.Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'SalesChannels', required: true })
+  channelId: Types.ObjectId;
 
   @Prop({ required: true })
   title: string;
@@ -17,21 +29,15 @@ export class SocialMediaPost {
   @Prop()
   content: string;
 
-  @Prop([{
-    type: { type: String, enum: ['image', 'video', 'link'] },
-    url: String,
-    caption: String
-  }])
-  media: Array<{
-    type: string;
-    url: string;
-    caption: string;
-  }>;
+  @Prop({ type: [MediaSchema] })
+  media: Media[];
 
   @Prop({
-    isScheduled: { type: Boolean, default: false },
-    scheduledTime: Date,
-    timezone: String
+    type: {
+      isScheduled: { type: Boolean, default: false },
+      scheduledTime: Date,
+      timezone: String,
+    },
   })
   schedule: {
     isScheduled: boolean;
@@ -40,10 +46,12 @@ export class SocialMediaPost {
   };
 
   @Prop({
-    likes: { type: Number, default: 0 },
-    comments: { type: Number, default: 0 },
-    shares: { type: Number, default: 0 },
-    views: { type: Number, default: 0 }
+    type: {
+      likes: { type: Number, default: 0 },
+      comments: { type: Number, default: 0 },
+      shares: { type: Number, default: 0 },
+      views: { type: Number, default: 0 },
+    },
   })
   engagement: {
     likes: number;
@@ -52,18 +60,17 @@ export class SocialMediaPost {
     views: number;
   };
 
-  @Prop([{
-    productId: { type: MongooseSchema.Types.ObjectId, ref: 'Product' },
-    name: String,
-    price: Number,
-    discount: Number
-  }])
-  products: Array<{
-    productId: MongooseSchema.Types.ObjectId;
-    name: string;
-    price: number;
-    discount: number;
-  }>;
+  @Prop({
+    type: [
+      {
+        productId: { type: Types.ObjectId, ref: 'Products' },
+        name: String,
+        price: Number,
+        discount: Number,
+      },
+    ],
+  })
+  products: { productId: Types.ObjectId; name: string; price: number; discount: number }[];
 
   @Prop([String])
   hashtags: string[];
@@ -71,15 +78,11 @@ export class SocialMediaPost {
   @Prop([String])
   mentions: string[];
 
-  @Prop({
-    type: String,
-    enum: ['Bản nháp', 'Đã lên lịch', 'Đã đăng', 'Đã hủy', 'Lỗi'],
-    default: 'Bản nháp'
-  })
+  @Prop({ enum: ['Bản nháp', 'Đã lên lịch', 'Đã đăng', 'Đã hủy', 'Lỗi'], default: 'Bản nháp' })
   status: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Employee' })
-  postedBy: MongooseSchema.Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Employees' })
+  postedBy: Types.ObjectId;
 
   @Prop()
   postedAt: Date;
@@ -96,7 +99,6 @@ export class SocialMediaPost {
 
 export const SocialMediaPostSchema = SchemaFactory.createForClass(SocialMediaPost);
 
-// Add indexes
 SocialMediaPostSchema.index({ storeId: 1 });
 SocialMediaPostSchema.index({ channelId: 1 });
 SocialMediaPostSchema.index({ 'schedule.scheduledTime': 1 });

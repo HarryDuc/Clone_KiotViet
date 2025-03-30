@@ -1,16 +1,24 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Branch } from './branch.schema';
-import { BlogCategory } from './blog-category.schema';
-import { Employee } from './employee.schema';
-import { User } from './user.schema';
+import { Document, Types } from 'mongoose';
 
-export type BlogPostDocument = BlogPost & Document;
+@Schema()
+export class Comment {
+  @Prop({ type: Types.ObjectId, ref: 'Users' })
+  user: Types.ObjectId;
+
+  @Prop()
+  content: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const CommentSchema = SchemaFactory.createForClass(Comment);
 
 @Schema({ timestamps: true })
-export class BlogPost {
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Stores', required: true })
-  storeId: Branch;
+export class BlogPost extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
 
   @Prop({ required: true })
   title: string;
@@ -18,8 +26,8 @@ export class BlogPost {
   @Prop({ required: true, unique: true })
   slug: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'BlogCategories' })
-  category: BlogCategory;
+  @Prop({ type: Types.ObjectId, ref: 'BlogCategories' })
+  category: Types.ObjectId;
 
   @Prop()
   thumbnail: string;
@@ -30,17 +38,13 @@ export class BlogPost {
   @Prop()
   excerpt: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Employees' })
-  author: Employee;
+  @Prop({ type: Types.ObjectId, ref: 'Employees' })
+  author: Types.ObjectId;
 
-  @Prop({ type: [String] })
+  @Prop([String])
   tags: string[];
 
-  @Prop({
-    type: String,
-    enum: ['Bản nháp', 'Đã xuất bản', 'Đã lưu trữ'],
-    default: 'Bản nháp'
-  })
+  @Prop({ enum: ['Bản nháp', 'Đã xuất bản', 'Đã lưu trữ'], default: 'Bản nháp' })
   status: string;
 
   @Prop()
@@ -52,20 +56,16 @@ export class BlogPost {
   @Prop({ default: 0 })
   likes: number;
 
-  @Prop({
-    type: [{
-      user: { type: MongooseSchema.Types.ObjectId, ref: 'Users' },
-      content: String,
-      createdAt: { type: Date, default: Date.now }
-    }]
-  })
-  comments: Array<{
-    user: User;
-    content: string;
-    createdAt: Date;
-  }>;
+  @Prop({ type: [CommentSchema] })
+  comments: Comment[];
 
-  @Prop({ type: Object })
+  @Prop({
+    type: {
+      metaTitle: String,
+      metaDescription: String,
+      ogImage: String,
+    },
+  })
   seo: {
     metaTitle: string;
     metaDescription: string;
@@ -75,7 +75,6 @@ export class BlogPost {
 
 export const BlogPostSchema = SchemaFactory.createForClass(BlogPost);
 
-// Add indexes
 BlogPostSchema.index({ storeId: 1 });
 BlogPostSchema.index({ slug: 1 }, { unique: true });
 BlogPostSchema.index({ category: 1 });

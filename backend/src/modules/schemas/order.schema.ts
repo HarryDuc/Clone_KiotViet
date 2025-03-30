@@ -1,11 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type OrderDocument = Order & Document;
-
 @Schema()
-class OrderProduct {
-  @Prop({ type: Types.ObjectId, ref: 'Product' })
+export class OrderProduct {
+  @Prop({ type: Types.ObjectId, ref: 'Products' })
   productId: Types.ObjectId;
 
   @Prop()
@@ -18,18 +16,20 @@ class OrderProduct {
   discount: number;
 }
 
-@Schema()
-export class Order {
+export const OrderProductSchema = SchemaFactory.createForClass(OrderProduct);
+
+@Schema({ timestamps: true })
+export class Order extends Document {
   @Prop({ unique: true })
   orderId: string;
 
   @Prop({ unique: true })
   orderCode: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'Customer' })
+  @Prop({ type: Types.ObjectId, ref: 'Customers' })
   customerId: Types.ObjectId;
 
-  @Prop({ type: [OrderProduct] })
+  @Prop({ type: [OrderProductSchema] })
   products: OrderProduct[];
 
   @Prop()
@@ -42,25 +42,25 @@ export class Order {
   paymentMethod: string;
 
   @Prop({
-    enum: ['Phiếu tạm thời', 'Đã xác nhận', 'Đang giao hàng', 'Hoàn thành', 'Đã hủy'],
-    default: 'Phiếu tạm thời'
+    enum: [
+      'Phiếu tạm thời',
+      'Đã xác nhận',
+      'Đang giao hàng',
+      'Hoàn thành',
+      'Đã hủy',
+    ],
+    default: 'Phiếu tạm thời',
   })
   status: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'SalesChannel' })
+  @Prop({ type: Types.ObjectId, ref: 'SalesChannels' })
   channel: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: 'Carrier' })
+  @Prop({ type: Types.ObjectId, ref: 'Carriers' })
   carrierId: Types.ObjectId;
 
   @Prop()
   deliveryDate: Date;
-
-  @Prop({ default: Date.now })
-  createdAt: Date;
-
-  @Prop({ default: Date.now })
-  updatedAt: Date;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

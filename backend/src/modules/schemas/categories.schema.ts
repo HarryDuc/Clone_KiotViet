@@ -1,21 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type CategoriesDocument = Categories & Document;
-
 @Schema()
-export class Categories {
-  @Prop({ required: true, unique: true })
+export class Category extends Document {
+  @Prop({ unique: true })
+  categoryId: string;
+
+  @Prop({ required: true })
   name: string;
 
-  @Prop({ type: Types.ObjectId, ref: "Categories" })
-  parentCategory: string;
+  @Prop({ type: Types.ObjectId, ref: 'Categories' })
+  parentCategory: Types.ObjectId;
 
   @Prop({ default: Date.now })
   createdAt: Date;
-
-  @Prop({ default: Date.now })
-  updatedAt: Date;
 }
 
-export const CategoriesSchema = SchemaFactory.createForClass(Categories);
+export const CategorySchema = SchemaFactory.createForClass(Category);

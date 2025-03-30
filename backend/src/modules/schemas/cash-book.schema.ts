@@ -1,51 +1,72 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Branch } from './branch.schema';
-import { User } from './user.schema';
-
-export type CashBookDocument = CashBook & Document;
+import { Document, Types } from 'mongoose';
 
 @Schema({ timestamps: true })
-export class CashBook {
-  @Prop({ required: true })
-  code: string;
+export class CashBook extends Document {
+  @Prop({ unique: true })
+  cashBookId: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Branch', required: true })
-  branch: Branch;
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
-  createdBy: User;
-
-  @Prop({ required: true })
-  date: Date;
-
-  @Prop({ required: true, enum: ['income', 'expense'] })
+  @Prop({ enum: ['Thu', 'Chi'], required: true })
   type: string;
+
+  @Prop({
+    enum: [
+      'Thu từ bán hàng',
+      'Thu từ khác',
+      'Chi mua hàng',
+      'Chi lương',
+      'Chi vận chuyển',
+      'Chi marketing',
+      'Chi khác',
+    ],
+    required: true,
+  })
+  category: string;
 
   @Prop({ required: true })
   amount: number;
 
-  @Prop({ required: true })
-  description: string;
+  @Prop({
+    enum: ['Tiền mặt', 'Chuyển khoản', 'Thẻ tín dụng', 'Ví điện tử'],
+    required: true,
+  })
+  paymentMethod: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Account' })
-  account: MongooseSchema.Types.ObjectId;
-
-  @Prop({ type: String })
+  @Prop({
+    enum: ['Đơn hàng', 'Hóa đơn', 'Phiếu nhập', 'Phiếu xuất', 'Khác'],
+    required: true,
+  })
   reference: string;
 
-  @Prop({ type: Object })
-  metadata: {
-    category?: string;
-    paymentMethod?: string;
-    attachments?: string[];
-  };
+  @Prop({ type: Types.ObjectId })
+  referenceId: Types.ObjectId;
 
-  @Prop({ default: 'pending', enum: ['pending', 'approved', 'rejected'] })
+  @Prop()
+  description: string;
+
+  @Prop({ required: true })
+  date: Date;
+
+  @Prop({ type: Types.ObjectId, ref: 'Employees', required: true })
+  employeeId: Types.ObjectId;
+
+  @Prop([String])
+  attachments: string[];
+
+  @Prop({ enum: ['Đã xác nhận', 'Chờ xác nhận', 'Đã hủy'], default: 'Chờ xác nhận' })
   status: string;
 
   @Prop()
-  note: string;
+  notes: string;
 }
 
 export const CashBookSchema = SchemaFactory.createForClass(CashBook);
+
+CashBookSchema.index({ storeId: 1 });
+CashBookSchema.index({ type: 1 });
+CashBookSchema.index({ category: 1 });
+CashBookSchema.index({ date: 1 });
+CashBookSchema.index({ referenceId: 1 });

@@ -1,60 +1,80 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Branch } from './branch.schema';
-import { User } from './user.schema';
-import { Product } from './product.schema';
+import { Document, Types } from 'mongoose';
 
-export type PriceListDocument = PriceList & Document;
+@Schema()
+export class PriceListProduct {
+  @Prop({ type: Types.ObjectId, ref: 'Products', required: true })
+  productId: Types.ObjectId;
+
+  @Prop({ required: true })
+  price: number;
+
+  @Prop({ default: 1 })
+  minQuantity: number;
+
+  @Prop()
+  maxQuantity: number;
+
+  @Prop({ default: 0 })
+  discount: number;
+
+  @Prop({ enum: ['Phần trăm', 'Số tiền'], default: 'Phần trăm' })
+  discountType: string;
+}
+
+export const PriceListProductSchema = SchemaFactory.createForClass(PriceListProduct);
 
 @Schema({ timestamps: true })
-export class PriceList {
+export class PriceList extends Document {
+  @Prop({ unique: true })
+  priceListId: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
   @Prop({ required: true })
   name: string;
 
   @Prop()
   description: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Branch', required: true })
-  branch: Branch;
+  @Prop({ enum: ['Bán lẻ', 'Bán buôn', 'Đại lý', 'Khuyến mãi'], required: true })
+  type: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
-  createdBy: User;
-
-  @Prop({ required: true })
-  startDate: Date;
-
-  @Prop()
-  endDate: Date;
-
-  @Prop({
-    type: [{
-      product: { type: MongooseSchema.Types.ObjectId, ref: 'Product' },
-      price: Number,
-      discountType: { type: String, enum: ['percentage', 'fixed'] },
-      discountValue: Number,
-      finalPrice: Number
-    }]
-  })
-  products: Array<{
-    product: Product;
-    price: number;
-    discountType?: string;
-    discountValue?: number;
-    finalPrice: number;
-  }>;
-
-  @Prop({ default: 'active', enum: ['active', 'inactive', 'expired'] })
+  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
   status: string;
 
-  @Prop({ type: Object })
-  metadata: {
-    customerGroup?: string;
-    minimumQuantity?: number;
-    maximumQuantity?: number;
-  };
+  @Prop()
+  validFrom: Date;
 
   @Prop()
-  note: string;
+  validTo: Date;
+
+  @Prop({ type: [PriceListProductSchema] })
+  products: PriceListProduct[];
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'CustomerGroups' }] })
+  customerGroups: Types.ObjectId[];
+
+  @Prop({
+    type: {
+      minOrderValue: Number,
+      maxOrderValue: Number,
+      paymentMethods: [String],
+      locations: [String],
+    },
+  })
+  conditions: {
+    minOrderValue: number;
+    maxOrderValue: number;
+    paymentMethods: string[];
+    locations: string[];
+  };
 }
 
 export const PriceListSchema = SchemaFactory.createForClass(PriceList);
+
+PriceListSchema.index({ storeId: 1 });
+PriceListSchema.index({ name: 1 });
+PriceListSchema.index({ type: 1 });
+PriceListSchema.index({ 'products.productId': 1 });

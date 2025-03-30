@@ -2,9 +2,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class CarrierGroup extends Document {
+export class Position extends Document {
   @Prop({ unique: true })
-  groupId: string;
+  positionId: string;
 
   @Prop({ required: true })
   name: string;
@@ -12,8 +12,11 @@ export class CarrierGroup extends Document {
   @Prop()
   description: string;
 
+  @Prop({ enum: ['Hoạt động', 'Ngừng hoạt động'], default: 'Hoạt động' })
+  status: string;
+
   @Prop({ default: Date.now })
   createdAt: Date;
 }
 
-export const CarrierGroupSchema = SchemaFactory.createForClass(CarrierGroup);
+export const PositionSchema = SchemaFactory.createForClass(Position);

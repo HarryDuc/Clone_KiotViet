@@ -1,126 +1,84 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-export type WorkScheduleDocument = WorkSchedule & Document;
+@Schema()
+export class WeeklyScheduleDay {
+  @Prop({ default: true })
+  isWorking: boolean;
+
+  @Prop()
+  startTime: string;
+
+  @Prop()
+  endTime: string;
+
+  @Prop()
+  breakTime: string;
+}
+
+export const WeeklyScheduleDaySchema = SchemaFactory.createForClass(WeeklyScheduleDay);
+
+@Schema()
+export class SpecialSchedule {
+  @Prop()
+  date: Date;
+
+  @Prop()
+  isWorking: boolean;
+
+  @Prop()
+  startTime: string;
+
+  @Prop()
+  endTime: string;
+
+  @Prop()
+  breakTime: string;
+
+  @Prop()
+  reason: string;
+}
+
+export const SpecialScheduleSchema = SchemaFactory.createForClass(SpecialSchedule);
 
 @Schema({ timestamps: true })
-export class WorkSchedule {
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Store', required: true })
-  storeId: MongooseSchema.Types.ObjectId;
+export class WorkSchedule extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Employee', required: true })
-  employeeId: MongooseSchema.Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Employees', required: true })
+  employeeId: Types.ObjectId;
 
   @Prop({
-    monday: {
-      isWorking: { type: Boolean, default: true },
-      startTime: String,
-      endTime: String,
-      breakTime: String
+    type: {
+      monday: WeeklyScheduleDaySchema,
+      tuesday: WeeklyScheduleDaySchema,
+      wednesday: WeeklyScheduleDaySchema,
+      thursday: WeeklyScheduleDaySchema,
+      friday: WeeklyScheduleDaySchema,
+      saturday: WeeklyScheduleDaySchema,
+      sunday: WeeklyScheduleDaySchema,
     },
-    tuesday: {
-      isWorking: { type: Boolean, default: true },
-      startTime: String,
-      endTime: String,
-      breakTime: String
-    },
-    wednesday: {
-      isWorking: { type: Boolean, default: true },
-      startTime: String,
-      endTime: String,
-      breakTime: String
-    },
-    thursday: {
-      isWorking: { type: Boolean, default: true },
-      startTime: String,
-      endTime: String,
-      breakTime: String
-    },
-    friday: {
-      isWorking: { type: Boolean, default: true },
-      startTime: String,
-      endTime: String,
-      breakTime: String
-    },
-    saturday: {
-      isWorking: { type: Boolean, default: false },
-      startTime: String,
-      endTime: String,
-      breakTime: String
-    },
-    sunday: {
-      isWorking: { type: Boolean, default: false },
-      startTime: String,
-      endTime: String,
-      breakTime: String
-    }
   })
   weeklySchedule: {
-    monday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
-    tuesday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
-    wednesday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
-    thursday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
-    friday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
-    saturday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
-    sunday: {
-      isWorking: boolean;
-      startTime: string;
-      endTime: string;
-      breakTime: string;
-    };
+    monday: WeeklyScheduleDay;
+    tuesday: WeeklyScheduleDay;
+    wednesday: WeeklyScheduleDay;
+    thursday: WeeklyScheduleDay;
+    friday: WeeklyScheduleDay;
+    saturday: WeeklyScheduleDay;
+    sunday: WeeklyScheduleDay;
   };
 
-  @Prop([{
-    date: Date,
-    isWorking: Boolean,
-    startTime: String,
-    endTime: String,
-    breakTime: String,
-    reason: String
-  }])
-  specialSchedules: Array<{
-    date: Date;
-    isWorking: boolean;
-    startTime: string;
-    endTime: string;
-    breakTime: string;
-    reason: string;
-  }>;
+  @Prop({ type: [SpecialScheduleSchema] })
+  specialSchedules: SpecialSchedule[];
 
   @Prop({
-    allowed: { type: Boolean, default: true },
-    maxHoursPerWeek: { type: Number, default: 40 },
-    rate: { type: Number, default: 1.5 }
+    type: {
+      allowed: { type: Boolean, default: true },
+      maxHoursPerWeek: { type: Number, default: 40 },
+      rate: { type: Number, default: 1.5 },
+    },
   })
   overtimeSettings: {
     allowed: boolean;
@@ -129,9 +87,11 @@ export class WorkSchedule {
   };
 
   @Prop({
-    annualLeave: { type: Number, default: 12 },
-    sickLeave: { type: Number, default: 5 },
-    maternityLeave: { type: Number, default: 180 }
+    type: {
+      annualLeave: { type: Number, default: 12 },
+      sickLeave: { type: Number, default: 5 },
+      maternityLeave: { type: Number, default: 180 },
+    },
   })
   leaveSettings: {
     annualLeave: number;
@@ -139,11 +99,7 @@ export class WorkSchedule {
     maternityLeave: number;
   };
 
-  @Prop({
-    type: String,
-    enum: ['Đang hoạt động', 'Tạm ngưng', 'Đã hủy'],
-    default: 'Đang hoạt động'
-  })
+  @Prop({ enum: ['Đang hoạt động', 'Tạm ngưng', 'Đã hủy'], default: 'Đang hoạt động' })
   status: string;
 
   @Prop()
@@ -152,7 +108,6 @@ export class WorkSchedule {
 
 export const WorkScheduleSchema = SchemaFactory.createForClass(WorkSchedule);
 
-// Add indexes
 WorkScheduleSchema.index({ storeId: 1 });
 WorkScheduleSchema.index({ employeeId: 1 });
 WorkScheduleSchema.index({ 'specialSchedules.date': 1 });

@@ -1,67 +1,63 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { Customer } from './customer.schema';
-import { LoyaltyProgram } from './loyalty-program.schema';
-import { Transaction } from './transaction.schema';
+import { Document, Types } from 'mongoose';
 
-export type CustomerLoyaltyPointsDocument = CustomerLoyaltyPoints & Document;
+@Schema()
+export class PointsHistory {
+  @Prop({ enum: ['Kiếm tiền', 'Quy đổi', 'Hết hạn', 'Điều chỉnh'], required: true })
+  type: string;
 
-@Schema({ timestamps: true })
-export class CustomerLoyaltyPoints {
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Customer', required: true })
-  customer: Customer;
-
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'LoyaltyProgram', required: true })
-  program: LoyaltyProgram;
-
-  @Prop({ required: true, default: 0 })
+  @Prop({ required: true })
   points: number;
 
-  @Prop({ type: Object })
-  tier: {
-    name: string;
-    pointsRequired: number;
-    benefits: string[];
-    discountRate: number;
-  };
+  @Prop({ type: Types.ObjectId, ref: 'Orders' })
+  orderId: Types.ObjectId;
 
-  @Prop({
-    type: [{
-      type: { type: String, enum: ['earn', 'spend', 'expire', 'adjust'] },
-      points: Number,
-      transaction: { type: MongooseSchema.Types.ObjectId, ref: 'Transaction', required: false },
-      description: String,
-      expiryDate: { type: Date, required: false },
-      createdAt: { type: Date, default: Date.now }
-    }]
-  })
-  history: Array<{
-    type: string;
-    points: number;
-    transaction?: Transaction;
-    description: string;
-    expiryDate?: Date;
-    createdAt: Date;
-  }>;
-
-  @Prop({ type: Object })
-  statistics: {
-    totalEarned: number;
-    totalSpent: number;
-    totalExpired: number;
-    totalAdjusted: number;
-    lastActivityDate: Date;
-  };
-
-  @Prop({ type: Object })
-  metadata: {
-    joinDate: Date;
-    lastTierUpdate: Date;
-    notes: string[];
-  };
+  @Prop({ type: Types.ObjectId, ref: 'LoyaltyPrograms.rewards' })
+  rewardId: Types.ObjectId;
 
   @Prop()
-  note: string;
+  description: string;
+
+  @Prop()
+  expiryDate: Date;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const PointsHistorySchema = SchemaFactory.createForClass(PointsHistory);
+
+@Schema({ timestamps: true })
+export class CustomerLoyaltyPoints extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Customers', required: true })
+  customerId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'LoyaltyPrograms', required: true })
+  programId: Types.ObjectId;
+
+  @Prop({ default: 0 })
+  currentPoints: number;
+
+  @Prop({ default: 0 })
+  totalPointsEarned: number;
+
+  @Prop({ default: 0 })
+  totalPointsRedeemed: number;
+
+  @Prop()
+  tier: string;
+
+  @Prop({ type: [PointsHistorySchema] })
+  pointsHistory: PointsHistory[];
 }
 
 export const CustomerLoyaltyPointsSchema = SchemaFactory.createForClass(CustomerLoyaltyPoints);
+
+CustomerLoyaltyPointsSchema.index({ storeId: 1 });
+CustomerLoyaltyPointsSchema.index({ customerId: 1 });
+CustomerLoyaltyPointsSchema.index({ programId: 1 });
+CustomerLoyaltyPointsSchema.index({ 'pointsHistory.type': 1 });
+CustomerLoyaltyPointsSchema.index({ 'pointsHistory.expiryDate': 1 });

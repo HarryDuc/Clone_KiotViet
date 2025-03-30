@@ -1,11 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type ServicePackageDocument = ServicePackage & Document;
-
-@Schema({ timestamps: true })
-export class ServicePackage {
-  @Prop({ required: true })
+@Schema()
+export class ServicePackage extends Document {
+  @Prop({ unique: true })
   packageId: string;
 
   @Prop({ required: true })
@@ -20,16 +18,8 @@ export class ServicePackage {
   @Prop({ required: true })
   price: number;
 
-  @Prop([{
-    duration: Number,
-    price: Number,
-    discount: Number
-  }])
-  durationOptions: Array<{
-    duration: number;
-    price: number;
-    discount: number;
-  }>;
+  @Prop([Number])
+  durationOptions: number[];
 
   @Prop({ default: Date.now })
   createdAt: Date;

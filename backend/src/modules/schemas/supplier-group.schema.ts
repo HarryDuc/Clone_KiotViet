@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class CarrierGroup extends Document {
+export class SupplierGroup extends Document {
   @Prop({ unique: true })
   groupId: string;
 
@@ -16,4 +16,4 @@ export class CarrierGroup extends Document {
   createdAt: Date;
 }
 
-export const CarrierGroupSchema = SchemaFactory.createForClass(CarrierGroup);
+export const SupplierGroupSchema = SchemaFactory.createForClass(SupplierGroup);

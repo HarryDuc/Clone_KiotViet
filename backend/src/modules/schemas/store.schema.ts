@@ -1,10 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type StoreDocument = Store & Document;
-
-@Schema()
-export class Store {
+@Schema({ timestamps: true })
+export class Store extends Document {
   @Prop({ unique: true })
   storeId: string;
 
@@ -56,17 +54,11 @@ export class Store {
   @Prop()
   expirationDate: Date;
 
-  @Prop({ type: Types.ObjectId, ref: 'ServicePackage' })
+  @Prop({ type: Types.ObjectId, ref: 'ServicePackages' })
   servicePackage: Types.ObjectId;
 
   @Prop({ default: 0 })
   warehouseCount: number;
-
-  @Prop({ default: Date.now })
-  createdAt: Date;
-
-  @Prop({ default: Date.now })
-  updatedAt: Date;
 }
 
 export const StoreSchema = SchemaFactory.createForClass(Store);

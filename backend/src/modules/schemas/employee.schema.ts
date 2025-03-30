@@ -1,25 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type EmployeeDocument = Employee & Document;
-
 @Schema()
-class SalaryDetails {
-  @Prop()
-  shiftRate: number;
-
-  @Prop()
-  hourlyRate: number;
-
-  @Prop()
-  dailyRate: number;
-
-  @Prop()
-  fixedRate: number;
-}
-
-@Schema()
-class Bonus {
+export class Bonus {
   @Prop({ enum: ['Doanh thu cá nhân', 'Lợi nhuận chi nhánh', 'Lợi nhuận gộp'] })
   type: string;
 
@@ -30,8 +13,10 @@ class Bonus {
   value: number;
 }
 
+export const BonusSchema = SchemaFactory.createForClass(Bonus);
+
 @Schema()
-class Allowance {
+export class Allowance {
   @Prop()
   name: string;
 
@@ -45,8 +30,10 @@ class Allowance {
   valueType: string;
 }
 
+export const AllowanceSchema = SchemaFactory.createForClass(Allowance);
+
 @Schema()
-class Deduction {
+export class Deduction {
   @Prop()
   name: string;
 
@@ -60,8 +47,10 @@ class Deduction {
   value: number;
 }
 
-@Schema()
-export class Employee {
+export const DeductionSchema = SchemaFactory.createForClass(Deduction);
+
+@Schema({ timestamps: true })
+export class Employee extends Document {
   @Prop({ unique: true })
   employeeId: string;
 
@@ -77,22 +66,22 @@ export class Employee {
   @Prop()
   address: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'Branch' })
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
   branchSalary: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: 'Branch' })
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
   branchWork: Types.ObjectId;
 
   @Prop()
   startDate: Date;
 
-  @Prop({ type: Types.ObjectId, ref: 'Position' })
+  @Prop({ type: Types.ObjectId, ref: 'Positions' })
   position: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: 'Department' })
+  @Prop({ type: Types.ObjectId, ref: 'Departments' })
   department: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: 'User' })
+  @Prop({ type: Types.ObjectId, ref: 'Users' })
   userAccount: Types.ObjectId;
 
   @Prop()
@@ -107,32 +96,38 @@ export class Employee {
   @Prop({ enum: ['Theo ca', 'Theo giờ', 'Theo ngày công', 'Cố định'] })
   salaryType: string;
 
-  @Prop({ type: SalaryDetails })
-  salaryDetails: SalaryDetails;
+  @Prop({
+    type: {
+      shiftRate: Number,
+      hourlyRate: Number,
+      dailyRate: Number,
+      fixedRate: Number,
+    },
+  })
+  salaryDetails: {
+    shiftRate: number;
+    hourlyRate: number;
+    dailyRate: number;
+    fixedRate: number;
+  };
 
-  @Prop({ type: [Bonus] })
+  @Prop({ type: [BonusSchema] })
   bonus: Bonus[];
 
   @Prop()
   commission: number;
 
-  @Prop({ type: Types.ObjectId, ref: 'CommissionSetting' })
+  @Prop({ type: Types.ObjectId, ref: 'CommissionSettings' })
   commissionTable: Types.ObjectId;
 
-  @Prop({ type: [Allowance] })
+  @Prop({ type: [AllowanceSchema] })
   allowance: Allowance[];
 
-  @Prop({ type: [Deduction] })
+  @Prop({ type: [DeductionSchema] })
   deduction: Deduction[];
 
   @Prop({ enum: ['Đang làm việc', 'Đã nghỉ'], default: 'Đang làm việc' })
   status: string;
-
-  @Prop({ default: Date.now })
-  createdAt: Date;
-
-  @Prop({ default: Date.now })
-  updatedAt: Date;
 }
 
 export const EmployeeSchema = SchemaFactory.createForClass(Employee);
