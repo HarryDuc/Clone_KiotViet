@@ -18,7 +18,9 @@ export class Attendance extends Document {
   @Prop()
   checkOut: Date;
 
-  @Prop({ enum: ['Đúng giờ', 'Đi muộn', 'Về sớm', 'Chưa chấm công', 'Nghỉ làm'] })
+  @Prop({
+    enum: ['Đúng giờ', 'Đi muộn', 'Về sớm', 'Chưa chấm công', 'Nghỉ làm'],
+  })
   status: string;
 
   @Prop({ default: Date.now })

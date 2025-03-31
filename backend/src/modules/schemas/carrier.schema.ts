@@ -32,6 +32,9 @@ export class Carrier extends Document {
 
   @Prop({ default: Date.now })
   createdAt: Date;
+
+  @Prop({ default: Date.now })
+  updateAt: Date;
 }
 
 export const CarrierSchema = SchemaFactory.createForClass(Carrier);

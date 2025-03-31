@@ -23,7 +23,16 @@ export class OrderService {
       .populate('carrierId')
       .exec();
   }
-
+  async doanhThu(): Promise<Order[]> {
+    return this.orderModel
+      .find()
+      .populate('customerId')
+      .populate('products.productId')
+      .populate('channel')
+      .populate('carrierId')
+      .populate('products.productId.priceList')
+      .exec();
+  }
   async findOne(id: string): Promise<Order> {
     const order = await this.orderModel
       .findById(id)
@@ -59,4 +68,5 @@ export class OrderService {
     }
     return order;
   }
+
 }

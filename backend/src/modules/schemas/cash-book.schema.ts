@@ -47,7 +47,7 @@ export class CashBook extends Document {
   @Prop()
   description: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: Date.now })
   date: Date;
 
   @Prop({ type: Types.ObjectId, ref: 'Employees', required: true })

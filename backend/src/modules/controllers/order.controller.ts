@@ -16,6 +16,10 @@ export class OrderController {
     return this.orderService.findAll();
   }
 
+  @Get('doanhthu')
+  doanhThu() {
+    return this.orderService.doanhThu();
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.orderService.findOne(id);

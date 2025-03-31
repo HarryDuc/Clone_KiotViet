@@ -27,7 +27,7 @@ export class Customer extends Document {
   @Prop()
   idCard: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'CustomerGroups' })
+  @Prop({ type: Types.ObjectId })
   group: Types.ObjectId;
 
   @Prop({ default: 0 })

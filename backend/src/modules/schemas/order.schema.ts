@@ -53,7 +53,7 @@ export class Order extends Document {
   })
   status: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'SalesChannels' })
+  @Prop({ type: Types.ObjectId })
   channel: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'Carriers' })

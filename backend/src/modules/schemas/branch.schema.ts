@@ -11,6 +11,8 @@ export class Branch extends Document {
 
   @Prop({ default: Date.now })
   createdAt: Date;
-}
 
+  @Prop({ default: Date.now })
+  updateAt: Date;
+}
 export const BranchSchema = SchemaFactory.createForClass(Branch);
