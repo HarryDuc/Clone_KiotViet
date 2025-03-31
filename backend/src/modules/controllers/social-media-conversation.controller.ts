@@ -40,17 +40,17 @@ export class SocialMediaConversationController {
     return this.conversationService.remove(id);
   }
 
-  @Post(':id/messages')
-  async addMessage(
-    @Param('id') id: string,
-    @Body() message: any,
-  ): Promise<SocialMediaConversation> {
-    const conversation = await this.conversationService.findOne(id);
-    conversation.messages.push(message);
-    conversation.metadata.lastMessageAt = new Date();
-    conversation.metadata.unreadCount += 1;
-    return this.conversationService.update(id, conversation);
-  }
+  // @Post(':id/messages')
+  // async addMessage(
+  //   @Param('id') id: string,
+  //   @Body() message: any,
+  // ): Promise<SocialMediaConversation> {
+  //   const conversation = await this.conversationService.findOne(id);
+  //   conversation.messages.push(message);
+  //   conversation.metadata.lastMessageAt = new Date();
+  //   conversation.metadata.unreadCount += 1;
+  //   return this.conversationService.update(id, conversation);
+  // }
 
   @Put(':id/assign')
   async assignTo(

@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { MarketingCampaign, MarketingCampaignDocument } from '../schemas/marketing-campaign.schema';
+import { MarketingCampaign } from '../schemas/marketing-campaign.schema';
 
 @Injectable()
 export class MarketingCampaignService {
   constructor(
-    @InjectModel(MarketingCampaign.name) private marketingCampaignModel: Model<MarketingCampaignDocument>,
+    @InjectModel(MarketingCampaign.name) private marketingCampaignModel: Model<MarketingCampaign>,
   ) { }
 
   async create(createMarketingCampaignDto: any): Promise<MarketingCampaign> {

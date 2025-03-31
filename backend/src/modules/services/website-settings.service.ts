@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { WebsiteSettings, WebsiteSettingsDocument } from '../schemas/website-settings.schema';
+import { WebsiteSettings } from '../schemas/website-settings.schema';
 
 @Injectable()
 export class WebsiteSettingsService {
   constructor(
     @InjectModel(WebsiteSettings.name)
-    private websiteSettingsModel: Model<WebsiteSettingsDocument>,
+    private websiteSettingsModel: Model<WebsiteSettings>,
   ) { }
 
   async create(createWebsiteSettingsDto: any): Promise<WebsiteSettings> {

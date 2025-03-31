@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Holiday, HolidayDocument } from '../schemas/holiday.schema';
+import { Holiday } from '../schemas/holiday.schema';
 
 @Injectable()
 export class HolidayService {
   constructor(
     @InjectModel(Holiday.name)
-    private holidayModel: Model<HolidayDocument>,
+    private holidayModel: Model<Holiday>,
   ) { }
 
   async create(createHolidayDto: any): Promise<Holiday> {

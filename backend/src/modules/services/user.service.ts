@@ -3,12 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-import { User, UserDocument } from '../schemas/user.schema';
+import { User } from '../schemas/user.schema';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(User.name) private userModel: Model<User>,
   ) { }
 
   async create(createUserDto: any): Promise<User> {
@@ -73,8 +73,7 @@ export class UserService {
     const token = jwt.sign(
       {
         userId: user._id,
-        role: user.role,
-        isActive: user.isActive
+        role: user.role
       },
       'your-secret-key',
       { expiresIn: '1h' }

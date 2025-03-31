@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Categories, CategoriesDocument } from '../schemas/categories.schema';
+import { Categories } from '../schemas/categories.schema';
 
 @Injectable()
 export class CategoriesService {
   constructor(
-    @InjectModel(Categories.name) private categoriesModel: Model<CategoriesDocument>,
+    @InjectModel(Categories.name) private categoriesModel: Model<Categories>,
   ) { }
 
   async create(createCategoriesDto: any): Promise<Categories> {

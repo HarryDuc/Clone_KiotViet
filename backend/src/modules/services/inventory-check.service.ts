@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { InventoryCheck, InventoryCheckDocument } from '../schemas/inventory-check.schema';
+import { InventoryCheck } from '../schemas/inventory-check.schema';
 
 @Injectable()
 export class InventoryCheckService {
   constructor(
-    @InjectModel(InventoryCheck.name) private inventoryCheckModel: Model<InventoryCheckDocument>,
+    @InjectModel(InventoryCheck.name) private inventoryCheckModel: Model<InventoryCheck>,
   ) { }
 
   async create(createInventoryCheckDto: any): Promise<InventoryCheck> {

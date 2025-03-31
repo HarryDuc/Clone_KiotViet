@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SocialMediaConversation, SocialMediaConversationDocument } from '../schemas/social-media-conversation.schema';
+import { SocialMediaConversation } from '../schemas/social-media-conversation.schema';
 
 @Injectable()
 export class SocialMediaConversationService {
   constructor(
-    @InjectModel(SocialMediaConversation.name) private conversationModel: Model<SocialMediaConversationDocument>,
+    @InjectModel(SocialMediaConversation.name) private conversationModel: Model<SocialMediaConversation>,
   ) { }
 
   async create(createConversationDto: any): Promise<SocialMediaConversation> {

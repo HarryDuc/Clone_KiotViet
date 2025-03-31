@@ -80,9 +80,9 @@ export class MarketingCampaignController {
     return this.marketingCampaignService.update(id, { status: 'completed' });
   }
 
-  @Get(':id/analytics')
-  async getAnalytics(@Param('id') id: string): Promise<any> {
-    const campaign = await this.marketingCampaignService.findOne(id);
-    return campaign.analytics;
-  }
+  // @Get(':id/analytics')
+  // async getAnalytics(@Param('id') id: string): Promise<any> {
+  //   const campaign = await this.marketingCampaignService.findOne(id);
+  //   return campaign.analytics;
+  // }
 }

@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { WorkSchedule, WorkScheduleDocument } from '../schemas/work-schedule.schema';
+import { WorkSchedule } from '../schemas/work-schedule.schema';
 
 @Injectable()
 export class WorkScheduleService {
   constructor(
     @InjectModel(WorkSchedule.name)
-    private workScheduleModel: Model<WorkScheduleDocument>,
+    private workScheduleModel: Model<WorkSchedule>,
   ) { }
 
   async create(createWorkScheduleDto: any): Promise<WorkSchedule> {

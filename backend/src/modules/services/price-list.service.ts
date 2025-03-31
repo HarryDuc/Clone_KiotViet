@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PriceList, PriceListDocument } from '../schemas/price-list.schema';
+import { PriceList } from '../schemas/price-list.schema';
 
 @Injectable()
 export class PriceListService {
   constructor(
-    @InjectModel(PriceList.name) private priceListModel: Model<PriceListDocument>,
+    @InjectModel(PriceList.name) private priceListModel: Model<PriceList>,
   ) { }
 
   async create(createPriceListDto: any): Promise<PriceList> {

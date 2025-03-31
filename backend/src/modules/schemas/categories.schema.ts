@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
 @Schema()
-export class Category extends Document {
+export class Categories extends Document {
   @Prop({ unique: true })
   categoryId: string;
 
@@ -16,4 +16,4 @@ export class Category extends Document {
   createdAt: Date;
 }
 
-export const CategorySchema = SchemaFactory.createForClass(Category);
+export const CategoriesSchema = SchemaFactory.createForClass(Categories);

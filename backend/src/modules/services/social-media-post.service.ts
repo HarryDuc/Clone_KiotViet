@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SocialMediaPost, SocialMediaPostDocument } from '../schemas/social-media-post.schema';
+import { SocialMediaPost } from '../schemas/social-media-post.schema';
 
 @Injectable()
 export class SocialMediaPostService {
   constructor(
     @InjectModel(SocialMediaPost.name)
-    private socialMediaPostModel: Model<SocialMediaPostDocument>,
+    private socialMediaPostModel: Model<SocialMediaPost>,
   ) { }
 
   async create(createSocialMediaPostDto: any): Promise<SocialMediaPost> {

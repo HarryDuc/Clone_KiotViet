@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { LoyaltyProgram, LoyaltyProgramDocument } from '../schemas/loyalty-program.schema';
+import { LoyaltyProgram } from '../schemas/loyalty-program.schema';
 
 @Injectable()
 export class LoyaltyProgramService {
   constructor(
-    @InjectModel(LoyaltyProgram.name) private loyaltyProgramModel: Model<LoyaltyProgramDocument>,
+    @InjectModel(LoyaltyProgram.name) private loyaltyProgramModel: Model<LoyaltyProgram>,
   ) { }
 
   async create(createLoyaltyProgramDto: any): Promise<LoyaltyProgram> {
