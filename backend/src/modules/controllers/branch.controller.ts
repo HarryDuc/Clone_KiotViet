@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { BranchService } from '../services/branch.service';
 import { Branch } from '../schemas/branch.schema';
+import { CreateBranchDto } from '../dto/create-branch.dto';
 
 @Controller('branches')
 export class BranchController {
   constructor(private readonly branchService: BranchService) { }
 
   @Post()
-  create(@Body() createBranchDto: any) {
+  async create(@Body() createBranchDto: CreateBranchDto): Promise<Branch> {
     return this.branchService.create(createBranchDto);
   }
 

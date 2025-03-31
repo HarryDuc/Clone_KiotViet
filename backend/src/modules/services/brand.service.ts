@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Brand, BrandDocument } from '../schemas/brand.schema';
+import { Brand } from '../schemas/brand.schema';
 
 @Injectable()
 export class BrandService {
   constructor(
-    @InjectModel(Brand.name) private brandModel: Model<BrandDocument>,
+    @InjectModel(Brand.name) private brandModel: Model<Brand>,
   ) { }
 
   async create(createBrandDto: any): Promise<Brand> {

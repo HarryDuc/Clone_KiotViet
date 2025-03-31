@@ -1,0 +1,2016 @@
+================
+File: Attendances.js
+================
+import mongoose from "mongoose";
+
+const AttendanceSchema = new mongoose.Schema({
+  attendanceId: { type: String, unique: true }, // Mã chấm công
+  employeeId: { type: Schema.Types.ObjectId, ref: "Employees" }, // Tham chiếu nhân viên
+  date: { type: Date }, // Ngày chấm công
+  checkIn: { type: Date }, // Giờ vào
+  checkOut: { type: Date }, // Giờ ra
+  status: {
+    type: String,
+    enum: ["Đúng giờ", "Đi muộn", "Về sớm", "Chưa chấm công", "Nghỉ làm"],
+  }, // Trạng thái
+  createdAt: { type: Date, default: Date.now },
+});
+
+const Attendances = mongoose.model("Attendances", AttendanceSchema);
+
+export default Attendances;
+
+================
+File: BlogCategories.js
+================
+import mongoose from "mongoose";
+
+const blogCategorySchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  name: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
+  description: { type: String },
+  parentCategory: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "BlogCategories",
+  },
+  order: { type: Number, default: 0 },
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  seo: {
+    metaTitle: { type: String },
+    metaDescription: { type: String },
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+blogCategorySchema.index({ storeId: 1 });
+blogCategorySchema.index({ slug: 1 }, { unique: true });
+blogCategorySchema.index({ parentCategory: 1 });
+blogCategorySchema.index({ status: 1 });
+blogCategorySchema.index({ order: 1 });
+
+export default mongoose.model("BlogCategories", blogCategorySchema);
+
+================
+File: BlogPosts.js
+================
+import mongoose from "mongoose";
+
+const blogPostSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  title: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "BlogCategories" },
+  thumbnail: { type: String },
+  content: { type: String },
+  excerpt: { type: String },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "Employees" },
+  tags: [{ type: String }],
+  status: {
+    type: String,
+    enum: ["Bản nháp", "Đã xuất bản", "Đã lưu trữ"],
+    default: "Bản nháp",
+  },
+  publishedAt: { type: Date },
+  views: { type: Number, default: 0 },
+  likes: { type: Number, default: 0 },
+  comments: [
+    {
+      user: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+      content: { type: String },
+      createdAt: { type: Date, default: Date.now },
+    },
+  ],
+  seo: {
+    metaTitle: { type: String },
+    metaDescription: { type: String },
+    ogImage: { type: String },
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+blogPostSchema.index({ storeId: 1 });
+blogPostSchema.index({ slug: 1 }, { unique: true });
+blogPostSchema.index({ category: 1 });
+blogPostSchema.index({ status: 1 });
+blogPostSchema.index({ publishedAt: 1 });
+blogPostSchema.index({ tags: 1 });
+
+export default mongoose.model("BlogPosts", blogPostSchema);
+
+================
+File: Branches.js
+================
+import mongoose from "mongoose";
+
+const branchSchema = new mongoose.Schema({
+  name: { type: String, required: true }, // Tên thương hiệu
+  location: {type: String, required: true},
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Branches", branchSchema);
+
+================
+File: Brands.js
+================
+import mongoose from "mongoose";
+
+const brandSchema = new mongoose.Schema({
+  brandId: { type: String, unique: true }, // Mã thương hiệu
+  name: { type: String, required: true }, // Tên thương hiệu
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Brands", brandSchema);
+
+================
+File: CarrierGroups.js
+================
+import mongoose from "mongoose";
+
+const carrierGroupSchema = new mongoose.Schema({
+  groupId: { type: String, unique: true }, // Mã nhóm
+  name: { type: String, required: true }, // Tên nhóm
+  description: { type: String }, // Mô tả
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("CarrierGroups", carrierGroupSchema);
+
+================
+File: Carriers.js
+================
+import mongoose from "mongoose";
+
+const carrierSchema = new mongoose.Schema({
+  carrierId: { type: String, unique: true }, // Mã đối tác
+  name: { type: String, required: true }, // Tên đối tác
+  phone: { type: String }, // Số điện thoại
+  email: { type: String }, // Email
+  address: { type: String }, // Địa chỉ
+  group: { type: Schema.Types.ObjectId, ref: "CarrierGroups" }, // Nhóm đối tác
+  totalOrders: { type: Number, default: 0 }, // Tổng đơn hàng
+  totalFees: { type: Number, default: 0 }, // Tổng phí
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Carriers", carrierSchema);
+
+================
+File: CashBooks.js
+================
+import mongoose from "mongoose";
+
+const cashBookSchema = new mongoose.Schema({
+  cashBookId: { type: String, unique: true }, // Mã sổ quỹ
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  type: {
+    type: String,
+    enum: ["Thu", "Chi"],
+    required: true,
+  },
+  category: {
+    type: String,
+    enum: [
+      "Thu từ bán hàng",
+      "Thu từ khác",
+      "Chi mua hàng",
+      "Chi lương",
+      "Chi vận chuyển",
+      "Chi marketing",
+      "Chi khác",
+    ],
+    required: true,
+  },
+  amount: { type: Number, required: true }, // Số tiền
+  paymentMethod: {
+    type: String,
+    enum: ["Tiền mặt", "Chuyển khoản", "Thẻ tín dụng", "Ví điện tử"],
+    required: true,
+  },
+  reference: {
+    type: String,
+    enum: ["Đơn hàng", "Hóa đơn", "Phiếu nhập", "Phiếu xuất", "Khác"],
+    required: true,
+  },
+  referenceId: { type: mongoose.Schema.Types.ObjectId }, // ID tham chiếu
+  description: { type: String }, // Mô tả
+  date: { type: Date, required: true }, // Ngày giao dịch
+  employeeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employees",
+    required: true,
+  },
+  attachments: [{ type: String }], // Tệp đính kèm
+  status: {
+    type: String,
+    enum: ["Đã xác nhận", "Chờ xác nhận", "Đã hủy"],
+    default: "Chờ xác nhận",
+  },
+  notes: { type: String }, // Ghi chú
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+cashBookSchema.index({ storeId: 1 });
+cashBookSchema.index({ type: 1 });
+cashBookSchema.index({ category: 1 });
+cashBookSchema.index({ date: 1 });
+cashBookSchema.index({ referenceId: 1 });
+
+export default mongoose.model("CashBooks", cashBookSchema);
+
+================
+File: Categories.js
+================
+import mongoose from "mongoose";
+
+const categorieSchema = new mongoose.Schema({
+  categoryId: { type: String, unique: true }, // Mã nhóm
+  name: { type: String, required: true }, // Tên nhóm
+  parentCategory: { type: Schema.Types.ObjectId, ref: "Categories" }, // Nhóm cha
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Categories", categorieSchema);
+
+================
+File: CommissionSettings.js
+================
+import mongoose from "mongoose";
+
+const commissionSettingSchema = new mongoose.Schema({
+  commissionId: { type: String, unique: true }, // Mã bảng hoa hồng
+  name: { type: String, required: true }, // Tên bảng
+  scope: { type: String, enum: ["Toàn hệ thống", "Chi nhánh"] }, // Phạm vi áp dụng
+  branchId: { type: Schema.Types.ObjectId, ref: "Branches" }, // Chi nhánh (nếu có)
+  status: {
+    type: String,
+    enum: ["Áp dụng", "Ngừng áp dụng"],
+    default: "Áp dụng",
+  },
+  details: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Products" }, // Sản phẩm
+      rate: { type: Number }, // Tỷ lệ hoa hồng
+    },
+  ],
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("CommissionSettings", commissionSettingSchema);
+
+================
+File: CustomerGroups.js
+================
+import mongoose from "mongoose";
+const customerGroupSchema = new mongoose.Schema({
+  groupId: { type: String, unique: true }, // Mã nhóm
+  name: { type: String, required: true }, // Tên nhóm
+  discountType: { type: String, enum: ["VND", "%"] }, // Loại giảm giá
+  discountValue: { type: Number }, // Giá trị giảm
+  description: { type: String }, // Mô tả
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("CustomerGroups", customerGroupSchema);
+
+================
+File: CustomerLoyaltyPoints.js
+================
+import mongoose from "mongoose";
+
+const customerLoyaltyPointsSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  customerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customers",
+    required: true,
+  },
+  programId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "LoyaltyPrograms",
+    required: true,
+  },
+  currentPoints: { type: Number, default: 0 },
+  totalPointsEarned: { type: Number, default: 0 },
+  totalPointsRedeemed: { type: Number, default: 0 },
+  tier: { type: String }, // Tên tier hiện tại
+  pointsHistory: [
+    {
+      type: {
+        type: String,
+        enum: ["Kiếm tiền", "Quy đổi", "Hết hạn", "Điều chỉnh"],
+        required: true,
+      },
+      points: { type: Number, required: true },
+      orderId: { type: mongoose.Schema.Types.ObjectId, ref: "Orders" },
+      rewardId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "LoyaltyPrograms.rewards",
+      },
+      description: { type: String },
+      expiryDate: { type: Date },
+      createdAt: { type: Date, default: Date.now },
+    },
+  ],
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+customerLoyaltyPointsSchema.index({ storeId: 1 });
+customerLoyaltyPointsSchema.index({ customerId: 1 });
+customerLoyaltyPointsSchema.index({ programId: 1 });
+customerLoyaltyPointsSchema.index({ "pointsHistory.type": 1 });
+customerLoyaltyPointsSchema.index({ "pointsHistory.expiryDate": 1 });
+
+export default mongoose.model(
+  "CustomerLoyaltyPoints",
+  customerLoyaltyPointsSchema
+);
+
+================
+File: Customers.js
+================
+import mongoose from "mongoose";
+const customerSchema = new mongoose.Schema({
+  customerId: { type: String, unique: true }, // Mã khách hàng
+  name: { type: String, required: true }, // Tên khách hàng
+  phone: { type: String }, // Số điện thoại
+  email: { type: String }, // Email
+  address: { type: String }, // Địa chỉ
+  customerType: { type: String, enum: ["Cá nhân", "Công ty"] }, // Loại khách
+  taxCode: { type: String }, // Mã số thuế
+  idCard: { type: String }, // CMND/CCCD
+  group: { type: Schema.Types.ObjectId, ref: "CustomerGroups" }, // Nhóm khách hàng
+  debt: { type: Number, default: 0 }, // Nợ hiện tại
+  totalSales: { type: Number, default: 0 }, // Tổng bán
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Customers", customerSchema);
+
+================
+File: Departments.js
+================
+import mongoose from "mongoose";
+const departmentSchema = new mongoose.Schema({
+  departmentId: { type: String, unique: true }, // Mã phòng ban
+  name: { type: String, required: true }, // Tên phòng ban
+  description: { type: String }, // Mô tả
+  status: {
+    type: String,
+    enum: ["Hoạt động", "Ngừng hoạt động"],
+    default: "Hoạt động",
+  },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Departments", departmentSchema);
+
+================
+File: Destructions.js
+================
+import mongoose from "mongoose";
+const destructionSchema = new mongoose.Schema({
+  destructionId: { type: String, unique: true }, // Mã xuất hủy
+  destructionCode: { type: String }, // Mã tham chiếu
+  products: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Products" },
+      quantity: { type: Number },
+    },
+  ], // Danh sách sản phẩm
+  totalValue: { type: Number }, // Tổng giá trị hủy
+  status: {
+    type: String,
+    enum: ["Phiếu tạm thời", "Hoàn thành", "Đã hủy"],
+    default: "Phiếu tạm thời",
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Destructions", destructionSchema);
+
+================
+File: Employees.js
+================
+import mongoose from "mongoose";
+const employeeSchema = new mongoose.Schema({
+  employeeId: { type: String, unique: true }, // Mã nhân viên (tự động tạo)
+  name: { type: String, required: true }, // Tên nhân viên
+  phone: { type: String }, // Số điện thoại
+  email: { type: String }, // Email
+  address: { type: String }, // Địa chỉ
+  branchSalary: { type: Schema.Types.ObjectId, ref: "Branches" }, // Chi nhánh trả lương
+  branchWork: { type: Schema.Types.ObjectId, ref: "Branches" }, // Chi nhánh làm việc
+  startDate: { type: Date }, // Ngày bắt đầu làm việc
+  position: { type: Schema.Types.ObjectId, ref: "Positions" }, // Chức danh
+  department: { type: Schema.Types.ObjectId, ref: "Departments" }, // Phòng ban
+  userAccount: { type: Schema.Types.ObjectId, ref: "Users" }, // Tài khoản đăng nhập
+  idCard: { type: String }, // CMND/CCCD
+  dob: { type: Date }, // Ngày sinh
+  gender: { type: String, enum: ["Nam", "Nữ", "Khác"] }, // Giới tính
+  salaryType: {
+    type: String,
+    enum: ["Theo ca", "Theo giờ", "Theo ngày công", "Cố định"],
+  }, // Hình thức lương
+  salaryDetails: {
+    shiftRate: { type: Number }, // Lương ca (nếu theo ca)
+    hourlyRate: { type: Number }, // Lương giờ (nếu theo giờ)
+    dailyRate: { type: Number }, // Lương ngày (nếu theo ngày công)
+    fixedRate: { type: Number }, // Lương cố định
+  },
+  bonus: [
+    {
+      type: {
+        type: String,
+        enum: ["Doanh thu cá nhân", "Lợi nhuận chi nhánh", "Lợi nhuận gộp"],
+      },
+      form: {
+        type: String,
+        enum: ["Tổng doanh thu", "Bậc thang doanh thu", "Vượt doanh thu"],
+      },
+      value: { type: Number }, // Giá trị thưởng (% hoặc VND)
+    },
+  ],
+  commission: { type: Number }, // Tỷ lệ hoa hồng (%)
+  commissionTable: { type: Schema.Types.ObjectId, ref: "CommissionSettings" }, // Bảng hoa hồng
+  allowance: [
+    {
+      name: { type: String }, // Tên phụ cấp
+      type: {
+        type: String,
+        enum: [
+          "Theo ngày",
+          "Hàng tháng cố định",
+          "Hàng tháng tính trên ngày công",
+        ],
+      },
+      value: { type: Number }, // Giá trị phụ cấp
+      valueType: { type: String, enum: ["VND", "%"] }, // Loại giá trị
+    },
+  ],
+  deduction: [
+    {
+      name: { type: String }, // Tên giảm trừ
+      type: { type: String, enum: ["Đi muộn", "Về sớm", "Cố định"] },
+      condition: { type: String, enum: ["Theo số lần", "Theo phút"] },
+      value: { type: Number }, // Giá trị giảm trừ
+    },
+  ],
+  status: {
+    type: String,
+    enum: ["Đang làm việc", "Đã nghỉ"],
+    default: "Đang làm việc",
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Employees", employeeSchema);
+
+================
+File: Holidays.js
+================
+import mongoose from "mongoose";
+
+const holidaySchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  name: { type: String, required: true },
+  type: {
+    type: String,
+    enum: ["Ngày lễ", "Ngày đặc biệt", "Sự kiện của công ty"],
+    required: true,
+  },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
+  duration: { type: Number }, // Số ngày
+  description: { type: String },
+  isRecurring: { type: Boolean, default: false },
+  recurringPattern: {
+    frequency: { type: String, enum: ["Hàng năm", "Hàng tháng", "Hàng tuần"] },
+    interval: { type: Number }, // Số năm/tháng/tuần
+    endAfter: { type: Date }, // Ngày kết thúc lặp lại
+  },
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+holidaySchema.index({ storeId: 1 });
+holidaySchema.index({ startDate: 1 });
+holidaySchema.index({ endDate: 1 });
+holidaySchema.index({ type: 1 });
+holidaySchema.index({ status: 1 });
+
+export default mongoose.model("Holidays", holidaySchema);
+
+================
+File: InventoryChecks.js
+================
+import mongoose from "mongoose";
+
+const inventoryCheckSchema = new mongoose.Schema({
+  checkId: { type: String, unique: true }, // Mã kiểm kê
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  warehouseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  checkDate: { type: Date, required: true }, // Ngày kiểm kê
+  type: {
+    type: String,
+    enum: ["Định kỳ", "Đột xuất", "Theo yêu cầu"],
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["Draft", "In Progress", "Completed", "Cancelled"],
+    default: "Draft",
+  },
+  items: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+        required: true,
+      },
+      systemQuantity: { type: Number, required: true }, // Số lượng theo hệ thống
+      actualQuantity: { type: Number, required: true }, // Số lượng thực tế
+      difference: { type: Number }, // Chênh lệch
+      unitPrice: { type: Number }, // Đơn giá
+      totalValue: { type: Number }, // Tổng giá trị
+      notes: { type: String }, // Ghi chú
+    },
+  ],
+  totalItems: { type: Number, default: 0 }, // Tổng số sản phẩm
+  totalValue: { type: Number, default: 0 }, // Tổng giá trị
+  totalDifference: { type: Number, default: 0 }, // Tổng chênh lệch
+  checkedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employees",
+    required: true,
+  },
+  verifiedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employees",
+  },
+  attachments: [{ type: String }], // Tệp đính kèm
+  notes: { type: String }, // Ghi chú
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+inventoryCheckSchema.index({ storeId: 1 });
+inventoryCheckSchema.index({ warehouseId: 1 });
+inventoryCheckSchema.index({ checkDate: 1 });
+inventoryCheckSchema.index({ status: 1 });
+inventoryCheckSchema.index({ "items.productId": 1 });
+
+export default mongoose.model("InventoryChecks", inventoryCheckSchema);
+
+================
+File: Invoices.js
+================
+import mongoose from "mongoose";
+
+const invoiceSchema = new mongoose.Schema({
+  invoiceId: { type: String, unique: true }, // Mã hóa đơn
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  orderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Orders",
+    required: true,
+  },
+  customerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customers",
+    required: true,
+  },
+  invoiceNumber: { type: String, required: true }, // Số hóa đơn
+  invoiceDate: { type: Date, required: true }, // Ngày lập hóa đơn
+  dueDate: { type: Date }, // Ngày thanh toán
+  items: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+        required: true,
+      },
+      quantity: { type: Number, required: true },
+      unitPrice: { type: Number, required: true },
+      discount: { type: Number, default: 0 },
+      total: { type: Number, required: true },
+    },
+  ],
+  subtotal: { type: Number, required: true }, // Tổng tiền hàng
+  tax: { type: Number, default: 0 }, // Thuế
+  shipping: { type: Number, default: 0 }, // Phí vận chuyển
+  total: { type: Number, required: true }, // Tổng cộng
+  paymentMethod: {
+    type: String,
+    enum: ["Tiền mặt", "Chuyển khoản", "Thẻ tín dụng", "Ví điện tử"],
+    required: true,
+  },
+  paymentStatus: {
+    type: String,
+    enum: [
+      "Chưa thanh toán",
+      "Đã thanh toán một phần",
+      "Đã thanh toán",
+      "Đã hủy",
+    ],
+    default: "Chưa thanh toán",
+  },
+  notes: { type: String }, // Ghi chú
+  status: {
+    type: String,
+    enum: ["Draft", "Issued", "Cancelled", "Void"],
+    default: "Draft",
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+invoiceSchema.index({ storeId: 1 });
+invoiceSchema.index({ orderId: 1 });
+invoiceSchema.index({ customerId: 1 });
+invoiceSchema.index({ invoiceNumber: 1 });
+
+export default mongoose.model("Invoices", invoiceSchema);
+
+================
+File: LiveStreams.js
+================
+import mongoose from "mongoose";
+
+const liveStreamSchema = new mongoose.Schema({
+  // ID gian hàng
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  // ID kênh livestream
+  channelId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SalesChannels",
+    required: true,
+  },
+  // Tiêu đề livestream
+  title: { type: String, required: true },
+  // Mô tả
+  description: { type: String },
+  // Ảnh thumbnail
+  thumbnail: { type: String },
+  // Thời gian bắt đầu dự kiến
+  scheduledStartTime: { type: Date, required: true },
+  // Thời gian bắt đầu thực tế
+  actualStartTime: { type: Date },
+  // Thời gian kết thúc
+  endTime: { type: Date },
+  // Thời lượng (phút)
+  duration: { type: Number },
+  // Trạng thái livestream
+  status: {
+    type: String,
+    enum: ["Đã lên lịch", "Đang phát", "Đã kết thúc", "Đã hủy"],
+    default: "Đã lên lịch",
+  },
+  // Sản phẩm hiển thị
+  products: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+      },
+      name: { type: String },
+      price: { type: Number },
+      discount: { type: Number },
+      stock: { type: Number },
+      order: { type: Number }, // Thứ tự hiển thị
+    },
+  ],
+  // Khuyến mãi
+  promotions: [
+    {
+      type: { type: String }, // Loại khuyến mãi
+      value: { type: Number }, // Giá trị khuyến mãi
+      description: { type: String }, // Mô tả
+      startTime: { type: Date }, // Thời gian bắt đầu
+      endTime: { type: Date }, // Thời gian kết thúc
+    },
+  ],
+  // Tương tác người xem
+  engagement: {
+    viewers: { type: Number, default: 0 }, // Số người xem
+    likes: { type: Number, default: 0 }, // Số lượt thích
+    comments: { type: Number, default: 0 }, // Số bình luận
+    shares: { type: Number, default: 0 }, // Số lượt chia sẻ
+    peakViewers: { type: Number, default: 0 }, // Số người xem cao nhất
+  },
+  // Doanh số
+  sales: {
+    orders: { type: Number, default: 0 }, // Số đơn hàng
+    totalRevenue: { type: Number, default: 0 }, // Tổng doanh thu
+    averageOrderValue: { type: Number, default: 0 }, // Giá trị đơn hàng trung bình
+  },
+  // Bình luận
+  comments: [
+    {
+      userId: { type: String }, // ID người dùng
+      userName: { type: String }, // Tên người dùng
+      content: { type: String }, // Nội dung
+      timestamp: { type: Date }, // Thời gian
+      isPinned: { type: Boolean, default: false }, // Được ghim
+    },
+  ],
+  // Ghi hình
+  recording: {
+    url: { type: String }, // URL video
+    duration: { type: Number }, // Thời lượng
+    size: { type: Number }, // Kích thước file
+    format: { type: String }, // Định dạng
+  },
+  // Phân tích
+  analytics: {
+    viewerRetention: { type: Number }, // Tỷ lệ giữ chân người xem
+    engagementRate: { type: Number }, // Tỷ lệ tương tác
+    conversionRate: { type: Number }, // Tỷ lệ chuyển đổi
+    topProducts: [
+      {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Products",
+        },
+        sales: { type: Number },
+        revenue: { type: Number },
+      },
+    ],
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Tạo indexes để tối ưu truy vấn
+liveStreamSchema.index({ storeId: 1 });
+liveStreamSchema.index({ channelId: 1 });
+liveStreamSchema.index({ status: 1 });
+liveStreamSchema.index({ scheduledStartTime: 1 });
+liveStreamSchema.index({ "products.productId": 1 });
+liveStreamSchema.index({ "sales.totalRevenue": 1 });
+
+export default mongoose.model("LiveStreams", liveStreamSchema);
+
+================
+File: LoyaltyPrograms.js
+================
+import mongoose from "mongoose";
+
+const loyaltyProgramSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  name: { type: String, required: true },
+  description: { type: String },
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  pointRules: {
+    earnRate: { type: Number }, // Tỷ lệ tích điểm (ví dụ: 1% doanh thu)
+    minPoints: { type: Number }, // Số điểm tối thiểu để đổi
+    pointValue: { type: Number }, // Giá trị của 1 điểm (VND)
+    expiryDays: { type: Number }, // Số ngày điểm hết hạn
+  },
+  tiers: [
+    {
+      name: { type: String, required: true },
+      minPoints: { type: Number, required: true },
+      benefits: [
+        {
+          type: {
+            type: String,
+            enum: ["Giảm giá", "Miễn phí vận chuyển", "Quà tặng", "Quyền truy cập đặc biệt"],
+          },
+          value: { type: Number }, // Giá trị phần thưởng
+          description: { type: String },
+        },
+      ],
+    },
+  ],
+  rewards: [
+    {
+      name: { type: String, required: true },
+      points: { type: Number, required: true },
+      description: { type: String },
+      image: { type: String },
+      stock: { type: Number },
+      status: {
+        type: String,
+        enum: ["Có sẵn", "Hết hàng", "Không hoạt động"],
+        default: "Có sẵn",
+      },
+    },
+  ],
+  statistics: {
+    totalMembers: { type: Number, default: 0 },
+    totalPointsIssued: { type: Number, default: 0 },
+    totalPointsRedeemed: { type: Number, default: 0 },
+    totalRewardsRedeemed: { type: Number, default: 0 },
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+loyaltyProgramSchema.index({ storeId: 1 });
+loyaltyProgramSchema.index({ status: 1 });
+loyaltyProgramSchema.index({ "tiers.minPoints": 1 });
+loyaltyProgramSchema.index({ "rewards.points": 1 });
+loyaltyProgramSchema.index({ "rewards.status": 1 });
+
+export default mongoose.model("LoyaltyPrograms", loyaltyProgramSchema);
+
+================
+File: MarketingCampaigns.js
+================
+import mongoose from "mongoose";
+
+const marketingCampaignSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  name: { type: String, required: true },
+  type: {
+    type: String,
+    enum: ["Giảm giá", "Giao hàng miễn phí", "Quà tặng", "Gói", "Điểm khách hàng thân thiết"],
+    required: true,
+  },
+  description: { type: String },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
+  status: {
+    type: String,
+    enum: ["Bản nháp", "Đang hoạt động", "Đã tạm dừng", "Đã kết thúc", "Đã hủy"],
+    default: "Bản nháp",
+  },
+  conditions: {
+    minOrderValue: { type: Number },
+    maxDiscount: { type: Number },
+    applicableProducts: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Products" },
+    ],
+    applicableCategories: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Categories" },
+    ],
+    applicableCustomerGroups: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "CustomerGroups" },
+    ],
+    usageLimit: { type: Number }, // Số lần sử dụng tối đa
+    usagePerCustomer: { type: Number }, // Số lần sử dụng tối đa cho mỗi khách hàng
+  },
+  rewards: {
+    discountType: { type: String, enum: ["Tỷ lệ phần trăm", "Số tiền cố định"] },
+    discountValue: { type: Number },
+    freeShipping: { type: Boolean },
+    giftProduct: { type: mongoose.Schema.Types.ObjectId, ref: "Products" },
+    bundleProducts: [
+      {
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Products" },
+        quantity: { type: Number },
+      },
+    ],
+    loyaltyPoints: { type: Number },
+  },
+  statistics: {
+    totalUsage: { type: Number, default: 0 },
+    totalRevenue: { type: Number, default: 0 },
+    totalCustomers: { type: Number, default: 0 },
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+marketingCampaignSchema.index({ storeId: 1 });
+marketingCampaignSchema.index({ startDate: 1 });
+marketingCampaignSchema.index({ endDate: 1 });
+marketingCampaignSchema.index({ status: 1 });
+marketingCampaignSchema.index({ "conditions.applicableProducts": 1 });
+marketingCampaignSchema.index({ "conditions.applicableCategories": 1 });
+marketingCampaignSchema.index({ "conditions.applicableCustomerGroups": 1 });
+
+export default mongoose.model("MarketingCampaigns", marketingCampaignSchema);
+
+================
+File: MarketplaceListings.js
+================
+import mongoose from "mongoose";
+
+const marketplaceListingSchema = new mongoose.Schema({
+  // ID gian hàng
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  // Thông tin sản phẩm
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Products",
+    required: true,
+  },
+  // Thông tin marketplace
+  marketplace: {
+    type: String,
+    enum: ["Shopee", "Lazada", "Tiki", "Sendo", "ZaloShop", "FacebookShop"],
+    required: true,
+  },
+  // Thông tin listing
+  listingId: { type: String }, // ID sản phẩm trên marketplace
+  listingUrl: { type: String }, // URL sản phẩm trên marketplace
+  title: { type: String, required: true },
+  description: { type: String },
+  images: [{ type: String }],
+  price: { type: Number, required: true },
+  originalPrice: { type: Number },
+  stock: { type: Number, required: true },
+  sku: { type: String },
+  // Thuộc tính sản phẩm
+  attributes: [
+    {
+      name: { type: String },
+      value: { type: String },
+    },
+  ],
+  // Phân loại
+  category: { type: String },
+  subCategory: { type: String },
+  // Vận chuyển
+  shipping: {
+    methods: [{ type: String }],
+    weight: { type: Number },
+    dimensions: {
+      length: { type: Number },
+      width: { type: Number },
+      height: { type: Number },
+    },
+  },
+  // Thông tin bán hàng
+  sales: {
+    totalSales: { type: Number, default: 0 },
+    totalRevenue: { type: Number, default: 0 },
+    rating: { type: Number, default: 0 },
+    reviews: { type: Number, default: 0 },
+  },
+  // Trạng thái
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Tạm ngưng", "Đã xóa", "Lỗi"],
+    default: "Đang hoạt động",
+  },
+  // Thông tin đồng bộ
+  lastSync: { type: Date },
+  syncStatus: {
+    type: String,
+    enum: ["Thành công", "Thất bại", "Đang xử lý"],
+    default: "Thành công",
+  },
+  syncError: { type: String },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+marketplaceListingSchema.index({ storeId: 1 });
+marketplaceListingSchema.index({ productId: 1 });
+marketplaceListingSchema.index({ marketplace: 1 });
+marketplaceListingSchema.index({ listingId: 1 });
+marketplaceListingSchema.index({ status: 1 });
+
+export default mongoose.model("MarketplaceListings", marketplaceListingSchema);
+
+================
+File: Orders.js
+================
+import mongoose from "mongoose";
+const orderChema = new mongoose.Schema({
+  orderId: { type: String, unique: true }, // Mã đặt hàng
+  orderCode: { type: String, unique: true }, // Mã vận đơn
+  customerId: { type: Schema.Types.ObjectId, ref: "Customers" }, // Tham chiếu khách hàng
+  products: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Products" },
+      quantity: { type: Number },
+      price: { type: Number },
+      discount: { type: Number, default: 0 },
+    },
+  ], // Danh sách sản phẩm
+  totalAmount: { type: Number }, // Tổng tiền
+  discount: { type: Number, default: 0 }, // Giảm giá
+  paymentMethod: {
+    type: String,
+    enum: ["Tiền mặt", "Chuyển khoản", "Thẻ", "Ví"],
+  }, // Phương thức thanh toán
+  status: {
+    type: String,
+    enum: [
+      "Phiếu tạm thời",
+      "Đã xác nhận",
+      "Đang giao hàng",
+      "Hoàn thành",
+      "Đã hủy",
+    ],
+    default: "Phiếu tạm thời",
+  },
+  channel: { type: Schema.Types.ObjectId, ref: "SalesChannels" }, // Kênh bán
+  carrierId: { type: Schema.Types.ObjectId, ref: "Carriers" }, // Đối tác giao hàng
+  deliveryDate: { type: Date }, // Thời gian giao hàng
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Orders", orderChema);
+
+================
+File: Payrolls.js
+================
+import mongoose from "mongoose";
+const payrollChema = new mongoose.Schema({
+  payrollId: { type: String, unique: true }, // Mã bảng lương
+  employeeId: { type: Schema.Types.ObjectId, ref: "Employees" }, // Tham chiếu nhân viên
+  month: { type: Number }, // Tháng
+  year: { type: Number }, // Năm
+  basicSalary: { type: Number }, // Lương cơ bản
+  bonus: { type: Number, default: 0 }, // Thưởng
+  commission: { type: Number, default: 0 }, // Hoa hồng
+  allowance: { type: Number, default: 0 }, // Phụ cấp
+  deduction: { type: Number, default: 0 }, // Giảm trừ
+  total: { type: Number }, // Tổng lương
+  paid: { type: Number, default: 0 }, // Đã trả
+  status: {
+    type: String,
+    enum: ["Đang tạo", "Tạm tính", "Đã chốt lương", "Đã hủy"],
+    default: "Đang tạo",
+  },
+  branch: { type: Schema.Types.ObjectId, ref: "Branches" }, // Chi nhánh
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Payrolls", payrollChema);
+
+================
+File: Positions.js
+================
+import mongoose from "mongoose";
+const positionSchema = new mongoose.Schema({
+  positionId: { type: String, unique: true }, // Mã chức danh
+  name: { type: String, required: true }, // Tên chức danh
+  description: { type: String }, // Mô tả
+  status: {
+    type: String,
+    enum: ["Hoạt động", "Ngừng hoạt động"],
+    default: "Hoạt động",
+  },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Positions", positionSchema);
+
+================
+File: PriceLists.js
+================
+import mongoose from "mongoose";
+
+const priceListSchema = new mongoose.Schema({
+  priceListId: { type: String, unique: true }, // Mã bảng giá
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  name: { type: String, required: true }, // Tên bảng giá
+  description: { type: String }, // Mô tả
+  type: {
+    type: String,
+    enum: ["Bán lẻ", "Bán buôn", "Đại lý", "Khuyến mãi"],
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  validFrom: { type: Date }, // Ngày bắt đầu áp dụng
+  validTo: { type: Date }, // Ngày kết thúc áp dụng
+  products: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+        required: true,
+      },
+      price: { type: Number, required: true }, // Giá bán
+      minQuantity: { type: Number, default: 1 }, // Số lượng tối thiểu
+      maxQuantity: { type: Number }, // Số lượng tối đa
+      discount: { type: Number, default: 0 }, // Giảm giá
+      discountType: {
+        type: String,
+        enum: ["Phần trăm", "Số tiền"],
+        default: "Phần trăm",
+      },
+    },
+  ],
+  customerGroups: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CustomerGroups",
+    },
+  ],
+  conditions: {
+    minOrderValue: { type: Number }, // Giá trị đơn hàng tối thiểu
+    maxOrderValue: { type: Number }, // Giá trị đơn hàng tối đa
+    paymentMethods: [{ type: String }], // Phương thức thanh toán áp dụng
+    locations: [{ type: String }], // Khu vực áp dụng
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+priceListSchema.index({ storeId: 1 });
+priceListSchema.index({ name: 1 });
+priceListSchema.index({ type: 1 });
+priceListSchema.index({ "products.productId": 1 });
+
+export default mongoose.model("PriceLists", priceListSchema);
+
+================
+File: Products.js
+================
+import mongoose from "mongoose";
+const productChema = new mongoose.Schema({
+  productId: { type: String, unique: true }, // Mã hàng (tự động tạo)
+  barcode: { type: String }, // Mã vạch
+  name: { type: String, required: true }, // Tên hàng
+  category: { type: Schema.Types.ObjectId, ref: "Categories" }, // Nhóm hàng
+  brand: { type: Schema.Types.ObjectId, ref: "Brands" }, // Thương hiệu
+  price: { type: Number, required: true }, // Giá bán
+  cost: { type: Number }, // Giá vốn
+  stock: { type: Number, default: 0 }, // Tồn kho
+  location: { type: String }, // Vị trí
+  minStock: { type: Number }, // Định mức tồn ít nhất
+  maxStock: { type: Number }, // Định mức tồn nhiều nhất
+  status: {
+    type: String,
+    enum: ["Cho phép kinh doanh", "Ngừng kinh doanh"],
+    default: "Cho phép kinh doanh",
+  },
+  image: { type: String }, // URL hình ảnh
+  weight: { type: Number }, // Trọng lượng (g, kg)
+  unit: { type: String }, // Đơn vị tính (lốc, hộp, thùng...)
+  description: { type: String }, // Mô tả sản phẩm
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Products", productChema);
+
+================
+File: PurchaseHistory.js
+================
+import mongoose from "mongoose";
+const purchaseHistorySchema = new mongoose.Schema({
+  purchaseId: { type: String, unique: true }, // Mã giao dịch
+  storeId: { type: Schema.Types.ObjectId, ref: "Stores" }, // Tham chiếu gian hàng
+  packageId: { type: Schema.Types.ObjectId, ref: "ServicePackages" }, // Tham chiếu gói dịch vụ
+  purchaseDate: { type: Date, default: Date.now }, // Ngày mua
+  duration: { type: Number }, // Thời gian sử dụng (số năm)
+  totalAmount: { type: Number }, // Tổng tiền
+  status: {
+    type: String,
+    enum: ["Hoàn thành", "Đang xử lý", "Hủy"],
+    default: "Hoàn thành",
+  },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("PurchaseHistory", purchaseHistorySchema);
+
+================
+File: PurchaseOrders.js
+================
+import mongoose from "mongoose";
+const purchaseOrderSchema = new mongoose.Schema({
+  purchaseOrderId: { type: String, unique: true }, // Mã nhập hàng
+  purchaseOrderCode: { type: String }, // Mã trả nhập hàng
+  supplierId: { type: Schema.Types.ObjectId, ref: "Suppliers" }, // Tham chiếu nhà cung cấp
+  products: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Products" },
+      quantity: { type: Number },
+      price: { type: Number },
+    },
+  ], // Danh sách sản phẩm
+  totalAmount: { type: Number }, // Tổng tiền
+  status: {
+    type: String,
+    enum: ["Phiếu tạm thời", "Đã nhập hàng", "Đã hủy"],
+    default: "Phiếu tạm thời",
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("PurchaseOrders", purchaseOrderSchema);
+
+================
+File: ReturnPurchases.js
+================
+import mongoose from "mongoose";
+const returnPurchaseSchema = new mongoose.Schema({
+  returnPurchaseId: { type: String, unique: true }, // Mã trả hàng nhập
+  returnPurchaseCode: { type: String }, // Mã tham chiếu
+  purchaseOrderId: { type: Schema.Types.ObjectId, ref: "PurchaseOrders" }, // Tham chiếu đơn nhập
+  products: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Products" },
+      quantity: { type: Number },
+    },
+  ], // Danh sách sản phẩm
+  reason: { type: String }, // Lý do trả
+  totalRefund: { type: Number }, // Tổng tiền hoàn
+  status: {
+    type: String,
+    enum: ["Phiếu tạm thời", "Đã trả hàng", "Đã hủy"],
+    default: "Phiếu tạm thời",
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("ReturnPurchases", returnPurchaseSchema);
+
+================
+File: Returns.js
+================
+import mongoose from "mongoose";
+const returnSchema = new mongoose.Schema({
+  returnId: { type: String, unique: true }, // Mã trả hàng
+  returnCode: { type: String }, // Mã vận đơn bán
+  orderId: { type: Schema.Types.ObjectId, ref: "Orders" }, // Tham chiếu đơn hàng
+  products: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Products" },
+      quantity: { type: Number },
+    },
+  ], // Danh sách sản phẩm trả
+  reason: { type: String }, // Lý do trả
+  totalRefund: { type: Number }, // Tổng tiền hoàn
+  status: { type: String, enum: ["Đã trả", "Đã hủy"], default: "Đã trả" },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Returns", returnSchema);
+
+================
+File: SalesChannels.js
+================
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
+
+const salesChannelSchema = new mongoose.Schema({
+  storeId: { type: Schema.Types.ObjectId, ref: "Stores", required: true },
+  name: { type: String, required: true },
+  type: {
+    type: String,
+    enum: [
+      "Trực tiếp",
+      "Shopee",
+      "Tiki",
+      "Lazada",
+      "Sendo",
+      "Facebook",
+      "Instagram",
+    ],
+    required: true,
+  },
+  description: { type: String },
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  settings: {
+    // Cài đặt chung
+    syncProducts: { type: Boolean, default: false },
+    syncPrices: { type: Boolean, default: false },
+    syncStock: { type: Boolean, default: false },
+
+    // Cài đặt riêng cho từng kênh
+    shopee: {
+      shopId: { type: String },
+      accessToken: { type: String },
+      refreshToken: { type: String },
+      tokenExpiry: { type: Date },
+    },
+    tiki: {
+      sellerId: { type: String },
+      accessToken: { type: String },
+      refreshToken: { type: String },
+      tokenExpiry: { type: Date },
+    },
+    lazada: {
+      sellerId: { type: String },
+      accessToken: { type: String },
+      refreshToken: { type: String },
+      tokenExpiry: { type: Date },
+    },
+    sendo: {
+      sellerId: { type: String },
+      accessToken: { type: String },
+      refreshToken: { type: String },
+      tokenExpiry: { type: Date },
+    },
+    facebook: {
+      pageId: { type: String },
+      accessToken: { type: String },
+      tokenExpiry: { type: Date },
+    },
+    instagram: {
+      businessAccountId: { type: String },
+      accessToken: { type: String },
+      tokenExpiry: { type: Date },
+    },
+  },
+  statistics: {
+    totalOrders: { type: Number, default: 0 },
+    totalRevenue: { type: Number, default: 0 },
+    totalProducts: { type: Number, default: 0 },
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+salesChannelSchema.index({ storeId: 1 });
+salesChannelSchema.index({ type: 1 });
+salesChannelSchema.index({ status: 1 });
+salesChannelSchema.index({ "settings.shopee.shopId": 1 });
+salesChannelSchema.index({ "settings.tiki.sellerId": 1 });
+salesChannelSchema.index({ "settings.lazada.sellerId": 1 });
+salesChannelSchema.index({ "settings.sendo.sellerId": 1 });
+salesChannelSchema.index({ "settings.facebook.pageId": 1 });
+salesChannelSchema.index({ "settings.instagram.businessAccountId": 1 });
+
+export default mongoose.model("SalesChannels", salesChannelSchema);
+
+================
+File: ServicePackages.js
+================
+import mongoose from "mongoose";
+const servicePackageSchema = new mongoose.Schema({
+  packageId: { type: String, unique: true }, // Mã gói dịch vụ
+  name: { type: String, required: true }, // Tên gói (VD: Hỗ trợ, Chuyên nghiệp, Cao cấp)
+  description: { type: String }, // Mô tả
+  features: [{ type: String }], // Danh sách chức năng
+  price: { type: Number, required: true }, // Giá gói
+  durationOptions: [{ type: Number }], // Các tùy chọn thời gian (1-5 năm)
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("ServicePackages", servicePackageSchema);
+
+================
+File: Shipments.js
+================
+import mongoose from "mongoose";
+
+const shipmentSchema = new mongoose.Schema({
+  shipmentId: { type: String, unique: true }, // Mã vận chuyển
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  orderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Orders",
+    required: true,
+  },
+  customerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customers",
+    required: true,
+  },
+  shippingMethod: {
+    type: String,
+    enum: [
+      "Giao hàng nhanh",
+      "Giao hàng tiết kiệm",
+      "Viettel Post",
+      "Grab Express",
+      "Tự giao",
+    ],
+    required: true,
+  },
+  trackingNumber: { type: String }, // Mã vận đơn
+  shippingFee: { type: Number, required: true }, // Phí vận chuyển
+  estimatedDeliveryDate: { type: Date }, // Ngày dự kiến giao hàng
+  actualDeliveryDate: { type: Date }, // Ngày giao hàng thực tế
+  shippingAddress: {
+    fullName: { type: String, required: true },
+    phone: { type: String, required: true },
+    address: { type: String, required: true },
+    ward: { type: String },
+    district: { type: String },
+    city: { type: String },
+    province: { type: String },
+    country: { type: String, default: "Việt Nam" },
+  },
+  status: {
+    type: String,
+    enum: [
+      "Chờ xử lý",
+      "Đã nhận đơn",
+      "Đang vận chuyển",
+      "Đã giao hàng",
+      "Giao hàng thất bại",
+      "Đã hủy",
+    ],
+    default: "Chờ xử lý",
+  },
+  trackingHistory: [
+    {
+      status: { type: String, required: true },
+      location: { type: String },
+      timestamp: { type: Date, default: Date.now },
+      note: { type: String },
+    },
+  ],
+  notes: { type: String }, // Ghi chú
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+shipmentSchema.index({ storeId: 1 });
+shipmentSchema.index({ orderId: 1 });
+shipmentSchema.index({ customerId: 1 });
+shipmentSchema.index({ trackingNumber: 1 });
+
+export default mongoose.model("Shipments", shipmentSchema);
+
+================
+File: SocialMediaConversations.js
+================
+import mongoose from "mongoose";
+
+const socialMediaConversationSchema = new mongoose.Schema({
+  // ID gian hàng
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  // ID kênh mạng xã hội
+  channelId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SalesChannels",
+    required: true,
+  },
+  // ID hội thoại trên nền tảng
+  platformConversationId: { type: String },
+  // Thông tin khách hàng
+  customer: {
+    platformUserId: { type: String }, // ID người dùng trên nền tảng
+    name: { type: String }, // Tên người dùng
+    avatar: { type: String }, // Ảnh đại diện
+    phone: { type: String }, // Số điện thoại
+    email: { type: String }, // Email
+  },
+  // Loại hội thoại
+  type: {
+    type: String,
+    enum: ["Tin nhắn trực tiếp", "Bình luận", "Đánh giá", "Khiếu nại"],
+    required: true,
+  },
+  // Trạng thái hội thoại
+  status: {
+    type: String,
+    enum: ["Mới", "Đang xử lý", "Đã hoàn thành", "Đã đóng"],
+    default: "Mới",
+  },
+  // Độ ưu tiên
+  priority: {
+    type: String,
+    enum: ["Thấp", "Trung bình", "Cao", "Khẩn cấp"],
+    default: "Trung bình",
+  },
+  // Nhân viên phụ trách
+  assignedTo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employees",
+  },
+  // Nội dung hội thoại
+  messages: [
+    {
+      platformMessageId: { type: String }, // ID tin nhắn trên nền tảng
+      sender: { type: String }, // Người gửi
+      content: { type: String }, // Nội dung
+      type: { type: String }, // Loại tin nhắn
+      attachments: [{ type: String }], // Tệp đính kèm
+      createdAt: { type: Date }, // Thời gian gửi
+    },
+  ],
+  // Nhãn phân loại
+  tags: [{ type: String }],
+  // Ghi chú
+  notes: [{ type: String }],
+  // Đơn hàng liên quan
+  relatedOrders: [
+    {
+      orderId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Orders",
+      },
+      orderCode: { type: String },
+    },
+  ],
+  // Sản phẩm liên quan
+  relatedProducts: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+      },
+      name: { type: String },
+    },
+  ],
+  // Chỉ số hiệu suất
+  metrics: {
+    responseTime: { type: Number }, // Thời gian phản hồi (phút)
+    resolutionTime: { type: Number }, // Thời gian giải quyết (phút)
+    customerSatisfaction: { type: Number }, // Độ hài lòng của khách hàng
+  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Tạo indexes để tối ưu truy vấn
+socialMediaConversationSchema.index({ storeId: 1 });
+socialMediaConversationSchema.index({ channelId: 1 });
+socialMediaConversationSchema.index({ status: 1 });
+socialMediaConversationSchema.index({ assignedTo: 1 });
+socialMediaConversationSchema.index({ "customer.platformUserId": 1 });
+socialMediaConversationSchema.index({ createdAt: 1 });
+
+export default mongoose.model(
+  "SocialMediaConversations",
+  socialMediaConversationSchema
+);
+
+================
+File: SocialMediaPosts.js
+================
+import mongoose from "mongoose";
+
+const socialMediaPostSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  channelId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SalesChannels",
+    required: true,
+  },
+  // Thông tin bài đăng
+  title: { type: String, required: true },
+  content: { type: String },
+  media: [
+    {
+      type: { type: String, enum: ["image", "video", "link"] },
+      url: { type: String },
+      caption: { type: String },
+    },
+  ],
+  // Cài đặt đăng bài
+  schedule: {
+    isScheduled: { type: Boolean, default: false },
+    scheduledTime: { type: Date },
+    timezone: { type: String },
+  },
+  // Tương tác
+  engagement: {
+    likes: { type: Number, default: 0 },
+    comments: { type: Number, default: 0 },
+    shares: { type: Number, default: 0 },
+    views: { type: Number, default: 0 },
+  },
+  // Sản phẩm liên quan
+  products: [
+    {
+      productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Products",
+      },
+      name: { type: String },
+      price: { type: Number },
+      discount: { type: Number },
+    },
+  ],
+  // Hashtags và mentions
+  hashtags: [{ type: String }],
+  mentions: [{ type: String }],
+  // Trạng thái
+  status: {
+    type: String,
+    enum: ["Bản nháp", "Đã lên lịch", "Đã đăng", "Đã hủy", "Lỗi"],
+    default: "Bản nháp",
+  },
+  // Thông tin đăng
+  postedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employees",
+  },
+  postedAt: { type: Date },
+  // Thông tin nền tảng
+  platformPostId: { type: String }, // ID bài đăng trên nền tảng
+  platformPostUrl: { type: String }, // URL bài đăng trên nền tảng
+  platform: { type: String }, // Tên nền tảng (Facebook, Instagram, etc.)
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+socialMediaPostSchema.index({ storeId: 1 });
+socialMediaPostSchema.index({ channelId: 1 });
+socialMediaPostSchema.index({ "schedule.scheduledTime": 1 });
+socialMediaPostSchema.index({ status: 1 });
+
+export default mongoose.model("SocialMediaPosts", socialMediaPostSchema);
+
+================
+File: Stores.js
+================
+import mongoose from "mongoose";
+
+const storeSchema = new mongoose.Schema({
+  storeId: { type: String, unique: true }, // Mã gian hàng (tự động tạo)
+  accountType: { type: String, enum: ["Cá nhân", "Doanh nghiệp"] }, // Loại tài khoản
+  representative: { type: String, required: true }, // Người đại diện
+  phone: { type: String, required: true }, // Số điện thoại
+  email: { type: String }, // Email
+  gender: { type: String, enum: ["Nam", "Nữ", "Khác"] }, // Giới tính
+  dob: { type: Date }, // Ngày sinh
+  idCard: { type: String }, // CCCD/Hộ chiếu
+  issueDate: { type: Date }, // Ngày cấp
+  issuePlace: { type: String }, // Nơi cấp
+  address: { type: String }, // Địa chỉ
+  storeName: { type: String, required: true }, // Tên gian hàng
+  industry: { type: String }, // Ngành hàng
+  branchCount: { type: Number, default: 0 }, // Số chi nhánh
+  employeeCount: { type: Number, default: 0 }, // Số nhân viên
+  status: {
+    type: String,
+    enum: ["Đang sử dụng", "Ngừng sử dụng"],
+    default: "Đang sử dụng",
+  }, // Tình trạng
+  expirationDate: { type: Date }, // Ngày hết hạn
+  servicePackage: { type: Schema.Types.ObjectId, ref: "ServicePackages" }, // Gói dịch vụ
+  warehouseCount: { type: Number, default: 0 }, // Số lượng kho
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Stores", storeSchema);
+
+================
+File: SupplierGroups.js
+================
+import mongoose from "mongoose";
+const supplierGroupSchema = new mongoose.Schema({
+  groupId: { type: String, unique: true }, // Mã nhóm
+  name: { type: String, required: true }, // Tên nhóm
+  description: { type: String }, // Mô tả
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("SupplierGroups", supplierGroupSchema);
+
+================
+File: Suppliers.js
+================
+import mongoose from "mongoose";
+const supplierSchema = new mongoose.Schema({
+  supplierId: { type: String, unique: true }, // Mã nhà cung cấp
+  name: { type: String, required: true }, // Tên nhà cung cấp
+  phone: { type: String }, // Số điện thoại
+  email: { type: String }, // Email
+  address: { type: String }, // Địa chỉ
+  group: { type: Schema.Types.ObjectId, ref: "SupplierGroups" }, // Nhóm nhà cung cấp
+  debt: { type: Number, default: 0 }, // Nợ hiện tại
+  totalPurchases: { type: Number, default: 0 }, // Tổng mua
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Ngừng hoạt động"],
+    default: "Đang hoạt động",
+  },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Suppliers", supplierSchema);
+
+================
+File: Transactions.js
+================
+import mongoose from "mongoose";
+const transactionSchema = new mongoose.Schema({
+  transactionId: { type: String, unique: true }, // Mã giao dịch
+  storeId: { type: Schema.Types.ObjectId, ref: "Stores" }, // Tham chiếu gian hàng
+  type: { type: String, enum: ["Nạp tiền", "Chi tiêu"] }, // Loại giao dịch
+  amount: { type: Number, required: true }, // Số tiền
+  date: { type: Date, default: Date.now }, // Ngày giao dịch
+  description: { type: String }, // Mô tả
+  balanceBefore: { type: Number }, // Số dư trước giao dịch
+  balanceAfter: { type: Number }, // Số dư sau giao dịch
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Transactions", transactionSchema);
+
+================
+File: Users.js
+================
+import mongoose from "mongoose";
+const userSchema = new mongoose.Schema({
+  userId: { type: String, unique: true }, // Mã tài khoản
+  username: { type: String, required: true }, // Tên đăng nhập
+  password: { type: String, required: true }, // Mật khẩu (mã hóa)
+  fullName: { type: String }, // Tên người dùng
+  role: { type: String }, // Vai trò (VD: Admin, Nhân viên)
+  branch: { type: Schema.Types.ObjectId, ref: "Brands" }, // Chi nhánh làm việc
+  email: { type: String }, // Email
+  phone: { type: String }, // Số điện thoại
+  isAdmin: { type: Boolean, default: false }, // Quyền truy cập toàn bộ hệ thống
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Users", userSchema);
+
+================
+File: WebsiteSettings.js
+================
+import mongoose from "mongoose";
+
+const websiteSettingsSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  // Cài đặt chung
+  siteName: { type: String, required: true },
+  logo: { type: String },
+  favicon: { type: String },
+  description: { type: String },
+  keywords: [{ type: String }],
+
+  // Cài đặt liên hệ
+  contact: {
+    phone: { type: String },
+    email: { type: String },
+    address: { type: String },
+    workingHours: { type: String },
+  },
+
+  // Cài đặt mạng xã hội
+  socialMedia: {
+    facebook: { type: String },
+    instagram: { type: String },
+    youtube: { type: String },
+    tiktok: { type: String },
+    zalo: { type: String },
+  },
+
+  // Cài đặt SEO
+  seo: {
+    metaTitle: { type: String },
+    metaDescription: { type: String },
+    ogImage: { type: String },
+    robots: { type: String },
+    sitemap: { type: Boolean, default: true },
+  },
+
+  // Cài đặt giao diện
+  theme: {
+    primaryColor: { type: String },
+    secondaryColor: { type: String },
+    fontFamily: { type: String },
+    customCSS: { type: String },
+  },
+
+  // Cài đặt bảo mật
+  security: {
+    ssl: { type: Boolean, default: true },
+    maintenanceMode: { type: Boolean, default: false },
+    allowedIPs: [{ type: String }],
+  },
+
+  // Cài đặt tích hợp
+  integrations: {
+    googleAnalytics: { type: String },
+    facebookPixel: { type: String },
+    chatWidget: { type: Boolean, default: true },
+  },
+
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Bảo trì", "Tạm ngưng"],
+    default: "Đang hoạt động",
+  },
+
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+websiteSettingsSchema.index({ storeId: 1 });
+
+export default mongoose.model("WebsiteSettings", websiteSettingsSchema);
+
+================
+File: WorkSchedules.js
+================
+import mongoose from "mongoose";
+
+const workScheduleSchema = new mongoose.Schema({
+  storeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stores",
+    required: true,
+  },
+  employeeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employees",
+    required: true,
+  },
+  // Lịch làm việc theo tuần
+  weeklySchedule: {
+    monday: {
+      isWorking: { type: Boolean, default: true },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+    tuesday: {
+      isWorking: { type: Boolean, default: true },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+    wednesday: {
+      isWorking: { type: Boolean, default: true },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+    thursday: {
+      isWorking: { type: Boolean, default: true },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+    friday: {
+      isWorking: { type: Boolean, default: true },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+    saturday: {
+      isWorking: { type: Boolean, default: false },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+    sunday: {
+      isWorking: { type: Boolean, default: false },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+    },
+  },
+  // Lịch làm việc đặc biệt
+  specialSchedules: [
+    {
+      date: { type: Date },
+      isWorking: { type: Boolean },
+      startTime: { type: String },
+      endTime: { type: String },
+      breakTime: { type: String },
+      reason: { type: String },
+    },
+  ],
+  // Cài đặt làm thêm giờ
+  overtimeSettings: {
+    allowed: { type: Boolean, default: true },
+    maxHoursPerWeek: { type: Number, default: 40 },
+    rate: { type: Number, default: 1.5 }, // Hệ số lương làm thêm
+  },
+  // Cài đặt nghỉ phép
+  leaveSettings: {
+    annualLeave: { type: Number, default: 12 }, // Số ngày nghỉ phép năm
+    sickLeave: { type: Number, default: 5 }, // Số ngày nghỉ ốm
+    maternityLeave: { type: Number, default: 180 }, // Số ngày nghỉ thai sản
+  },
+  status: {
+    type: String,
+    enum: ["Đang hoạt động", "Tạm ngưng", "Đã hủy"],
+    default: "Đang hoạt động",
+  },
+  notes: { type: String },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
+// Indexes
+workScheduleSchema.index({ storeId: 1 });
+workScheduleSchema.index({ employeeId: 1 });
+workScheduleSchema.index({ "specialSchedules.date": 1 });
+
+export default mongoose.model("WorkSchedules", workScheduleSchema);
+
+
+
+================================================================
+End of Codebase
+================================================================

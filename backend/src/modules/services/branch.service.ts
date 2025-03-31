@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Branch, BranchDocument } from '../schemas/branch.schema';
+import { Branch } from '../schemas/branch.schema';
 
 @Injectable()
 export class BranchService {
   constructor(
-    @InjectModel(Branch.name) private branchModel: Model<BranchDocument>,
+    @InjectModel(Branch.name) private branchModel: Model<Branch>,
   ) { }
 
   async create(createBranchDto: any): Promise<Branch> {
