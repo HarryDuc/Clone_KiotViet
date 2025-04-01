@@ -6,7 +6,7 @@ import { SupplierGroupService } from '../services/supplier-group.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: SupplierGroup.name, schema: SupplierGroupSchema }])
+    MongooseModule.forFeature([{ name: 'SupplierGroups', schema: SupplierGroupSchema }])
   ],
   controllers: [SupplierGroupController],
   providers: [SupplierGroupService],

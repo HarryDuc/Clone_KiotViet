@@ -6,7 +6,7 @@ import { CommissionSetting } from '../schemas/commission-setting.schema';
 @Injectable()
 export class CommissionSettingService {
   constructor(
-    @InjectModel(CommissionSetting.name) private commissionSettingModel: Model<CommissionSetting>,
+    @InjectModel('CommissionSettings') private commissionSettingModel: Model<CommissionSetting>,
   ) { }
 
   async create(createCommissionSettingDto: any): Promise<CommissionSetting> {

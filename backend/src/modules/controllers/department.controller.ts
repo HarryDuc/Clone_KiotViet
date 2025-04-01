@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { DepartmentService } from '../services/department.service';
 import { Department } from '../schemas/department.schema';
 
-@Controller('departments')
+@Controller('api/departments')
 export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) { }
 

@@ -7,7 +7,7 @@ import { Store, StoreSchema } from '../schemas/store.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: Store.name, schema: StoreSchema },
+      { name: 'Stores', schema: StoreSchema },
     ]),
   ],
   controllers: [StoreController],

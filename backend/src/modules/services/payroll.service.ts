@@ -6,7 +6,7 @@ import { Payroll } from '../schemas/payroll.schema';
 @Injectable()
 export class PayrollService {
   constructor(
-    @InjectModel(Payroll.name) private payrollModel: Model<Payroll>,
+    @InjectModel('Payrolls') private payrollModel: Model<Payroll>,
   ) { }
 
   async create(createPayrollDto: any): Promise<Payroll> {

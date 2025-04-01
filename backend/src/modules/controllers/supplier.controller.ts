@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { SupplierService } from '../services/supplier.service';
 import { Supplier } from '../schemas/supplier.schema';
 
-@Controller('suppliers')
+@Controller('api/suppliers')
 export class SupplierController {
   constructor(private readonly supplierService: SupplierService) { }
 

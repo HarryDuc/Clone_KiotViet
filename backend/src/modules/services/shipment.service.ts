@@ -6,7 +6,7 @@ import { Shipment } from '../schemas/shipment.schema';
 @Injectable()
 export class ShipmentService {
   constructor(
-    @InjectModel(Shipment.name)
+    @InjectModel('Shipments')
     private shipmentModel: Model<Shipment>,
   ) { }
 

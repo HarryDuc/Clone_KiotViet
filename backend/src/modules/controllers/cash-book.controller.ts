@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/
 import { CashBookService } from '../services/cash-book.service';
 import { CashBook } from '../schemas/cash-book.schema';
 
-@Controller('cash-books')
+@Controller('api/cash-books')
 export class CashBookController {
   constructor(private readonly cashBookService: CashBookService) { }
 

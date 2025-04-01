@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CategoriesService } from '../services/categories.service';
 import { Categories } from '../schemas/categories.schema';
 
-@Controller('categories')
+@Controller('api/categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) { }
 

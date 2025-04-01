@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UserService } from '../services/user.service';
 import { User } from '../schemas/user.schema';
 
-@Controller('users')
+@Controller('api/auth')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 

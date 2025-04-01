@@ -6,7 +6,7 @@ import { PurchaseOrder } from '../schemas/purchase-orders.schema';
 @Injectable()
 export class PurchaseOrderService {
   constructor(
-    @InjectModel(PurchaseOrder.name) private PurchaseOrderModel: Model<PurchaseOrder>,
+    @InjectModel('PurchaseOrders') private PurchaseOrderModel: Model<PurchaseOrder>,
   ) { }
 
   async create(createPurchaseOrderDto: any): Promise<PurchaseOrder> {

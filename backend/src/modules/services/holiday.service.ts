@@ -6,7 +6,7 @@ import { Holiday } from '../schemas/holiday.schema';
 @Injectable()
 export class HolidayService {
   constructor(
-    @InjectModel(Holiday.name)
+    @InjectModel('Holidays')
     private holidayModel: Model<Holiday>,
   ) { }
 

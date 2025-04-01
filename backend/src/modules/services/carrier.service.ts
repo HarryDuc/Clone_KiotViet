@@ -6,7 +6,7 @@ import { Carrier } from '../schemas/carrier.schema';
 @Injectable()
 export class CarrierService {
   constructor(
-    @InjectModel(Carrier.name) private CarrierModel: Model<Carrier>,
+    @InjectModel('Carriers') private CarrierModel: Model<Carrier>,
   ) { }
   async create(createCarrierDto: any): Promise<Carrier> {
     const createdAttendance = new this.CarrierModel(createCarrierDto);

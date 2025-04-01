@@ -6,7 +6,7 @@ import { PayrollService } from '../services/payroll.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Payroll.name, schema: PayrollSchema }])
+    MongooseModule.forFeature([{ name: 'Payrolls', schema: PayrollSchema }])
   ],
   controllers: [PayrollController],
   providers: [PayrollService],

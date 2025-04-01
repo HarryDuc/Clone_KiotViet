@@ -6,7 +6,7 @@ import { CarrierGroup } from '../schemas/carrier-group.schema';
 @Injectable()
 export class CarrierGroupService {
   constructor(
-    @InjectModel(CarrierGroup.name) private carrierGroupModel: Model<CarrierGroup>,
+    @InjectModel('CarrierGroups') private carrierGroupModel: Model<CarrierGroup>,
   ) { }
 
   async create(createCarrierGroupDto: any): Promise<CarrierGroup> {

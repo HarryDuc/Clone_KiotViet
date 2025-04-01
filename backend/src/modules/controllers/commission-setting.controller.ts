@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CommissionSettingService } from '../services/commission-setting.service';
 import { CommissionSetting } from '../schemas/commission-setting.schema';
 
-@Controller('commission-settings')
+@Controller('api/commission-settings')
 export class CommissionSettingController {
   constructor(private readonly commissionSettingService: CommissionSettingService) { }
 

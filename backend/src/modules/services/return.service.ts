@@ -6,7 +6,7 @@ import { Return } from '../schemas/return.schema';
 @Injectable()
 export class ReturnService {
   constructor(
-    @InjectModel(Return.name) private ReturnModel: Model<Return>,
+    @InjectModel('Returns') private ReturnModel: Model<Return>,
   ) { }
 
   async create(createReturnDto: any): Promise<Return> {

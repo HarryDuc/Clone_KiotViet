@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { InvoiceService } from '../services/invoice.service';
 import { Invoice } from '../schemas/invoice.schema';
 
-@Controller('invoices')
+@Controller('api/invoices')
 export class InvoiceController {
   constructor(private readonly invoiceService: InvoiceService) { }
 

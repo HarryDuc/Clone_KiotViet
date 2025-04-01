@@ -7,7 +7,7 @@ import { Supplier, SupplierSchema } from '../schemas/supplier.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: Supplier.name, schema: SupplierSchema }
+      { name: 'Suppliers', schema: SupplierSchema }
     ]),
   ],
   controllers: [SupplierController],

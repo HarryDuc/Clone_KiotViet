@@ -6,7 +6,7 @@ import { Product } from '../schemas/product.schema';
 @Injectable()
 export class ProductService {
   constructor(
-    @InjectModel(Product.name) private productModel: Model<Product>,
+    @InjectModel('Products') private productModel: Model<Product>,
   ) { }
 
   async create(createProductDto: any): Promise<Product> {
@@ -17,6 +17,7 @@ export class ProductService {
   async findAll(): Promise<Product[]> {
     return this.productModel.find().populate('category').populate('brand').exec();
   }
+
   async findOne(id: string): Promise<Product | null> {
     const product = await this.productModel.findById(id).populate('category').populate('brand').exec();
     if (!product) {
@@ -32,6 +33,7 @@ export class ProductService {
       .populate('brand')
       .exec();
   }
+
   async remove(id: string): Promise<Product | null> {
     return this.productModel.findByIdAndDelete(id).exec();
   }

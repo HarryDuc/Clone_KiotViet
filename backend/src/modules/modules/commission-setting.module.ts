@@ -7,7 +7,7 @@ import { CommissionSettingService } from '../services/commission-setting.service
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: CommissionSetting.name, schema: CommissionSettingSchema }])
+    MongooseModule.forFeature([{ name: 'CommissionSettings', schema: CommissionSettingSchema }])
   ],
   controllers: [CommissionSettingController],
   providers: [CommissionSettingService],

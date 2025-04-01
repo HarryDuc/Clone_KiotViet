@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'Carriers' })
 export class Carrier extends Document {
   @Prop({ unique: true })
   carrierId: string;

@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'CommissionDetails' })
 export class CommissionDetail {
   @Prop({ type: Types.ObjectId, ref: 'Products' })
   productId: Types.ObjectId;
@@ -12,7 +12,7 @@ export class CommissionDetail {
 
 export const CommissionDetailSchema = SchemaFactory.createForClass(CommissionDetail);
 
-@Schema()
+@Schema({ collection: 'CommissionSettings' })
 export class CommissionSetting extends Document {
   @Prop({ unique: true })
   commissionId: string;

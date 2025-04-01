@@ -6,7 +6,7 @@ import { Categories } from '../schemas/categories.schema';
 @Injectable()
 export class CategoriesService {
   constructor(
-    @InjectModel(Categories.name) private categoriesModel: Model<Categories>,
+    @InjectModel('Categories') private categoriesModel: Model<Categories>,
   ) { }
 
   async create(createCategoriesDto: any): Promise<Categories> {

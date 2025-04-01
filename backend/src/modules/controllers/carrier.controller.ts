@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CarrierService } from '../services/carrier.service';
 
-@Controller('carriers')
+@Controller('api/carriers')
 export class CarrierController {
   constructor(private readonly carrierService: CarrierService) { }
   @Post()

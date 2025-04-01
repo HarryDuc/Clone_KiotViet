@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CarrierGroupService } from '../services/carrier-group.service';
 import { CarrierGroup } from '../schemas/carrier-group.schema';
 
-@Controller('carriers-group')
+@Controller('api/carriers-groups')
 export class CarrierGroupController {
   constructor(private readonly carriersService: CarrierGroupService) { }
 

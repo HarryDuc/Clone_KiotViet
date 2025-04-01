@@ -7,7 +7,7 @@ import { UpdateAttendanceDto } from '../dto/update-attendance.dto';
 
 @Injectable()
 export class AttendanceService {
-  constructor(@InjectModel(Attendance.name) private attendanceModel: Model<Attendance>) {}
+  constructor(@InjectModel('Attendances') private attendanceModel: Model<Attendance>) {}
 
   // Thêm mới attendance
   async create(createAttendanceDto: CreateAttendanceDto): Promise<Attendance> {

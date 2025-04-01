@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'ReturnProducts' })
 export class ReturnProduct {
   @Prop({ type: Types.ObjectId, ref: 'Products' })
   productId: Types.ObjectId;
@@ -12,7 +12,7 @@ export class ReturnProduct {
 
 export const ReturnProductSchema = SchemaFactory.createForClass(ReturnProduct);
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, collection: 'Returns' })
 export class Return extends Document {
   @Prop({ unique: true })
   returnId: string;

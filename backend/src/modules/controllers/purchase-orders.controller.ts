@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PurchaseOrderService } from '../services/purchase-orders.service';
 import { PurchaseOrder } from '../schemas/purchase-orders.schema';
 
-@Controller('purchase-orders')
+@Controller('api/purchase-orders')
 export class PurchaseOrderController {
   constructor(private readonly purchaseOrderService: PurchaseOrderService) { }
 

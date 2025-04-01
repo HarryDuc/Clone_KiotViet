@@ -6,7 +6,7 @@ import { CashBook } from '../schemas/cash-book.schema';
 @Injectable()
 export class CashBookService {
   constructor(
-    @InjectModel(CashBook.name) private cashBookModel: Model<CashBook>,
+    @InjectModel('CashBooks') private cashBookModel: Model<CashBook>,
   ) { }
 
   async create(createCashBookDto: any): Promise<CashBook> {

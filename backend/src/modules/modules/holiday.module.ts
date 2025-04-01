@@ -6,7 +6,7 @@ import { HolidayService } from '../services/holiday.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Holiday.name, schema: HolidaySchema }])
+    MongooseModule.forFeature([{ name: 'Holidays', schema: HolidaySchema }])
   ],
   controllers: [HolidayController],
   providers: [HolidayService],

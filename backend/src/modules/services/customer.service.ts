@@ -6,7 +6,7 @@ import { Customer } from '../schemas/customer.schema';
 @Injectable()
 export class CustomerService {
   constructor(
-    @InjectModel(Customer.name) private customerModel: Model<Customer>,
+    @InjectModel('Customers') private customerModel: Model<Customer>,
   ) { }
 
   async create(createCustomerDto: any): Promise<Customer> {

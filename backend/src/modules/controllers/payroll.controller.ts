@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { Payroll } from '../schemas/payroll.schema';
 import { PayrollService } from '../services/payroll.service';
 
-@Controller('payrolls')
+@Controller('api/payrolls')
 export class PayrollController {
   constructor(private readonly payrollService: PayrollService) { }
 

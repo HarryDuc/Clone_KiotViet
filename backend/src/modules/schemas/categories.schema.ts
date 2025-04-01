@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'Categories' })
 export class Categories extends Document {
   @Prop({ unique: true })
   categoryId: string;

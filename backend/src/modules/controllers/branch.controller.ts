@@ -3,7 +3,7 @@ import { BranchService } from '../services/branch.service';
 import { Branch } from '../schemas/branch.schema';
 import { CreateBranchDto } from '../dto/create-branch.dto';
 
-@Controller('branches')
+@Controller('api/branches')
 export class BranchController {
   constructor(private readonly branchService: BranchService) { }
 

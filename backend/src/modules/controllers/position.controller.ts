@@ -1,10 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BrandService } from '../services/brand.service';
-import { Brand } from '../schemas/brand.schema';
 import { Position } from '../schemas/position.schema';
 import { PositionService } from '../services/position.service';
 
-@Controller('positions')
+@Controller('api/positions')
 export class PositionController {
   constructor(private readonly positionService: PositionService) { }
 
@@ -24,8 +22,8 @@ export class PositionController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatepositionDto: any) {
-    return this.positionService.update(id, updatepositionDto);
+  update(@Param('id') id: string, @Body() updatePositionDto: any) {
+    return this.positionService.update(id, updatePositionDto);
   }
 
   @Delete(':id')

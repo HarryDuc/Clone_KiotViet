@@ -6,7 +6,7 @@ import { PurchaseHistoryController } from '../controllers/purchase-history.contr
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: PurchaseHistory.name, schema: PurchaseHistorySchema }])
+    MongooseModule.forFeature([{ name: 'PurchaseHistories', schema: PurchaseHistorySchema }])
   ],
   controllers: [PurchaseHistoryController],
   providers: [PurchaseHistoryService],

@@ -7,7 +7,7 @@ import { ServicePackageController } from '../controllers/service-package.control
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: ServicePackage.name, schema: ServicePackageSchema }])
+    MongooseModule.forFeature([{ name: 'ServicePackages', schema: ServicePackageSchema }])
   ],
   controllers: [ServicePackageController],
   providers: [ServicePackageService],

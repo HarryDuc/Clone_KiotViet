@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ServicePackageService } from '../services/service-package.service';
 import { ServicePackage } from '../schemas/service-package.schems';
 
-@Controller('service-packages')
+@Controller('api/service-packages')
 export class ServicePackageController {
   constructor(private readonly ServicePackageService: ServicePackageService) { }
 

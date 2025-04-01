@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'PurchaseOrderProducts' })
 export class PurchaseOrderProduct {
   @Prop({ type: Types.ObjectId, ref: 'Products' })
   productId: Types.ObjectId;
@@ -15,7 +15,7 @@ export class PurchaseOrderProduct {
 
 export const PurchaseOrderProductSchema = SchemaFactory.createForClass(PurchaseOrderProduct);
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, collection: 'PurchaseOrders' })
 export class PurchaseOrder extends Document {
   @Prop({ unique: true })
   purchaseOrderId: string;

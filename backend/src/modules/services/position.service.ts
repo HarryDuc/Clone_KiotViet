@@ -6,7 +6,7 @@ import { Position } from '../schemas/position.schema';
 @Injectable()
 export class PositionService {
   constructor(
-    @InjectModel(Position.name) private PositionModel: Model<Position>,
+    @InjectModel('Positions') private PositionModel: Model<Position>,
   ) { }
 
   async create(createPositionDto: any): Promise<Position> {

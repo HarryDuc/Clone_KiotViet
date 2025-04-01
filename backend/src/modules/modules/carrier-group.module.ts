@@ -6,7 +6,7 @@ import { CarrierGroupService } from '../services/carrier-group.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: CarrierGroup.name, schema: CarrierGroupSchema }])
+    MongooseModule.forFeature([{ name: 'CarrierGroups', schema: CarrierGroupSchema }])
   ],
   controllers: [CarrierGroupController],
   providers: [CarrierGroupService],

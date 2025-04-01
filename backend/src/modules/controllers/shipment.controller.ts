@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/
 import { ShipmentService } from '../services/shipment.service';
 import { Shipment } from '../schemas/shipment.schema';
 
-@Controller('shipments')
+@Controller('api/shipments')
 export class ShipmentController {
   constructor(private readonly shipmentService: ShipmentService) { }
 

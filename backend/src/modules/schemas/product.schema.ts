@@ -1,7 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { Categories } from './categories.schema';
+import { Brand } from './brand.schema';
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, collection: 'Products' })
 export class Product extends Document {
   @Prop({ unique: true })
   productId: string;

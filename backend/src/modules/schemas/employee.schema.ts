@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'Bonuses' })
 export class Bonus {
   @Prop({ enum: ['Doanh thu cá nhân', 'Lợi nhuận chi nhánh', 'Lợi nhuận gộp'] })
   type: string;
@@ -15,7 +15,7 @@ export class Bonus {
 
 export const BonusSchema = SchemaFactory.createForClass(Bonus);
 
-@Schema()
+@Schema({ collection: 'Allowances' })
 export class Allowance {
   @Prop()
   name: string;
@@ -32,7 +32,7 @@ export class Allowance {
 
 export const AllowanceSchema = SchemaFactory.createForClass(Allowance);
 
-@Schema()
+@Schema({ collection: 'Deductions' })
 export class Deduction {
   @Prop()
   name: string;
@@ -49,7 +49,7 @@ export class Deduction {
 
 export const DeductionSchema = SchemaFactory.createForClass(Deduction);
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, collection: 'Employees' })
 export class Employee extends Document {
   @Prop({ unique: true })
   employeeId: string;

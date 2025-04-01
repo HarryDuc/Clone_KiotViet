@@ -6,7 +6,7 @@ import { CarrierController } from '../controllers/carrier.controller';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Carrier.name, schema: CarrierSchema }])
+    MongooseModule.forFeature([{ name: 'Carriers', schema: CarrierSchema }])
   ],
   controllers: [CarrierController],
   providers: [CarrierService],

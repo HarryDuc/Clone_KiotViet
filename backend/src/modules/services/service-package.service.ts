@@ -6,7 +6,7 @@ import { ServicePackage } from '../schemas/service-package.schems';
 @Injectable()
 export class ServicePackageService {
   constructor(
-    @InjectModel(ServicePackage.name) private ServicePackageModel: Model<ServicePackage>,
+    @InjectModel('ServicePackages') private ServicePackageModel: Model<ServicePackage>,
   ) { }
 
   async create(createServicePackageDto: any): Promise<ServicePackage> {

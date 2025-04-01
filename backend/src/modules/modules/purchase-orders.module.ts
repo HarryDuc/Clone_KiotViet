@@ -6,7 +6,7 @@ import { PurchaseOrderService } from '../services/purchase-orders.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: PurchaseOrder.name, schema: PurchaseOrderSchema }])
+    MongooseModule.forFeature([{ name: 'PurchaseOrders', schema: PurchaseOrderSchema }])
   ],
   controllers: [PurchaseOrderController],
   providers: [PurchaseOrderService],

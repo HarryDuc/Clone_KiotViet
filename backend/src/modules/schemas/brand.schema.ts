@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+@Schema({ collection: 'Brands', timestamps: true })
 export class Brand extends Document {
   @Prop({ unique: true })
   brandId: string;

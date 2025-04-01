@@ -6,7 +6,7 @@ import { Branch } from '../schemas/branch.schema';
 @Injectable()
 export class BranchService {
   constructor(
-    @InjectModel(Branch.name) private branchModel: Model<Branch>,
+    @InjectModel('Branches') private branchModel: Model<Branch>,
   ) { }
 
   async create(createBranchDto: any): Promise<Branch> {

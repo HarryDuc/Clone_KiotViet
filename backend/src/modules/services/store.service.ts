@@ -6,7 +6,7 @@ import { Store } from '../schemas/store.schema';
 @Injectable()
 export class StoreService {
   constructor(
-    @InjectModel(Store.name) private storeModel: Model<Store>,
+    @InjectModel('Stores') private storeModel: Model<Store>,
   ) {}
 
   async create(createStoreDto: any): Promise<Store> {

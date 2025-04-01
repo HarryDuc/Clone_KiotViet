@@ -6,7 +6,7 @@ import { CashBook, CashBookSchema } from '../schemas/cash-book.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: CashBook.name, schema: CashBookSchema }])
+    MongooseModule.forFeature([{ name: 'CashBooks', schema: CashBookSchema }])
   ],
   controllers: [CashBookController],
   providers: [CashBookService],

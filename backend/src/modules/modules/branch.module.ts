@@ -6,7 +6,7 @@ import { Branch, BranchSchema } from '../schemas/branch.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Branch.name, schema: BranchSchema }])
+    MongooseModule.forFeature([{ name: 'Branches', schema: BranchSchema }])
   ],
   controllers: [BranchController],
   providers: [BranchService],

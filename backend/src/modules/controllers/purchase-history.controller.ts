@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PurchaseHistoryService } from '../services/purchase-history.service';
 import { PurchaseHistory } from '../schemas/purchase-history.schema';
 
-@Controller('purchase-historys')
+@Controller('api/purchase-historys')
 export class PurchaseHistoryController {
   constructor(private readonly PurchaseHistoryService: PurchaseHistoryService) { }
 

@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/
 import { HolidayService } from '../services/holiday.service';
 import { Holiday } from '../schemas/holiday.schema';
 
-@Controller('holidays')
+@Controller('api/holidays')
 export class HolidayController {
   constructor(private readonly holidayService: HolidayService) { }
 

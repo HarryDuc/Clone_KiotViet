@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ReturnService } from '../services/return.service';
 import { Return } from '../schemas/return.schema';
 
-@Controller('returns')
+@Controller('api/returns')
 export class ReturnController {
   constructor(private readonly returnService: ReturnService) { }
 

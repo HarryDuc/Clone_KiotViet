@@ -6,7 +6,7 @@ import { Invoice, InvoiceSchema } from '../schemas/invoice.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Invoice.name, schema: InvoiceSchema }])
+    MongooseModule.forFeature([{ name: 'Invoices', schema: InvoiceSchema }])
   ],
   controllers: [InvoiceController],
   providers: [InvoiceService],

@@ -6,7 +6,7 @@ import { PositionController } from '../controllers/position.controller';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Position.name, schema: PositionSchema }])
+    MongooseModule.forFeature([{ name: 'Positions', schema: PositionSchema }])
   ],
   controllers: [PositionController],
   providers: [PositionService],
