@@ -15,10 +15,8 @@ export class CashBookController {
   async findAll(
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string,
-    @Query('type') type?: string,
-    @Query('branchId') branchId?: string,
+    @Query('type') type?: string
   ): Promise<CashBook[]> {
-    // TODO: Implement filtering logic in service
     return this.cashBookService.findAll();
   }
 

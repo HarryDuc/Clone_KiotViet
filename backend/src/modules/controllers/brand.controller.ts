@@ -7,8 +7,8 @@ export class BrandController {
   constructor(private readonly brandService: BrandService) { }
 
   @Post()
-  create(@Body() createBrandDto: any) {
-    return this.brandService.create(createBrandDto);
+  async create(@Body() createBranchDto: any): Promise<Brand> {
+    return this.brandService.create(createBranchDto);
   }
 
   @Get()

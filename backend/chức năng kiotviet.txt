@@ -1,0 +1,276 @@
+Dựa trên đoạn văn bản được cung cấp trong truy vấn, tôi sẽ phân tích và liệt kê cụ thể các chức năng của Website KiotViet. Các chức năng này được tổ chức theo từng trang chính và các mục con tương ứng, đảm bảo bao quát toàn bộ thông tin đã cho.
+
+---
+
+### 1. Trang Tổng Quan
+Trang này cung cấp thông tin tổng thể về gian hàng và các hoạt động liên quan đến gói dịch vụ, thanh toán.
+
+#### 1.1. Thông tin gian hàng
+- Hiển thị thông tin cơ bản về tài khoản:
+  - **Loại tài khoản**: Cá nhân hoặc doanh nghiệp.
+  - **Người đại diện**: Người tạo tài khoản.
+  - **Số điện thoại**: Được cung cấp khi tạo tài khoản.
+  - **Email**.
+  - **Giới tính**.
+  - **Ngày sinh**.
+  - **CCCD/Hộ chiếu**, bao gồm ngày cấp và nơi cấp.
+  - **Địa chỉ**.
+  - **Tên gian hàng**: Yêu cầu khi tạo tài khoản.
+  - **Ngành hàng**: Lựa chọn khi đăng ký.
+  - **Số chi nhánh**.
+  - **Số nhân viên**.
+  - **Tình trạng**: Đang sử dụng hoặc ngừng sử dụng.
+  - **Ngày hết hạn**: Phụ thuộc vào gói dịch vụ đã mua.
+  - **Gói dịch vụ**: Mặc định là gói dùng thử 7 ngày khi tạo tài khoản.
+  - **Số lượng kho**.
+
+#### 1.2. Gói dịch vụ
+- **Xem và mua gói dịch vụ**:
+  - Bao gồm các gói như:
+    - **Gói hỗ trợ**: Các chức năng cơ bản.
+    - **Gói chuyên nghiệp**: Nâng cao, có hỗ trợ riêng.
+    - **Gói cao cấp**: Bao gồm tất cả chức năng.
+  - Quy trình mua:
+    - Chọn gói và thời gian sử dụng (1-5 năm), thêm sản phẩm mua kèm.
+    - Nhập thông tin cá nhân: Người đại diện, giới tính, số điện thoại, email, CCCD/hộ chiếu, địa chỉ.
+    - Thanh toán.
+
+#### 1.3. Lịch sử mua hàng
+- Theo dõi các giao dịch mua gói dịch vụ trên website.
+
+#### 1.4. Thanh toán
+- **Nạp tiền** vào tài khoản.
+- **Xem số dư**: Số dư hiện tại, số dư đầu kỳ, tổng tiền nạp, tổng tiền chi.
+- **Theo dõi giao dịch**: Xem lịch sử các giao dịch đã thực hiện.
+
+---
+
+### 2. Trang Dashboard
+Cung cấp cái nhìn tổng quan về hiệu suất bán hàng.
+- **Kết quả bán hàng**: Số hóa đơn, doanh thu, phần trăm thu nhập so với tháng trước.
+- **Xem doanh thu**: Theo ngày, tháng, hoặc giờ.
+- **Hàng hóa bán chạy**: Danh sách sản phẩm bán tốt.
+- **Thông báo hoạt động**: Ví dụ: “… vừa nhận đặt hàng với giá trị …”.
+
+---
+
+### 3. Trang Hàng Hóa
+Quản lý sản phẩm và các hoạt động liên quan, bao gồm 3 mục chính.
+
+#### 3.1. Danh mục
+- **Lọc sản phẩm**: Qua sidebar với các tiêu chí như loại hàng, nhóm hàng, tồn kho, thương hiệu, bán trực tiếp, thời gian tạo, ngày dự kiến hết hàng, nhà cung cấp, vị trí, liên kết kênh bán, lựa chọn hiển thị.
+- **Thông tin sản phẩm**:
+  - Hình ảnh, mã hàng (tự động), mã vạch, tên hàng, nhóm hàng, loại hàng, liên kết kênh bán, giá bán, giá vốn, thương hiệu, tồn kho, vị trí, số khách đặt, thời gian tạo, thời gian dự kiến hết hàng, định mức tồn (ít nhất/nhiều nhất), trạng thái (cho phép kinh doanh/ngừng kinh doanh).
+- **Thêm sản phẩm**:
+  - Nhập thông tin: Mã hàng (tự động), mã vạch, tên hàng, nhóm hàng (chọn hoặc tạo mới), thương hiệu (chọn hoặc tạo mới), vị trí, hình ảnh, giá vốn, giá bán, tồn kho, trọng lượng, bán trực tiếp (checkbox), đơn vị tính (thêm đơn vị mới nếu cần), định mức tồn, mô tả, ghi chú.
+- **Xuất file sản phẩm**: Dựa trên các tiêu chí như tồn kho, nhóm hàng, thương hiệu.
+
+#### 3.2. Thiết lập giá
+- **Lọc sản phẩm**: Qua sidebar với các tiêu chí như bảng giá, nhóm hàng, tồn kho (dưới định mức, vượt định mức, còn hàng, hết hàng), giá bán.
+- **Tạo bảng giá**: Tên bảng giá, thời gian hiệu lực, trạng thái (áp dụng/chưa áp dụng), phạm vi áp dụng (toàn hệ thống/chi nhánh), đối tượng giao dịch, giảm giá (số tiền hoặc %).
+- **Hiển thị sản phẩm**: Mã hàng, tên hàng, tồn kho, giá vốn, giá nhập cuối, bảng giá chung (có thể chỉnh sửa).
+
+#### 3.3. Kiểm kho
+- **Thông tin kiểm kho**: Mã kiểm kho (tự động), thời gian tạo, người tạo, người kiểm duyệt, ngày kiểm duyệt, số lượng thực tế, tổng giá tiền, tổng chênh lệch, số lượng lệch, ghi chú, trạng thái (đã kiểm tra, phiếu tạm, đã hủy), mã hàng, tên hàng, tồn kho.
+- **Lọc**: Theo trạng thái, người tạo.
+- **Thêm kiểm kho**: Nhập thông tin như mã hàng, tên hàng, tồn kho, số lượng thực tế, chênh lệch, giá trị lệch, nhân viên kiểm tra, ghi chú.
+
+---
+
+### 4. Trang Giao Dịch
+Quản lý các hoạt động giao dịch bán hàng và nhập hàng.
+
+#### 4.1. Đặt hàng
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, đã xác nhận, đang giao, hoàn thành, đã hủy), người tạo, người nhận đặt, kênh bán (thêm kênh mới), đối tác giao hàng, thời gian giao, khu vực, phương thức thanh toán.
+- **Thông tin**: Mã vận đơn, mã đặt hàng, mã hóa đơn, thời gian tạo, ngày cập nhật, thời gian giao, khách hàng, số điện thoại, địa chỉ, khu vực, phường/xã, ngày sinh, đối tác giao hàng, người nhận đặt, người tạo, kênh bán, tổng tiền, giảm giá, khách cần trả, khách đã trả, trạng thái, mã sản phẩm, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+
+#### 4.2. Hóa đơn
+- **Lọc**: Thời gian, trạng thái (đang xử lý, hoàn thành, không giao được, đã hủy), phương thức bán, người tạo, người bán, trạng thái giao hàng, kênh bán, đối tác giao hàng, khu vực, phương thức thanh toán, bảng giá.
+- **Thông tin**: Mã hóa đơn, mã vận đơn, trạng thái giao hàng, mã đối soát, thời gian tạo, ngày cập nhật, mã đặt hàng, mã trả hàng, khách hàng, email, số điện thoại, địa chỉ, khu vực, phường/xã, ngày sinh, chi nhánh, người bán, người tạo, kênh bán, đối tác giao hàng, ghi chú, tổng tiền, giảm giá, giảm thuế, khách cần trả, khách đã trả, cần thu COD, phí trả đối tác, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+
+#### 4.3. Vận đơn
+- **Lọc**: Thời gian, trạng thái giao hàng, đối tác giao hàng, khu vực, thu hộ tiền.
+- **Thông tin**: Mã vận đơn, thời gian tạo, thời gian hoàn thành, người tạo, mã hóa đơn, khách hàng, chi nhánh, nhân viên bán, người nhận, số điện thoại, địa chỉ, khu vực, phường/xã, đối tác giao hàng, ghi chú, trạng thái, dịch vụ, cần thu hộ, tổng cước phí, mã đối soát, phí trả đối tác, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+
+#### 4.4. Trả hàng
+- **Lọc**: Thời gian, trạng thái (đã trả, đã hủy), người tạo, người nhận trả, kênh bán, loại phiếu (theo hóa đơn, trả nhanh, chuyển hoàn).
+- **Thông tin**: Mã trả hàng, mã hóa đơn, mã vận đơn, người bán, thời gian tạo, khách hàng, chi nhánh, người nhận trả, người tạo, kênh bán, ghi chú, tổng tiền trả, giảm giá, tổng sau giảm, giảm thuế hoàn lại, phí trả hàng, thu khác hoàn lại, cần trả khách, đã trả khách, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm trả hàng**: Chọn hóa đơn từ danh sách, nhập thông tin nhân viên hoàn trả, khách hàng, mã hóa đơn.
+
+#### 4.5. Nhập hàng
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, đã nhập, đã hủy), người tạo, người nhập.
+- **Thông tin**: Mã nhập hàng, mã trả nhập hàng, thời gian tạo, ngày cập nhật, nhà cung cấp, chi nhánh, người nhập, người tạo, tổng số lượng, tổng số mặt hàng, tổng tiền, giảm giá, cần trả nhà cung cấp, chiết khấu thanh toán, tiền đã trả, ghi chú, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm nhập hàng**: Nhập STT, mã hàng, tên hàng, đơn vị tính, tồn kho, giá vốn, giá bán, trạng thái (phiếu tạm), nhà cung cấp, nhân viên thực hiện.
+
+#### 4.6. Trả hàng nhập
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, đã trả, đã hủy), người tạo, người trả.
+- **Thông tin**: Mã trả hàng nhập, thời gian tạo, nhà cung cấp, chi nhánh, người trả, người tạo, ghi chú, tổng số lượng, tổng số mặt hàng, tổng tiền trả, giảm giá, nhà cung cấp cần trả, nhà cung cấp đã trả, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm trả nhập hàng**: Nhập STT, mã hàng, tên hàng, đơn vị tính, số lượng, giá nhập, giá trả lại, nhà cung cấp.
+
+#### 4.7. Xuất hủy
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, hoàn thành, đã hủy), người tạo, người xuất hủy.
+- **Thông tin**: Mã xuất hủy, tổng giá trị hủy, thời gian tạo, chi nhánh, người xuất hủy, người tạo, ghi chú, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm xuất hủy**: Nhập STT, mã hàng, tên hàng, đơn vị tính, số lượng hủy, giá vốn, giá trị hủy, trạng thái phiếu.
+
+---
+
+### 5. Trang Đối Tác
+Quản lý thông tin về khách hàng, nhà cung cấp, và đối tác giao hàng.
+
+#### 5.1. Khách hàng
+- **Lọc**: Nhóm khách hàng, ngày tạo, người tạo, sinh nhật, ngày giao dịch cuối, tổng bán, nợ hiện tại, loại khách, giới tính, khu vực, trạng thái.
+- **Thêm khách hàng**: Hình ảnh, mã khách hàng, tên, số điện thoại, ngày sinh, địa chỉ, khu vực, phường/xã, loại khách, mã số thuế, CMND/CCCD, email, Facebook, nhóm, ghi chú.
+- **Thông tin**: Mã khách hàng, tên, loại khách, số điện thoại, nhóm, giới tính, ngày sinh, email, Facebook, công ty, mã số thuế, CMND/CCCD, địa chỉ, khu vực, phường/xã, người tạo, ngày tạo, ghi chú, ngày giao dịch cuối, nợ hiện tại, tổng bán, tổng bán trừ trả hàng, trạng thái.
+
+#### 5.2. Nhà cung cấp
+- **Lọc**: Nhóm nhà cung cấp, tổng mua, nợ hiện tại, trạng thái.
+- **Thêm nhà cung cấp**: Mã, tên, số điện thoại, địa chỉ, khu vực, phường/xã, chi nhánh, email, công ty, mã số thuế, nhóm, ghi chú.
+- **Thông tin**: Mã, tên, số điện thoại, nhóm, email, địa chỉ, khu vực, phường/xã, công ty, ghi chú, mã số thuế, người tạo, ngày tạo, nợ cần trả, tổng mua, tổng mua trừ trả hàng, trạng thái.
+
+#### 5.3. Đối tác giao hàng
+- **Lọc**: Nhóm đối tác, tổng phí giao hàng, nợ hiện tại, trạng thái.
+- **Thêm đối tác**: Loại đối tác, mã, tên, số điện thoại, email, nhóm, địa chỉ, khu vực, phường/xã, ghi chú.
+- **Thông tin**: Mã, tên, số điện thoại, email, tổng đơn hàng, cần thu hộ, tổng trọng lượng, nợ cần trả, tổng phí giao hàng, trạng thái.
+
+---
+
+### 6. Trang Nhân Viên
+Quản lý nhân viên và các hoạt động liên quan.
+
+#### 6.1. Nhân viên
+- **Thêm nhân viên**:
+  - Thông tin cơ bản: Hình ảnh, mã (tự động), tên, số điện thoại, ngày sinh, giới tính, ghi chú.
+  - Chi nhánh & chức danh: Chi nhánh trả lương, chi nhánh làm việc, ngày bắt đầu, chức danh, phòng ban.
+  - Tài khoản đăng nhập: Tên người dùng, tên đăng nhập, mật khẩu, vai trò, chi nhánh, email, địa chỉ, khu vực, phường/xã, số điện thoại, quyền admin.
+  - Thông tin cá nhân: CMND/CCCD.
+  - Thông tin liên hệ: Địa chỉ, email, khu vực, phường/xã, Facebook.
+  - Thiết lập lương: Hình thức (theo ca, giờ, ngày công, cố định), thưởng, hoa hồng, phụ cấp, giảm trừ.
+- **Thông tin**: Ảnh, mã, mã chấm công, tên, số điện thoại, CMND/CCCD, nợ và tạm ứng, ghi chú, thiết bị di động, ngày sinh, giới tính, email, Facebook, địa chỉ, chi nhánh, phòng ban, chức danh, ngày bắt đầu, tài khoản đăng nhập.
+- **Lọc**: Trạng thái, chi nhánh, phòng ban, chức danh.
+
+#### 6.2. Lịch làm việc
+- **Thêm lịch**: Tạo ca làm việc (hành chính hoặc tùy chỉnh), lặp lại hàng tuần, làm việc ngày lễ, thêm nhân viên cùng lịch.
+
+#### 6.3. Chấm công
+- **Hiển thị**: Đúng giờ, đi muộn/về sớm, chấm công thiếu, chưa chấm công, nghỉ làm.
+
+#### 6.4. Bảng tính lương
+- **Lọc**: Chi nhánh, kỳ hạn, trạng thái (đang tạo, tạm tính, đã chốt, đã hủy).
+- **Thông tin**: Mã, tên, kỳ hạn, kỳ làm việc, chi nhánh, số nhân viên, tổng lương, đã trả, còn cần trả, trạng thái, người tạo, ngày tạo, ghi chú, lịch sử thanh toán.
+
+#### 6.5. Thiết lập hoa hồng
+- **Hàng hóa**: Tạo bảng hoa hồng (tên, phạm vi, trạng thái), hiển thị mã hàng, tên, đơn vị, giá bán, giá vốn, lợi nhuận.
+- **Nhân viên**: Tạo bảng hoa hồng, hiển thị loại hình, doanh thu, bảng áp dụng.
+
+#### 6.6. Thiết lập nhân viên
+- **Khởi tạo**: Tên, số điện thoại, bảng lương, loại lương, chi tiết lương (thưởng, hoa hồng, phụ cấp, giảm trừ).
+- **Ca làm việc**: Thêm ca (hành chính hoặc tùy chỉnh), thời gian, chi nhánh, trạng thái.
+- **Chấm công**: Thêm ngày làm, số giờ chuẩn, đi muộn/về sớm, làm thêm giờ, tự động chấm công.
+- **Tính lương**: Chọn ngày tính, tự động tạo/cập nhật bảng lương, thiết lập mẫu lương.
+- **Quản lý lễ tết**: Thêm ngày lễ, tự động điền các ngày lễ mặc định.
+
+---
+
+### 7. Trang Sổ Quỹ
+- **Lọc**: Quỹ tiền, thời gian, loại chứng từ, loại thu chi, trạng thái, kết quả kinh doanh, người tạo, nhân viên, công nợ, đối tượng nộp/nhận.
+- **Thông tin**: Mã phiếu, thời gian, người tạo, nhân viên, chi nhánh, loại thu chi, mã người nộp/nhận, tên, số điện thoại, địa chỉ, giá trị, ghi chú, trạng thái.
+
+---
+
+### 8. Trang Báo Cáo
+Cung cấp các báo cáo chi tiết về hoạt động kinh doanh.
+
+#### 8.1. Báo cáo cuối ngày
+- **Lọc**: Thời gian, khách hàng, nhân viên, người tạo, phương thức thanh toán, phương thức bán.
+- **Thông tin**: Mã chứng từ, khách hàng, nhân viên, thời gian, số lượng, tổng tiền, giảm giá, doanh thu, VAT, phí trả hàng, thực thu, ghi nợ.
+
+#### 8.2. Bán hàng
+- **Lọc**: Bảng giá, thời gian, phương thức bán, kênh bán.
+- **Thông tin**: Thời gian, số đơn bán, tổng tiền, doanh thu, số đơn trả, giá trị trả, doanh thu thuần.
+
+#### 8.3. Đặt hàng
+- **Lọc**: Thời gian, trạng thái, khách hàng, hàng hóa, loại hàng, thương hiệu, nhóm hàng, nhân viên.
+- **Thông tin**: Mã hàng, tên, số lượng đặt, giá trị niêm yết, giá trị hàng đặt, chênh lệch, số lượng đã nhận, số lượng còn lại.
+
+#### 8.4. Hàng hóa
+- **Lọc**: Mối quan tâm, bảng giá, thời gian, hàng hóa, loại hàng, thương hiệu, nhóm hàng.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.5. Khách hàng
+- **Lọc**: Mối quan tâm, thời gian, khách hàng.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.6. Nhà cung cấp
+- **Lọc**: Mối quan tâm, thời gian, nhà cung cấp.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.7. Nhân viên
+- **Lọc**: Mối quan tâm, thời gian, người bán, kênh bán.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.8. Kênh bán hàng
+- **Lọc**: Mối quan tâm, thời gian, người bán, kênh bán.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.9. Tài chính
+- **Lọc**: Thời gian (tháng, năm, quý, khoảng cụ thể).
+- **Thông tin**: Tổng doanh thu, giá vốn, lợi nhuận.
+
+---
+
+### 9. Trang Bán Online
+Quản lý bán hàng trực tuyến.
+
+#### 9.1. Bán online
+- **Kết nối**: Với sàn TMĐT (Shopee, TikTok Shop, Lazada, Tiki) và mạng xã hội (Facebook, Instagram).
+- **Quản lý sàn TMĐT**: Đơn hàng, hàng hóa, hội thoại, đối soát, marketing, thiết lập kênh.
+- **Quản lý mạng xã hội**: Hội thoại, livestream, bài viết, đơn hàng, báo cáo, catalog, thiết lập.
+
+#### 9.2. Website bán hàng
+- **Website của tôi**: Lượt truy cập, quản lý giao diện.
+- **Đồng bộ**: Chọn chi nhánh, bảng giá khuyến mãi.
+- **Cài đặt hiển thị**: Tên cửa hàng, số điện thoại, Zalo, Facebook, email, chi nhánh, số lượng người dùng, trạng thái.
+- **Favicon**: Sửa ảnh.
+- **Hình thức bán hàng & nhận hàng**: Checkbox nhận tại cửa hàng.
+- **Tên miền**: Thay đổi hoặc chọn miễn phí.
+- **SEO**: Google Business Profile, tiêu đề, mô tả, hình ảnh chia sẻ.
+- **Popup**: Tên, đường dẫn, loại, hình ảnh, thời gian.
+- **Bộ Công Thương**: Chứng nhận, logo.
+- **Điều hướng**: Quản lý liên kết.
+- **Chỉnh sửa giao diện**: Màu, kiểu chữ, banner, đầu trang, dịch vụ, nhóm hàng, sản phẩm nổi bật, logo thương hiệu, giới thiệu, đánh giá, thư viện ảnh, chân trang.
+- **Kho giao diện & hình ảnh**: Lưu trữ và sử dụng.
+- **Danh sách hàng hóa**: Hiển thị, ẩn/hiện sản phẩm.
+- **Danh mục nổi bật**: Tạo và quản lý.
+- **Bài viết**: Tạo và quản lý theo danh mục.
+
+---
+
+### 10. Trang Thêm Hóa Đơn/Đặt Hàng
+- **Hóa đơn**:
+  - **Bán nhanh**: Mã sản phẩm, tên, đơn vị, số lượng, giá, nhân viên, kênh bán, khách hàng, bảng giá, tổng tiền, phương thức thanh toán, ghi chú.
+  - **Bán thường**: Mã sản phẩm, tên, số lượng, giá, nhân viên, bảng giá, tiền khách cần trả, đã trả, phương thức thanh toán, ghi chú.
+  - **Bán giao hàng**: Mã sản phẩm, tên, số lượng, giá, nhân viên, bảng giá, kênh bán, địa chỉ lấy hàng, người nhận, địa chỉ nhận, trọng lượng, kích thước, ghi chú, thu hộ COD.
+- **Đặt hàng**: Tương tự hóa đơn.
+
+---
+
+### 11. Quản Lý Người Dùng
+- **Phân quyền**: Admin quản lý toàn bộ (đối tác, tài khoản nhân viên), nhân viên chỉ truy cập mục cần thiết.
+
+---
+
+### Tóm tắt
+Website KiotViet cung cấp hệ thống quản lý bán hàng toàn diện với các chức năng chính:
+1. Quản lý thông tin gian hàng và gói dịch vụ.
+2. Theo dõi hiệu suất bán hàng qua Dashboard.
+3. Quản lý hàng hóa (danh mục, giá, kiểm kho).
+4. Quản lý giao dịch (đặt hàng, hóa đơn, vận đơn, trả hàng, nhập hàng, xuất hủy).
+5. Quản lý đối tác (khách hàng, nhà cung cấp, giao hàng).
+6. Quản lý nhân viên (thông tin, lịch, chấm công, lương, hoa hồng).
+7. Quản lý tài chính qua sổ quỹ.
+8. Báo cáo chi tiết (bán hàng, hàng hóa, khách hàng, tài chính,...).
+9. Bán hàng trực tuyến (kênh TMĐT, mạng xã hội, website).
+10. Tạo hóa đơn/đặt hàng linh hoạt.
+11. Quản lý quyền truy cập người dùng.
+
+Các chức năng này hỗ trợ người dùng quản lý hiệu quả mọi khía cạnh của hoạt động kinh doanh.

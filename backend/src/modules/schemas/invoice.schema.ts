@@ -38,7 +38,7 @@ export class Invoice extends Document {
   @Prop({ required: true })
   invoiceNumber: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: Date.now })
   invoiceDate: Date;
 
   @Prop()

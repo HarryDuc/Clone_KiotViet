@@ -54,7 +54,7 @@ export class Store extends Document {
   @Prop()
   expirationDate: Date;
 
-  @Prop({ type: Types.ObjectId })
+  @Prop({ type: Types.ObjectId, ref: 'ServicePackages' })
   servicePackage: Types.ObjectId;
 
   @Prop({ default: 0 })

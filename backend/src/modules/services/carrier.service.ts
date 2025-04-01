@@ -12,4 +12,33 @@ export class CarrierService {
     const createdAttendance = new this.CarrierModel(createCarrierDto);
     return createdAttendance.save();
   }
+    async findAll(): Promise<Carrier[]> {
+      return this.CarrierModel.find().exec();
+    }
+
+    async findOne(id: string): Promise<Carrier> {
+      const brand = await this.CarrierModel.findById(id).exec();
+      if (!brand) {
+        throw new NotFoundException(`Carrier with ID ${id} not found`);
+      }
+      return brand;
+    }
+
+    async update(id: string, updateBrandDto: any): Promise<Carrier> {
+      const brand = await this.CarrierModel
+        .findByIdAndUpdate(id, updateBrandDto, { new: true })
+        .exec();
+      if (!brand) {
+        throw new NotFoundException(`Carrier with ID ${id} not found`);
+      }
+      return brand;
+    }
+
+    async remove(id: string): Promise<Carrier> {
+      const brand = await this.CarrierModel.findByIdAndDelete(id).exec();
+      if (!brand) {
+        throw new NotFoundException(`Carrier with ID ${id} not found`);
+      }
+      return brand;
+    }
 }

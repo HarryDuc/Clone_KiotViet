@@ -4,7 +4,7 @@ import { Document, Types } from 'mongoose';
 @Schema()
 export class Attendance extends Document {
   @Prop({ unique: true })
-  attendanceId: string;
+  attendanceId: string  ;
 
   @Prop({ type: Types.ObjectId, ref: 'Employees' })
   employeeId: Types.ObjectId;
