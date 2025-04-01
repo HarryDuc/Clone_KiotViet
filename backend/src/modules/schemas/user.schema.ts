@@ -15,14 +15,16 @@ export class User extends Document {
   @Prop()
   fullName: string;
 
-  @Prop()
+  @Prop({ enum: ['admin', 'user', 'employee'], default: 'employee' })
   role: string;
+  
 
   @Prop({ type: Types.ObjectId, ref: 'Branches' })
   branch: Types.ObjectId;
 
-  @Prop()
+  @Prop({ match: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/ })
   email: string;
+  
 
   @Prop()
   phone: string;
