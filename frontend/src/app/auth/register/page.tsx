@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import axiosClient from "@/config/axiosClient";
+import axiosClient from "@/config/api";
 import axios from "axios";
 
 export default function RegisterPage() {

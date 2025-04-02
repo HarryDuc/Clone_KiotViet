@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Attendance } from '../schemas/attendance.schema';
-import { CreateAttendanceDto } from '../dto/create-attendance.dto';
-import { UpdateAttendanceDto } from '../dto/update-attendance.dto';
+import { CreateAttendanceDto } from '../dtos/create-attendance.dto';
+import { UpdateAttendanceDto } from '../dtos/update-attendance.dto';
 
 @Injectable()
 export class AttendanceService {

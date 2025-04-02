@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { Position } from '../position/schemas/position.schema';
-import { PositionService } from '../position/services/position.service';
+import { Position } from '../schemas/position.schema';
+import { PositionService } from '../services/position.service';
 
 @Controller('api/positions')
 export class PositionController {

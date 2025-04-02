@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SupplierGroup, SupplierGroupSchema } from './schemas/supplier-group.schema';
 import { SupplierGroupController } from './controllers/supplier-group.controller';
-import { SupplierGroupService } from '../supplier/services/supplier-group.service';
+import { SupplierGroupService } from './services/supplier-group.service';
 
 @Module({
   imports: [

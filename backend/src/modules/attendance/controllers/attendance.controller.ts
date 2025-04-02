@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { AttendanceService } from '../services/attendance.service';
-import { CreateAttendanceDto } from '../dto/create-attendance.dto';
-import { UpdateAttendanceDto } from '../dto/update-attendance.dto';
+import { CreateAttendanceDto } from '../dtos/create-attendance.dto';
+import { UpdateAttendanceDto } from '../dtos/update-attendance.dto';
 import { Attendance } from '../schemas/attendance.schema';
 
 @Controller('api/attendances')

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductController } from './controllers/product.controller';
-import { ProductService } from '../supplier/services/product.service';
+import { ProductService } from './services/product.service';
 import { ProductSchema } from './schemas/product.schema';
-import { BrandModule } from './brand.module';
-import { CategoriesModule } from './categories.module';
+import { BrandModule } from '../brand/brand.module';
+import { CategoriesModule } from '../category/categories.module';
 
 @Module({
   imports: [

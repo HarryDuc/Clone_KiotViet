@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { Categories } from './categories.schema';
-import { Brand } from './brand.schema';
+import { Categories } from '../../category/schemas/categories.schema';
+import { Brand } from '../../brand/schemas/brand.schema';
 
 @Schema({ timestamps: true, collection: 'Products' })
 export class Product extends Document {

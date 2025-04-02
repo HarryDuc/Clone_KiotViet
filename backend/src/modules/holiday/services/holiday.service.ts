@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Holiday } from '../holiday/schemas/holiday.schema';
+import { Holiday } from '../schemas/holiday.schema';
 
 @Injectable()
 export class HolidayService {

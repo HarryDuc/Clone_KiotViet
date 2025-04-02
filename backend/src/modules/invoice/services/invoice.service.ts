@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Invoice } from '../invoice/schemas/invoice.schema';
+import { Invoice } from '../schemas/invoice.schema';
 
 @Injectable()
 export class InvoiceService {

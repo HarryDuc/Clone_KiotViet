@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Return } from '../ruturn/schemas/return.schema';
+import { Return } from '../schemas/return.schema';
 
 @Injectable()
 export class ReturnService {

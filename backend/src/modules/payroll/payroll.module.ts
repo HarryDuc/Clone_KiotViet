@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Payroll, PayrollSchema } from '../payroll/schemas/payroll.schema';
+import { Payroll, PayrollSchema } from './schemas/payroll.schema';
 import { PayrollController } from './controllers/payroll.controller';
-import { PayrollService } from '../supplier/services/payroll.service';
+import { PayrollService } from  './services/payroll.service';
 
 @Module({
   imports: [

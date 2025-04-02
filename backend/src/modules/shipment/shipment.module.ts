@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Shipment, ShipmentSchema } from './schemas/shipment.schema';
-import { ShipmentController } from '../controllers/shipment.controller';
-import { ShipmentService } from '../supplier/services/shipment.service';
+import { ShipmentController } from './controllers/shipment.controller';
+import { ShipmentService } from './services/shipment.service';
 
 @Module({
   imports: [
