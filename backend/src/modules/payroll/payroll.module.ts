@@ -1,0 +1,15 @@
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Payroll, PayrollSchema } from '../payroll/schemas/payroll.schema';
+import { PayrollController } from './controllers/payroll.controller';
+import { PayrollService } from '../supplier/services/payroll.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Payrolls', schema: PayrollSchema }])
+  ],
+  controllers: [PayrollController],
+  providers: [PayrollService],
+  exports: [PayrollService]
+})
+export class PayrollModule { }
