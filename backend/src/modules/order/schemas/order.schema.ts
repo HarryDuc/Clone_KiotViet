@@ -4,16 +4,16 @@ import { Document, Types } from 'mongoose';
 @Schema({ collection: 'OrderProducts' })
 export class OrderProduct {
   @Prop({ type: Types.ObjectId, ref: 'Products' })
-  productId: Types.ObjectId;
+  productId: Types.ObjectId; // Liên kết với sản phẩm
 
   @Prop()
-  quantity: number;
+  quantity: number; // Số lượng sản phẩm
 
   @Prop()
-  price: number;
+  price: number; // Giá bán tại thời điểm đặt hàng
 
   @Prop({ default: 0 })
-  discount: number;
+  discount: number; // Chiết khấu cho sản phẩm
 }
 
 export const OrderProductSchema = SchemaFactory.createForClass(OrderProduct);
@@ -21,25 +21,25 @@ export const OrderProductSchema = SchemaFactory.createForClass(OrderProduct);
 @Schema({ timestamps: true, collection: 'Orders' })
 export class Order extends Document {
   @Prop({ unique: true, required: true })
-  orderId: string;
+  orderId: string; // Mã đơn hàng duy nhất
 
   @Prop({ unique: true })
-  orderCode: string;
+  orderCode: string; // Mã đơn hàng hiển thị
 
   @Prop({ type: Types.ObjectId, ref: 'Customers' })
-  customerId: Types.ObjectId;
+  customerId: Types.ObjectId; // Liên kết với khách hàng
 
   @Prop({ type: [OrderProductSchema] })
-  products: OrderProduct[];
+  products: OrderProduct[]; // Danh sách sản phẩm trong đơn hàng
 
   @Prop()
-  totalAmount: number;
+  totalAmount: number; // Tổng tiền đơn hàng
 
   @Prop({ default: 0 })
-  discount: number;
+  discount: number; // Chiết khấu tổng đơn hàng
 
   @Prop({ enum: ['Tiền mặt', 'Chuyển khoản', 'Thẻ', 'Ví'] })
-  paymentMethod: string;
+  paymentMethod: string; // Phương thức thanh toán
 
   @Prop({
     enum: [
@@ -51,16 +51,16 @@ export class Order extends Document {
     ],
     default: 'Phiếu tạm thời',
   })
-  status: string;
+  status: string; // Trạng thái đơn hàng
 
-  @Prop({ type: Types.ObjectId })
-  channel: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'SalesChannels' })
+  channel: Types.ObjectId; // Kênh bán hàng
 
   @Prop({ type: Types.ObjectId, ref: 'Carriers' })
-  carrierId: Types.ObjectId;
+  carrierId: Types.ObjectId; // Đơn vị vận chuyển
 
   @Prop()
-  deliveryDate: Date;
+  deliveryDate: Date; // Ngày giao hàng dự kiến
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

@@ -41,7 +41,7 @@ export class CashBook extends Document {
   })
   reference: string;
 
-  @Prop({ type: Types.ObjectId })
+  @Prop({ type: Types.ObjectId, ref: 'Orders' })
   referenceId: Types.ObjectId;
 
   @Prop()
