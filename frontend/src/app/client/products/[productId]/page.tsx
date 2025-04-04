@@ -2,9 +2,9 @@ import { Suspense } from "react";
 import DetailProduct from "@/modules/products/pages/DetailProduct";
 
 export default async function Page({ params }: { params: { productId: string } }) {
-    await new Promise((resolve) => setTimeout(resolve, 0)); // ✅ Chờ `params` để tránh lỗi Next.js
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
-    console.log("📌 `productId` từ params:", params.productId); // ✅ Debug _id
+    console.log("📌 `productId` từ params:", params.productId);
 
     if (!params?.productId) {
         return (

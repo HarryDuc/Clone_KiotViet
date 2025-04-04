@@ -76,18 +76,18 @@ export const ProductsService = {
         try {
             console.log("📤 Gửi dữ liệu sản phẩm:", JSON.stringify(data, null, 2));
 
-            if (!data.image || data.image.length === 0) {
-                console.error("❌ Lỗi: Không có hình ảnh nào trong `imageUrls`!");
-                throw new Error("Vui lòng chọn ít nhất một ảnh sản phẩm.");
-            }
+            // if (!data.image || data.image.length === 0) {
+            //     console.error("❌ Lỗi: Không có hình ảnh nào trong `imageUrls`!");
+            //     throw new Error("Vui lòng chọn ít nhất một ảnh sản phẩm.");
+            // }
 
-            const response = await axios.post(`${API_URL}/create`, data, {
+            const response = await axios.post(`${API_URL}`, data, {
                 headers: { "Content-Type": "application/json" },
             });
 
             console.log("✅ Phản hồi từ server sau khi tạo sản phẩm:", response.data);
             return response.data;
-        } catch (error: any) {
+        } catch (error: any) {  
             console.error("❌ Lỗi khi tạo sản phẩm:", error.response?.data || error.message);
             throw new Error(error.response?.data?.message || "Đã xảy ra lỗi khi tạo sản phẩm.");
         }
@@ -103,11 +103,6 @@ export const ProductsService = {
 
             let updatedData = { ...data };
 
-            if (files && files.length > 0) {
-                console.log(`📤 Đang tải lên ${files.length} ảnh mới...`);
-                const imageUrls = await this.uploadImages(files);
-                updatedData.image = [...(data.image || []), ...imageUrls];
-            }
 
             if (removedImages && removedImages.length > 0) {
                 console.log(`🗑️ Đang xóa ${removedImages.length} ảnh khỏi gallery.`);
@@ -116,7 +111,7 @@ export const ProductsService = {
                     : [];
             }
 
-            const response = await axios.put(`${API_URL}/${id}`, updatedData);
+            const response = await axios.patch(`${API_URL}/${id}`, updatedData);
             console.log(`✅ Sản phẩm ID ${id} đã được cập nhật.`, response.data);
             return response.data;
         } catch (error) {

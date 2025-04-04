@@ -8,14 +8,16 @@ const CONNECTION_TIMEOUT = 10000;
 
 @Module({
   imports: [
-    MongooseModule.forRootAsync({
+    MongooseModule.forRootAsync({ 
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (
         configService: ConfigService,
       ): Promise<MongooseModuleOptions> => {
-        const uri = configService.get<string>('DB_CONNECTION_STRING');
-
+        const uri = configService.get<string>('DB_CONNECTION_STRING', 'mongodb://localhost:27017/kiotviet');
+        console.log('🔍 MongoDB URI:', uri); // In ra để kiểm tra
+        
+        console.log(uri);
         console.log('🌐 Đang kết nối tới MongoDB...');
 
         return {

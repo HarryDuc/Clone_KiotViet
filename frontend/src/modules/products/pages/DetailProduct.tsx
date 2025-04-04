@@ -15,7 +15,6 @@ const DetailProduct: React.FC<DetailProductProps> = ({ productId }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
 
-    // ✅ Lấy dữ liệu sản phẩm theo `id`
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -26,7 +25,7 @@ const DetailProduct: React.FC<DetailProductProps> = ({ productId }) => {
             } catch (error) {
                 console.error("❌ Lỗi khi tải chi tiết sản phẩm:", error);
                 alert("Không tìm thấy sản phẩm!");
-                router.push("/admin/products"); // 🔄 Quay về danh sách sản phẩm
+                router.push("/admin/products");
             } finally {
                 setLoading(false);
             }
@@ -44,7 +43,6 @@ const DetailProduct: React.FC<DetailProductProps> = ({ productId }) => {
     return (
         <Container className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
             <Row>
-                {/* Ảnh bên trái */}
                 <Col md={5}>
                     {product.image?.length > 0 ? (
                         <Image
@@ -58,7 +56,6 @@ const DetailProduct: React.FC<DetailProductProps> = ({ productId }) => {
                     )}
                 </Col>
 
-                {/* Thông tin bên phải */}
                 <Col md={7}>
                     <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                     <div className="space-y-3 text-gray-700">
@@ -78,8 +75,6 @@ const DetailProduct: React.FC<DetailProductProps> = ({ productId }) => {
                 </Col>
             </Row>
 
-
-            {/* 🔙 Nút quay lại */}
             <Button
                 onClick={() => router.push("/client/products")}
                 variant="secondary"

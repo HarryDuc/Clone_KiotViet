@@ -28,9 +28,13 @@ import { SupplierModule } from './modules/supplier/supplier.module';
 import { SupplierGroupModule } from './modules/supplier-group/supplier-group.module';
 import { ServicePackageModule } from './modules/service-package/service-package.module';
 import { PurchaseHistoryModule } from './modules/purchase-history/purchase-history.module';
+import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/kiotviet'),
+    // MongooseModule.forRoot('mongodb://localhost:27017/kiotviet'),
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
     BranchModule,
     UserModule,
     BrandModule,

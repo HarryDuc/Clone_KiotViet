@@ -10,25 +10,24 @@ export class AttendanceService {
   constructor(@InjectModel('Attendances') private attendanceModel: Model<Attendance>) {}
 
   // Thêm mới attendance
-  async create(createAttendance: any): Promise<Attendance> {
+  async create(createAttendance: CreateAttendanceDto): Promise<Attendance> {
     const lastUser = await this.attendanceModel.findOne().sort({ attendanceId: -1 }).exec();
     let newAttendanceId = 'ATT0001';
-  
+
     if (lastUser && lastUser.attendanceId) {
       const lastNumber = parseInt(lastUser.attendanceId.replace('ATT', ''), 10);
       const nextNumber = lastNumber + 1;
       newAttendanceId = `ATT${nextNumber.toString().padStart(4, '0')}`;
     }
-  
+
     const createdAttendance = new this.attendanceModel({
       ...createAttendance,
       attendanceId: newAttendanceId
     });
-  
+
     return createdAttendance.save();
   }
 
-  // Lấy tất cả attendance
   async findAll(): Promise<Attendance[]> {
     return this.attendanceModel.find().exec();
   }

@@ -8,32 +8,13 @@ import { CreateProductDto } from "../types/product.type";
 const CreateProduct = () => {
     const router = useRouter();
 
-    // ✅ Xử lý dữ liệu từ `ProductForm` và gửi đến backend
     const handleCreateProduct = async (formData: FormData) => {
         try {
             console.log("🚀 Bắt đầu xử lý tạo sản phẩm...");
             console.log("📤 Dữ liệu FormData gửi đi:", Array.from(formData.entries()));
 
-            // 🖼️ Lấy danh sách ảnh
-            const thumbnailFile = formData.get("thumbnail") as File | null;
-            const galleryFiles = formData.getAll("gallery") as File[];
-
-            if (!thumbnailFile) {
-                console.error("❌ Vui lòng chọn ảnh đại diện cho sản phẩm!");
-                return;
-            }
-
-            // 🚀 Upload tất cả ảnh
-            const allFiles = [thumbnailFile, ...galleryFiles];
             console.log("📤 Gửi yêu cầu upload ảnh...");
-            const uploadedUrls = await ProductsService.uploadImages(allFiles);
 
-            if (!uploadedUrls || uploadedUrls.length === 0) {
-                throw new Error("❌ API không trả về danh sách URL ảnh!");
-            }
-
-            console.log("✅ Ảnh đã upload thành công, danh sách URL:", uploadedUrls);
-            // ✅ Chuyển dữ liệu sang object `CreateProductDto`
             const productData: CreateProductDto = {
                 name: formData.get("name") as string,
                 description: formData.get("description") as string,
@@ -46,12 +27,11 @@ const CreateProduct = () => {
                 unit: formData.get("unit") as string,
                 cost: Number(formData.get("cost")),
                 price: Number(formData.get("price")),
-                image: uploadedUrls, // ✅ Đảm bảo `imageUrls` được gửi đi
+                image: formData.get("image") as string
             };
 
             console.log("📦 Dữ liệu sản phẩm gửi đi:", JSON.stringify(productData, null, 2));
 
-            // 🚀 Gửi dữ liệu sản phẩm lên backend
             const response = await ProductsService.create(productData);
 
             if (!response || !response._id) {

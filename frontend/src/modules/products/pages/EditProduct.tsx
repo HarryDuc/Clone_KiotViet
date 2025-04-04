@@ -16,12 +16,10 @@ const EditProduct = ({ id }: EditProductProps) => {
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
 
-    // 🖼️ Ảnh sản phẩm
     const [thumbnail, setThumbnail] = useState<File | null>(null);
     const [gallery, setGallery] = useState<File[]>([]);
     const [removedImages, setRemovedImages] = useState<string[]>([]);
 
-    // ✅ Lấy dữ liệu sản phẩm theo ID
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -42,26 +40,19 @@ const EditProduct = ({ id }: EditProductProps) => {
         }
     }, [id, router]);
 
-    // ✅ Xử lý chọn ảnh đại diện mới
     const handleThumbnailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             setThumbnail(event.target.files[0]);
         }
     };
 
-    // ✅ Xử lý chọn album ảnh mới
     const handleGalleryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             setGallery(Array.from(event.target.files));
         }
     };
 
-    // ✅ Xóa ảnh khỏi album
-    const handleRemoveImage = (imageUrl: string) => {
-        setRemovedImages((prev) => [...prev, imageUrl]); // Đánh dấu ảnh cần xóa
-    };
 
-    // ✅ Xử lý cập nhật sản phẩm
     const handleUpdate = async () => {
         if (!product) return;
 
@@ -72,26 +63,12 @@ const EditProduct = ({ id }: EditProductProps) => {
             const formData = new FormData();
             formData.append("name", updatedProduct.name || "");
             formData.append("description", updatedProduct.description || "");
-            formData.append("category", JSON.stringify(updatedProduct.category));
+            formData.append("category", updatedProduct.category || "");
             formData.append("cost", updatedProduct.cost?.toString() || "");
             formData.append("price", updatedProduct.price?.toString() || "");
+            formData.append("image", updatedProduct.image as string);
 
-            // ✅ Nếu có ảnh đại diện mới, thêm vào formData
-            if (thumbnail) {
-                formData.append("thumbnail", thumbnail);
-            }
 
-            // ✅ Nếu có ảnh mới cho album, thêm vào formData
-            gallery.forEach((file) => {
-                formData.append("gallery", file);
-            });
-
-            // ✅ Nếu có ảnh bị xóa, gửi danh sách ảnh cần xóa
-            if (removedImages.length > 0) {
-                formData.append("removedImages", JSON.stringify(removedImages));
-            }
-
-            // ✅ Gửi dữ liệu cập nhật lên backend
             await ProductsService.update(id, formData as any);
             alert("✅ Cập nhật sản phẩm thành công!");
             router.push("/admin/products");
@@ -111,7 +88,6 @@ const EditProduct = ({ id }: EditProductProps) => {
             <h2 className="mb-4">✏️ Chỉnh sửa Sản Phẩm</h2>
             <Form>
                 <Row>
-                    {/* 📝 Nhập tên sản phẩm */}
                     <Col md={6}>
                         <Form.Group className="mb-3">
                             <Form.Label>Tên sản phẩm</Form.Label>
@@ -124,7 +100,6 @@ const EditProduct = ({ id }: EditProductProps) => {
                         </Form.Group>
                     </Col>
 
-                    {/* 📝 Nhập mô tả sản phẩm */}
                     <Col md={6}>
                         <Form.Group className="mb-3">
                             <Form.Label>Mô tả</Form.Label>
@@ -138,7 +113,6 @@ const EditProduct = ({ id }: EditProductProps) => {
                 </Row>
 
                 <Row>
-                    {/* 🏷️ Nhập danh mục */}
                     <Col md={6}>
                         <Form.Group className="mb-3">
                             <Form.Label>Danh mục</Form.Label>
@@ -157,20 +131,18 @@ const EditProduct = ({ id }: EditProductProps) => {
                     </Col>
                 </Row>
 
-                {/* 🖼️ Upload ảnh */}
                 <Row>
                     <Col md={6}>
                         <Form.Group className="mb-3">
                             <Form.Label>Ảnh đại diện</Form.Label>
-                            <Form.Control type="file" onChange={handleThumbnailChange} accept="image/*" />
+                            <Form.Control type="text" value={product.image} onChange={handleThumbnailChange} accept="image/*" />
                             {product.image && product.image.length > 0 && (
-                                <Image src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${product.image[0]}`} alt="Ảnh đại diện" fluid rounded className="mt-2" />
+                                <Image src={`${product.image}`} alt="Ảnh đại diện" fluid rounded className="mt-2" />
                             )}
                         </Form.Group>
                     </Col>
                 </Row>
 
-                {/* 📌 Nút cập nhật & Quay lại */}
                 <Row className="mt-3">
                     <Col md={6}>
                         <Button onClick={handleUpdate} disabled={uploading} variant="primary" className="w-100">

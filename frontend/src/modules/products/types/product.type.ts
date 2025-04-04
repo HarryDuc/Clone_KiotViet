@@ -2,28 +2,6 @@
  * 📌 Định nghĩa kiểu dữ liệu sản phẩm (Product)
  */
 export type Product = {
-    // {
-    //     "_id": "67eb9dc34d137eb0d1836463",
-    //     "productId": "SP0006",
-    //     "barcode": "8938505974123",
-    //     "name": "Bánh quy sữa",
-    //     "category": null,
-    //     "brand": null,
-    //     "price": 25000,
-    //     "cost": 18000,
-    //     "stock": 100,
-    //     "location": "Kệ A3",
-    //     "minStock": 10,
-    //     "maxStock": 200,
-    //     "status": "Ngừng kinh doanh",
-    //     "image": "https://khoinguonsangtao.vn/wp-content/uploads/2022/08/anh-dong-3d-cau-vong.gif",
-    //     "weight": 250,
-    //     "unit": "gram",
-    //     "description": "Bánh quy sữa thơm ngon, giòn rụm, thích hợp dùng kèm trà hoặc sữa.",
-    //     "createdAt": "2025-04-01T08:03:15.698Z",
-    //     "updatedAt": "2025-04-01T08:03:15.698Z",
-    //     "__v": 0
-    // }
     _id: string; // MongoDB sử dụng `_id` thay vì `id`
     name: string;
     description: string;
@@ -68,7 +46,7 @@ export type Discount = {
  * ✅ Chỉnh `imageUrls` để phù hợp với dữ liệu gửi lên Backend
  */
 export type CreateProductDto = Omit<Product, "_id" | "createdAt" | "updatedAt"> & {
-    image: string[]; // ✅ Cập nhật để tránh lỗi "images does not exist in CreateProductDto"
+    image: string | string[]; // ✅ Cập nhật để tránh lỗi "images does not exist in CreateProductDto"
 };
 
 /**

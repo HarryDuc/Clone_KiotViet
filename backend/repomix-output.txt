@@ -1,0 +1,5892 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+.gitignore
+.prettierrc
+chức năng kiotviet.txt
+eslint.config.mjs
+nest-cli.json
+package.json
+README.md
+src/app.controller.spec.ts
+src/app.controller.ts
+src/app.module.ts
+src/app.service.ts
+src/database/database.module.ts
+src/main.ts
+src/modules/attendance/attendance.module.ts
+src/modules/attendance/controllers/attendance.controller.ts
+src/modules/attendance/dtos/create-attendance.dto.ts
+src/modules/attendance/dtos/update-attendance.dto.ts
+src/modules/attendance/schemas/attendance.schema.ts
+src/modules/attendance/services/attendance.service.ts
+src/modules/auth/controllers/user.controller.ts
+src/modules/auth/guard/auth.guard.ts
+src/modules/auth/schemas/user.schema.ts
+src/modules/auth/services/user.service.ts
+src/modules/auth/user.module.ts
+src/modules/branch/branch.module.ts
+src/modules/branch/controllers/branch.controller.ts
+src/modules/branch/dtos/create-branch.dto.ts
+src/modules/branch/schemas/branch.schema.ts
+src/modules/branch/services/branch.service.ts
+src/modules/brand/brand.module.ts
+src/modules/brand/controllers/brand.controller.ts
+src/modules/brand/schemas/brand.schema.ts
+src/modules/brand/services/brand.service.ts
+src/modules/carrier-group/carrier-group.module.ts
+src/modules/carrier-group/controllers/carrier-group.controller.ts
+src/modules/carrier-group/schemas/carrier-group.schema.ts
+src/modules/carrier-group/services/carrier-group.service.ts
+src/modules/carrier/carrier.module.ts
+src/modules/carrier/controllers/carrier.controller.ts
+src/modules/carrier/schemas/carrier.schema.ts
+src/modules/carrier/services/carrier.service.ts
+src/modules/cash-book/cash-book.module.ts
+src/modules/cash-book/controllers/cash-book.controller.ts
+src/modules/cash-book/schemas/cash-book.schema.ts
+src/modules/cash-book/services/cash-book.service.ts
+src/modules/category/categories.module.ts
+src/modules/category/controllers/categories.controller.ts
+src/modules/category/schemas/categories.schema.ts
+src/modules/category/services/categories.service.ts
+src/modules/commission-setting/commission-setting.module.ts
+src/modules/commission-setting/controllers/commission-setting.controller.ts
+src/modules/commission-setting/schemas/commission-setting.schema.ts
+src/modules/commission-setting/services/commission-setting.service.ts
+src/modules/customer/controllers/customer.controller.ts
+src/modules/customer/customer.module.ts
+src/modules/customer/schemas/customer.schema.ts
+src/modules/customer/services/customer.service.ts
+src/modules/department/controllers/department.controller.ts
+src/modules/department/department.module.ts
+src/modules/department/schemas/department.schema.ts
+src/modules/department/services/department.service.ts
+src/modules/employee/controllers/employee.controller.ts
+src/modules/employee/employee.module.ts
+src/modules/employee/schemas/employee.schema.ts
+src/modules/employee/services/employee.service.ts
+src/modules/holiday/controllers/holiday.controller.ts
+src/modules/holiday/holiday.module.ts
+src/modules/holiday/schemas/holiday.schema.ts
+src/modules/holiday/services/holiday.service.ts
+src/modules/invoice/controllers/invoice.controller.ts
+src/modules/invoice/invoice.module.ts
+src/modules/invoice/schemas/invoice.schema.ts
+src/modules/invoice/services/invoice.service.ts
+src/modules/order/controllers/order.controller.ts
+src/modules/order/order.module.ts
+src/modules/order/schemas/order.schema.ts
+src/modules/order/services/order.service.ts
+src/modules/payroll/controllers/payroll.controller.ts
+src/modules/payroll/payroll.module.ts
+src/modules/payroll/schemas/payroll.schema.ts
+src/modules/payroll/services/payroll.service.ts
+src/modules/position/controllers/position.controller.ts
+src/modules/position/position.module.ts
+src/modules/position/schemas/position.schema.ts
+src/modules/position/services/position.service.ts
+src/modules/product/controllers/product.controller.ts
+src/modules/product/product.module.ts
+src/modules/product/schemas/product.schema.ts
+src/modules/product/services/product.service.ts
+src/modules/purchase-history/controllers/purchase-history.controller.ts
+src/modules/purchase-history/purchase-history.module.ts
+src/modules/purchase-history/schemas/purchase-history.schema.ts
+src/modules/purchase-history/services/purchase-history.service.ts
+src/modules/purchase-order/controllers/purchase-orders.controller.ts
+src/modules/purchase-order/purchase-orders.module.ts
+src/modules/purchase-order/schemas/purchase-orders.schema.ts
+src/modules/purchase-order/services/purchase-orders.service.ts
+src/modules/ruturn/controllers/return.controller.ts
+src/modules/ruturn/return.module.ts
+src/modules/ruturn/schemas/return.schema.ts
+src/modules/ruturn/services/return.service.ts
+src/modules/service-package/controllers/service-package.controller.ts
+src/modules/service-package/schemas/service-package.schems.ts
+src/modules/service-package/service-package.module.ts
+src/modules/service-package/services/service-package.service.ts
+src/modules/shipment/controllers/shipment.controller.ts
+src/modules/shipment/schemas/shipment.schema.ts
+src/modules/shipment/services/shipment.service.ts
+src/modules/shipment/shipment.module.ts
+src/modules/store/controllers/store.controller.ts
+src/modules/store/schemas/store.schema.ts
+src/modules/store/services/store.service.ts
+src/modules/store/store.module.ts
+src/modules/supplier-group/controllers/supplier-group.controller.ts
+src/modules/supplier-group/schemas/supplier-group.schema.ts
+src/modules/supplier-group/services/supplier-group.service.ts
+src/modules/supplier-group/supplier-group.module.ts
+src/modules/supplier/controllers/supplier.controller.ts
+src/modules/supplier/schemas/supplier.schema.ts
+src/modules/supplier/services/supplier.service.ts
+src/modules/supplier/supplier.module.ts
+test/app.e2e-spec.ts
+test/jest-e2e.json
+tsconfig.build.json
+tsconfig.json
+
+================================================================
+Files
+================================================================
+
+================
+File: .gitignore
+================
+# compiled output
+/dist
+/node_modules
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+================
+File: .prettierrc
+================
+{
+  "singleQuote": true,
+  "trailingComma": "all"
+}
+
+================
+File: chức năng kiotviet.txt
+================
+Dựa trên đoạn văn bản được cung cấp trong truy vấn, tôi sẽ phân tích và liệt kê cụ thể các chức năng của Website KiotViet. Các chức năng này được tổ chức theo từng trang chính và các mục con tương ứng, đảm bảo bao quát toàn bộ thông tin đã cho.
+
+---
+
+### 1. Trang Tổng Quan
+Trang này cung cấp thông tin tổng thể về gian hàng và các hoạt động liên quan đến gói dịch vụ, thanh toán.
+
+#### 1.1. Thông tin gian hàng
+- Hiển thị thông tin cơ bản về tài khoản:
+  - **Loại tài khoản**: Cá nhân hoặc doanh nghiệp.
+  - **Người đại diện**: Người tạo tài khoản.
+  - **Số điện thoại**: Được cung cấp khi tạo tài khoản.
+  - **Email**.
+  - **Giới tính**.
+  - **Ngày sinh**.
+  - **CCCD/Hộ chiếu**, bao gồm ngày cấp và nơi cấp.
+  - **Địa chỉ**.
+  - **Tên gian hàng**: Yêu cầu khi tạo tài khoản.
+  - **Ngành hàng**: Lựa chọn khi đăng ký.
+  - **Số chi nhánh**.
+  - **Số nhân viên**.
+  - **Tình trạng**: Đang sử dụng hoặc ngừng sử dụng.
+  - **Ngày hết hạn**: Phụ thuộc vào gói dịch vụ đã mua.
+  - **Gói dịch vụ**: Mặc định là gói dùng thử 7 ngày khi tạo tài khoản.
+  - **Số lượng kho**.
+
+#### 1.2. Gói dịch vụ
+- **Xem và mua gói dịch vụ**:
+  - Bao gồm các gói như:
+    - **Gói hỗ trợ**: Các chức năng cơ bản.
+    - **Gói chuyên nghiệp**: Nâng cao, có hỗ trợ riêng.
+    - **Gói cao cấp**: Bao gồm tất cả chức năng.
+  - Quy trình mua:
+    - Chọn gói và thời gian sử dụng (1-5 năm), thêm sản phẩm mua kèm.
+    - Nhập thông tin cá nhân: Người đại diện, giới tính, số điện thoại, email, CCCD/hộ chiếu, địa chỉ.
+    - Thanh toán.
+
+#### 1.3. Lịch sử mua hàng
+- Theo dõi các giao dịch mua gói dịch vụ trên website.
+
+#### 1.4. Thanh toán
+- **Nạp tiền** vào tài khoản.
+- **Xem số dư**: Số dư hiện tại, số dư đầu kỳ, tổng tiền nạp, tổng tiền chi.
+- **Theo dõi giao dịch**: Xem lịch sử các giao dịch đã thực hiện.
+
+---
+
+### 2. Trang Dashboard
+Cung cấp cái nhìn tổng quan về hiệu suất bán hàng.
+- **Kết quả bán hàng**: Số hóa đơn, doanh thu, phần trăm thu nhập so với tháng trước.
+- **Xem doanh thu**: Theo ngày, tháng, hoặc giờ.
+- **Hàng hóa bán chạy**: Danh sách sản phẩm bán tốt.
+- **Thông báo hoạt động**: Ví dụ: “… vừa nhận đặt hàng với giá trị …”.
+
+---
+
+### 3. Trang Hàng Hóa
+Quản lý sản phẩm và các hoạt động liên quan, bao gồm 3 mục chính.
+
+#### 3.1. Danh mục
+- **Lọc sản phẩm**: Qua sidebar với các tiêu chí như loại hàng, nhóm hàng, tồn kho, thương hiệu, bán trực tiếp, thời gian tạo, ngày dự kiến hết hàng, nhà cung cấp, vị trí, liên kết kênh bán, lựa chọn hiển thị.
+- **Thông tin sản phẩm**:
+  - Hình ảnh, mã hàng (tự động), mã vạch, tên hàng, nhóm hàng, loại hàng, liên kết kênh bán, giá bán, giá vốn, thương hiệu, tồn kho, vị trí, số khách đặt, thời gian tạo, thời gian dự kiến hết hàng, định mức tồn (ít nhất/nhiều nhất), trạng thái (cho phép kinh doanh/ngừng kinh doanh).
+- **Thêm sản phẩm**:
+  - Nhập thông tin: Mã hàng (tự động), mã vạch, tên hàng, nhóm hàng (chọn hoặc tạo mới), thương hiệu (chọn hoặc tạo mới), vị trí, hình ảnh, giá vốn, giá bán, tồn kho, trọng lượng, bán trực tiếp (checkbox), đơn vị tính (thêm đơn vị mới nếu cần), định mức tồn, mô tả, ghi chú.
+- **Xuất file sản phẩm**: Dựa trên các tiêu chí như tồn kho, nhóm hàng, thương hiệu.
+
+#### 3.2. Thiết lập giá
+- **Lọc sản phẩm**: Qua sidebar với các tiêu chí như bảng giá, nhóm hàng, tồn kho (dưới định mức, vượt định mức, còn hàng, hết hàng), giá bán.
+- **Tạo bảng giá**: Tên bảng giá, thời gian hiệu lực, trạng thái (áp dụng/chưa áp dụng), phạm vi áp dụng (toàn hệ thống/chi nhánh), đối tượng giao dịch, giảm giá (số tiền hoặc %).
+- **Hiển thị sản phẩm**: Mã hàng, tên hàng, tồn kho, giá vốn, giá nhập cuối, bảng giá chung (có thể chỉnh sửa).
+
+#### 3.3. Kiểm kho
+- **Thông tin kiểm kho**: Mã kiểm kho (tự động), thời gian tạo, người tạo, người kiểm duyệt, ngày kiểm duyệt, số lượng thực tế, tổng giá tiền, tổng chênh lệch, số lượng lệch, ghi chú, trạng thái (đã kiểm tra, phiếu tạm, đã hủy), mã hàng, tên hàng, tồn kho.
+- **Lọc**: Theo trạng thái, người tạo.
+- **Thêm kiểm kho**: Nhập thông tin như mã hàng, tên hàng, tồn kho, số lượng thực tế, chênh lệch, giá trị lệch, nhân viên kiểm tra, ghi chú.
+
+---
+
+### 4. Trang Giao Dịch
+Quản lý các hoạt động giao dịch bán hàng và nhập hàng.
+
+#### 4.1. Đặt hàng
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, đã xác nhận, đang giao, hoàn thành, đã hủy), người tạo, người nhận đặt, kênh bán (thêm kênh mới), đối tác giao hàng, thời gian giao, khu vực, phương thức thanh toán.
+- **Thông tin**: Mã vận đơn, mã đặt hàng, mã hóa đơn, thời gian tạo, ngày cập nhật, thời gian giao, khách hàng, số điện thoại, địa chỉ, khu vực, phường/xã, ngày sinh, đối tác giao hàng, người nhận đặt, người tạo, kênh bán, tổng tiền, giảm giá, khách cần trả, khách đã trả, trạng thái, mã sản phẩm, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+
+#### 4.2. Hóa đơn
+- **Lọc**: Thời gian, trạng thái (đang xử lý, hoàn thành, không giao được, đã hủy), phương thức bán, người tạo, người bán, trạng thái giao hàng, kênh bán, đối tác giao hàng, khu vực, phương thức thanh toán, bảng giá.
+- **Thông tin**: Mã hóa đơn, mã vận đơn, trạng thái giao hàng, mã đối soát, thời gian tạo, ngày cập nhật, mã đặt hàng, mã trả hàng, khách hàng, email, số điện thoại, địa chỉ, khu vực, phường/xã, ngày sinh, chi nhánh, người bán, người tạo, kênh bán, đối tác giao hàng, ghi chú, tổng tiền, giảm giá, giảm thuế, khách cần trả, khách đã trả, cần thu COD, phí trả đối tác, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+
+#### 4.3. Vận đơn
+- **Lọc**: Thời gian, trạng thái giao hàng, đối tác giao hàng, khu vực, thu hộ tiền.
+- **Thông tin**: Mã vận đơn, thời gian tạo, thời gian hoàn thành, người tạo, mã hóa đơn, khách hàng, chi nhánh, nhân viên bán, người nhận, số điện thoại, địa chỉ, khu vực, phường/xã, đối tác giao hàng, ghi chú, trạng thái, dịch vụ, cần thu hộ, tổng cước phí, mã đối soát, phí trả đối tác, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+
+#### 4.4. Trả hàng
+- **Lọc**: Thời gian, trạng thái (đã trả, đã hủy), người tạo, người nhận trả, kênh bán, loại phiếu (theo hóa đơn, trả nhanh, chuyển hoàn).
+- **Thông tin**: Mã trả hàng, mã hóa đơn, mã vận đơn, người bán, thời gian tạo, khách hàng, chi nhánh, người nhận trả, người tạo, kênh bán, ghi chú, tổng tiền trả, giảm giá, tổng sau giảm, giảm thuế hoàn lại, phí trả hàng, thu khác hoàn lại, cần trả khách, đã trả khách, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm trả hàng**: Chọn hóa đơn từ danh sách, nhập thông tin nhân viên hoàn trả, khách hàng, mã hóa đơn.
+
+#### 4.5. Nhập hàng
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, đã nhập, đã hủy), người tạo, người nhập.
+- **Thông tin**: Mã nhập hàng, mã trả nhập hàng, thời gian tạo, ngày cập nhật, nhà cung cấp, chi nhánh, người nhập, người tạo, tổng số lượng, tổng số mặt hàng, tổng tiền, giảm giá, cần trả nhà cung cấp, chiết khấu thanh toán, tiền đã trả, ghi chú, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm nhập hàng**: Nhập STT, mã hàng, tên hàng, đơn vị tính, tồn kho, giá vốn, giá bán, trạng thái (phiếu tạm), nhà cung cấp, nhân viên thực hiện.
+
+#### 4.6. Trả hàng nhập
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, đã trả, đã hủy), người tạo, người trả.
+- **Thông tin**: Mã trả hàng nhập, thời gian tạo, nhà cung cấp, chi nhánh, người trả, người tạo, ghi chú, tổng số lượng, tổng số mặt hàng, tổng tiền trả, giảm giá, nhà cung cấp cần trả, nhà cung cấp đã trả, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm trả nhập hàng**: Nhập STT, mã hàng, tên hàng, đơn vị tính, số lượng, giá nhập, giá trả lại, nhà cung cấp.
+
+#### 4.7. Xuất hủy
+- **Lọc**: Thời gian, trạng thái (phiếu tạm, hoàn thành, đã hủy), người tạo, người xuất hủy.
+- **Thông tin**: Mã xuất hủy, tổng giá trị hủy, thời gian tạo, chi nhánh, người xuất hủy, người tạo, ghi chú, trạng thái, mã hàng, tên hàng, số lượng, đơn giá, giảm giá, thành tiền.
+- **Thêm xuất hủy**: Nhập STT, mã hàng, tên hàng, đơn vị tính, số lượng hủy, giá vốn, giá trị hủy, trạng thái phiếu.
+
+---
+
+### 5. Trang Đối Tác
+Quản lý thông tin về khách hàng, nhà cung cấp, và đối tác giao hàng.
+
+#### 5.1. Khách hàng
+- **Lọc**: Nhóm khách hàng, ngày tạo, người tạo, sinh nhật, ngày giao dịch cuối, tổng bán, nợ hiện tại, loại khách, giới tính, khu vực, trạng thái.
+- **Thêm khách hàng**: Hình ảnh, mã khách hàng, tên, số điện thoại, ngày sinh, địa chỉ, khu vực, phường/xã, loại khách, mã số thuế, CMND/CCCD, email, Facebook, nhóm, ghi chú.
+- **Thông tin**: Mã khách hàng, tên, loại khách, số điện thoại, nhóm, giới tính, ngày sinh, email, Facebook, công ty, mã số thuế, CMND/CCCD, địa chỉ, khu vực, phường/xã, người tạo, ngày tạo, ghi chú, ngày giao dịch cuối, nợ hiện tại, tổng bán, tổng bán trừ trả hàng, trạng thái.
+
+#### 5.2. Nhà cung cấp
+- **Lọc**: Nhóm nhà cung cấp, tổng mua, nợ hiện tại, trạng thái.
+- **Thêm nhà cung cấp**: Mã, tên, số điện thoại, địa chỉ, khu vực, phường/xã, chi nhánh, email, công ty, mã số thuế, nhóm, ghi chú.
+- **Thông tin**: Mã, tên, số điện thoại, nhóm, email, địa chỉ, khu vực, phường/xã, công ty, ghi chú, mã số thuế, người tạo, ngày tạo, nợ cần trả, tổng mua, tổng mua trừ trả hàng, trạng thái.
+
+#### 5.3. Đối tác giao hàng
+- **Lọc**: Nhóm đối tác, tổng phí giao hàng, nợ hiện tại, trạng thái.
+- **Thêm đối tác**: Loại đối tác, mã, tên, số điện thoại, email, nhóm, địa chỉ, khu vực, phường/xã, ghi chú.
+- **Thông tin**: Mã, tên, số điện thoại, email, tổng đơn hàng, cần thu hộ, tổng trọng lượng, nợ cần trả, tổng phí giao hàng, trạng thái.
+
+---
+
+### 6. Trang Nhân Viên
+Quản lý nhân viên và các hoạt động liên quan.
+
+#### 6.1. Nhân viên
+- **Thêm nhân viên**:
+  - Thông tin cơ bản: Hình ảnh, mã (tự động), tên, số điện thoại, ngày sinh, giới tính, ghi chú.
+  - Chi nhánh & chức danh: Chi nhánh trả lương, chi nhánh làm việc, ngày bắt đầu, chức danh, phòng ban.
+  - Tài khoản đăng nhập: Tên người dùng, tên đăng nhập, mật khẩu, vai trò, chi nhánh, email, địa chỉ, khu vực, phường/xã, số điện thoại, quyền admin.
+  - Thông tin cá nhân: CMND/CCCD.
+  - Thông tin liên hệ: Địa chỉ, email, khu vực, phường/xã, Facebook.
+  - Thiết lập lương: Hình thức (theo ca, giờ, ngày công, cố định), thưởng, hoa hồng, phụ cấp, giảm trừ.
+- **Thông tin**: Ảnh, mã, mã chấm công, tên, số điện thoại, CMND/CCCD, nợ và tạm ứng, ghi chú, thiết bị di động, ngày sinh, giới tính, email, Facebook, địa chỉ, chi nhánh, phòng ban, chức danh, ngày bắt đầu, tài khoản đăng nhập.
+- **Lọc**: Trạng thái, chi nhánh, phòng ban, chức danh.
+
+#### 6.2. Lịch làm việc
+- **Thêm lịch**: Tạo ca làm việc (hành chính hoặc tùy chỉnh), lặp lại hàng tuần, làm việc ngày lễ, thêm nhân viên cùng lịch.
+
+#### 6.3. Chấm công
+- **Hiển thị**: Đúng giờ, đi muộn/về sớm, chấm công thiếu, chưa chấm công, nghỉ làm.
+
+#### 6.4. Bảng tính lương
+- **Lọc**: Chi nhánh, kỳ hạn, trạng thái (đang tạo, tạm tính, đã chốt, đã hủy).
+- **Thông tin**: Mã, tên, kỳ hạn, kỳ làm việc, chi nhánh, số nhân viên, tổng lương, đã trả, còn cần trả, trạng thái, người tạo, ngày tạo, ghi chú, lịch sử thanh toán.
+
+#### 6.5. Thiết lập hoa hồng
+- **Hàng hóa**: Tạo bảng hoa hồng (tên, phạm vi, trạng thái), hiển thị mã hàng, tên, đơn vị, giá bán, giá vốn, lợi nhuận.
+- **Nhân viên**: Tạo bảng hoa hồng, hiển thị loại hình, doanh thu, bảng áp dụng.
+
+#### 6.6. Thiết lập nhân viên
+- **Khởi tạo**: Tên, số điện thoại, bảng lương, loại lương, chi tiết lương (thưởng, hoa hồng, phụ cấp, giảm trừ).
+- **Ca làm việc**: Thêm ca (hành chính hoặc tùy chỉnh), thời gian, chi nhánh, trạng thái.
+- **Chấm công**: Thêm ngày làm, số giờ chuẩn, đi muộn/về sớm, làm thêm giờ, tự động chấm công.
+- **Tính lương**: Chọn ngày tính, tự động tạo/cập nhật bảng lương, thiết lập mẫu lương.
+- **Quản lý lễ tết**: Thêm ngày lễ, tự động điền các ngày lễ mặc định.
+
+---
+
+### 7. Trang Sổ Quỹ
+- **Lọc**: Quỹ tiền, thời gian, loại chứng từ, loại thu chi, trạng thái, kết quả kinh doanh, người tạo, nhân viên, công nợ, đối tượng nộp/nhận.
+- **Thông tin**: Mã phiếu, thời gian, người tạo, nhân viên, chi nhánh, loại thu chi, mã người nộp/nhận, tên, số điện thoại, địa chỉ, giá trị, ghi chú, trạng thái.
+
+---
+
+### 8. Trang Báo Cáo
+Cung cấp các báo cáo chi tiết về hoạt động kinh doanh.
+
+#### 8.1. Báo cáo cuối ngày
+- **Lọc**: Thời gian, khách hàng, nhân viên, người tạo, phương thức thanh toán, phương thức bán.
+- **Thông tin**: Mã chứng từ, khách hàng, nhân viên, thời gian, số lượng, tổng tiền, giảm giá, doanh thu, VAT, phí trả hàng, thực thu, ghi nợ.
+
+#### 8.2. Bán hàng
+- **Lọc**: Bảng giá, thời gian, phương thức bán, kênh bán.
+- **Thông tin**: Thời gian, số đơn bán, tổng tiền, doanh thu, số đơn trả, giá trị trả, doanh thu thuần.
+
+#### 8.3. Đặt hàng
+- **Lọc**: Thời gian, trạng thái, khách hàng, hàng hóa, loại hàng, thương hiệu, nhóm hàng, nhân viên.
+- **Thông tin**: Mã hàng, tên, số lượng đặt, giá trị niêm yết, giá trị hàng đặt, chênh lệch, số lượng đã nhận, số lượng còn lại.
+
+#### 8.4. Hàng hóa
+- **Lọc**: Mối quan tâm, bảng giá, thời gian, hàng hóa, loại hàng, thương hiệu, nhóm hàng.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.5. Khách hàng
+- **Lọc**: Mối quan tâm, thời gian, khách hàng.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.6. Nhà cung cấp
+- **Lọc**: Mối quan tâm, thời gian, nhà cung cấp.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.7. Nhân viên
+- **Lọc**: Mối quan tâm, thời gian, người bán, kênh bán.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.8. Kênh bán hàng
+- **Lọc**: Mối quan tâm, thời gian, người bán, kênh bán.
+- **Hiển thị**: Biểu đồ top 10 sản phẩm (trừ trả hàng).
+
+#### 8.9. Tài chính
+- **Lọc**: Thời gian (tháng, năm, quý, khoảng cụ thể).
+- **Thông tin**: Tổng doanh thu, giá vốn, lợi nhuận.
+
+---
+
+### 9. Trang Bán Online
+Quản lý bán hàng trực tuyến.
+
+#### 9.1. Bán online
+- **Kết nối**: Với sàn TMĐT (Shopee, TikTok Shop, Lazada, Tiki) và mạng xã hội (Facebook, Instagram).
+- **Quản lý sàn TMĐT**: Đơn hàng, hàng hóa, hội thoại, đối soát, marketing, thiết lập kênh.
+- **Quản lý mạng xã hội**: Hội thoại, livestream, bài viết, đơn hàng, báo cáo, catalog, thiết lập.
+
+#### 9.2. Website bán hàng
+- **Website của tôi**: Lượt truy cập, quản lý giao diện.
+- **Đồng bộ**: Chọn chi nhánh, bảng giá khuyến mãi.
+- **Cài đặt hiển thị**: Tên cửa hàng, số điện thoại, Zalo, Facebook, email, chi nhánh, số lượng người dùng, trạng thái.
+- **Favicon**: Sửa ảnh.
+- **Hình thức bán hàng & nhận hàng**: Checkbox nhận tại cửa hàng.
+- **Tên miền**: Thay đổi hoặc chọn miễn phí.
+- **SEO**: Google Business Profile, tiêu đề, mô tả, hình ảnh chia sẻ.
+- **Popup**: Tên, đường dẫn, loại, hình ảnh, thời gian.
+- **Bộ Công Thương**: Chứng nhận, logo.
+- **Điều hướng**: Quản lý liên kết.
+- **Chỉnh sửa giao diện**: Màu, kiểu chữ, banner, đầu trang, dịch vụ, nhóm hàng, sản phẩm nổi bật, logo thương hiệu, giới thiệu, đánh giá, thư viện ảnh, chân trang.
+- **Kho giao diện & hình ảnh**: Lưu trữ và sử dụng.
+- **Danh sách hàng hóa**: Hiển thị, ẩn/hiện sản phẩm.
+- **Danh mục nổi bật**: Tạo và quản lý.
+- **Bài viết**: Tạo và quản lý theo danh mục.
+
+---
+
+### 10. Trang Thêm Hóa Đơn/Đặt Hàng
+- **Hóa đơn**:
+  - **Bán nhanh**: Mã sản phẩm, tên, đơn vị, số lượng, giá, nhân viên, kênh bán, khách hàng, bảng giá, tổng tiền, phương thức thanh toán, ghi chú.
+  - **Bán thường**: Mã sản phẩm, tên, số lượng, giá, nhân viên, bảng giá, tiền khách cần trả, đã trả, phương thức thanh toán, ghi chú.
+  - **Bán giao hàng**: Mã sản phẩm, tên, số lượng, giá, nhân viên, bảng giá, kênh bán, địa chỉ lấy hàng, người nhận, địa chỉ nhận, trọng lượng, kích thước, ghi chú, thu hộ COD.
+- **Đặt hàng**: Tương tự hóa đơn.
+
+---
+
+### 11. Quản Lý Người Dùng
+- **Phân quyền**: Admin quản lý toàn bộ (đối tác, tài khoản nhân viên), nhân viên chỉ truy cập mục cần thiết.
+
+---
+
+### Tóm tắt
+Website KiotViet cung cấp hệ thống quản lý bán hàng toàn diện với các chức năng chính:
+1. Quản lý thông tin gian hàng và gói dịch vụ.
+2. Theo dõi hiệu suất bán hàng qua Dashboard.
+3. Quản lý hàng hóa (danh mục, giá, kiểm kho).
+4. Quản lý giao dịch (đặt hàng, hóa đơn, vận đơn, trả hàng, nhập hàng, xuất hủy).
+5. Quản lý đối tác (khách hàng, nhà cung cấp, giao hàng).
+6. Quản lý nhân viên (thông tin, lịch, chấm công, lương, hoa hồng).
+7. Quản lý tài chính qua sổ quỹ.
+8. Báo cáo chi tiết (bán hàng, hàng hóa, khách hàng, tài chính,...).
+9. Bán hàng trực tuyến (kênh TMĐT, mạng xã hội, website).
+10. Tạo hóa đơn/đặt hàng linh hoạt.
+11. Quản lý quyền truy cập người dùng.
+
+Các chức năng này hỗ trợ người dùng quản lý hiệu quả mọi khía cạnh của hoạt động kinh doanh.
+
+================
+File: eslint.config.mjs
+================
+// @ts-check
+import eslint from '@eslint/js';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(
+  {
+    ignores: ['eslint.config.mjs'],
+  },
+  eslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  eslintPluginPrettierRecommended,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+      ecmaVersion: 5,
+      sourceType: 'module',
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'warn'
+    },
+  },
+);
+
+================
+File: nest-cli.json
+================
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true
+  }
+}
+
+================
+File: package.json
+================
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/mongoose": "^11.0.3",
+    "@nestjs/platform-express": "^11.0.1",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.1",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.10.7",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.7",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-loader": "^9.5.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
+
+================
+File: README.md
+================
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
+
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
+
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+
+## Description
+
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Project setup
+
+```bash
+$ npm install
+```
+
+## Compile and run the project
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Run tests
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Deployment
+
+When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+
+If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+
+```bash
+$ npm install -g mau
+$ mau deploy
+```
+
+With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+
+## Resources
+
+Check out a few resources that may come in handy when working with NestJS:
+
+- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
+- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
+- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
+- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
+- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
+- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
+- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
+- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+================
+File: src/app.controller.spec.ts
+================
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+describe('AppController', () => {
+  let appController: AppController;
+
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
+
+    appController = app.get<AppController>(AppController);
+  });
+
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+});
+
+================
+File: src/app.controller.ts
+================
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+
+================
+File: src/app.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { BranchModule } from './modules/branch/branch.module';
+import { UserModule } from './modules/auth/user.module'
+import { BrandModule } from './modules/brand/brand.module';
+import { CategoriesModule } from './modules/category/categories.module';
+import { AttendanceModule } from './modules/attendance/attendance.module';
+import { CashBookModule } from './modules/cash-book/cash-book.module';
+import { CarrierModule } from './modules/carrier/carrier.module';
+import { OrderModule } from './modules/order/order.module';
+import { CarrierGroupModule } from './modules/carrier-group/carrier-group.module';
+import { CommissionSettingModule } from './modules/commission-setting/commission-setting.module';
+import { CustomerModule } from './modules/customer/customer.module';
+import { DepartmentModule } from './modules/department/department.module';
+import { EmployeeModule } from './modules/employee/employee.module';
+import { HolidayModule } from './modules/holiday/holiday.module';
+import { InvoiceModule } from './modules/invoice/invoice.module';
+import { PayrollModule } from './modules/payroll/payroll.module';
+import { PositionModule } from './modules/position/position.module';
+import { ProductModule } from './modules/product/product.module';
+import { PurchaseOrderModule } from './modules/purchase-order/purchase-orders.module';
+import { ReturnModule } from './modules/ruturn/return.module';
+import { ShipmentModule } from './modules/shipment/shipment.module';
+import { StoreModule } from './modules/store/store.module';
+import { SupplierModule } from './modules/supplier/supplier.module';
+import { SupplierGroupModule } from './modules/supplier-group/supplier-group.module';
+import { ServicePackageModule } from './modules/service-package/service-package.module';
+import { PurchaseHistoryModule } from './modules/purchase-history/purchase-history.module';
+import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from '@nestjs/config';
+@Module({
+  imports: [
+    // MongooseModule.forRoot('mongodb://localhost:27017/kiotviet'),
+    ConfigModule.forRoot({
+      isGlobal: true, // Đảm bảo ConfigModule được sử dụng toàn cục
+    }),
+    DatabaseModule,
+    BranchModule,
+    UserModule,
+    BrandModule,
+    CategoriesModule,
+    AttendanceModule,
+    CashBookModule,
+    CarrierModule,
+    OrderModule,
+    CarrierGroupModule,
+    CommissionSettingModule,
+    CustomerModule,
+    DepartmentModule,
+    EmployeeModule,
+    HolidayModule,
+    InvoiceModule,
+    PayrollModule,
+    PositionModule,
+    ProductModule,
+    PurchaseOrderModule,
+    ReturnModule,
+    ShipmentModule,
+    StoreModule,
+    SupplierModule,
+    SupplierGroupModule,
+    ServicePackageModule,
+    PurchaseHistoryModule
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule { }
+
+================
+File: src/app.service.ts
+================
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+  getHello(): string {
+    return 'Hello World!';
+  }
+}
+
+================
+File: src/database/database.module.ts
+================
+// src/database/database.module.ts
+import { Module, OnModuleInit } from '@nestjs/common';
+import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import mongoose from 'mongoose';
+
+const CONNECTION_TIMEOUT = 10000;
+const configService = new ConfigService();
+console.log(configService.get<string>('DB_CONNECTION_STRING')); // Kiểm tra biến môi trường
+
+@Module({
+  imports: [
+    MongooseModule.forRootAsync({ 
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (
+        configService: ConfigService,
+      ): Promise<MongooseModuleOptions> => {
+        const uri = configService.get<string>('mongodb://localhost:27017/kiotviet');
+        console.log(uri);
+        console.log('🌐 Đang kết nối tới MongoDB...');
+
+        return {
+          uri,
+          serverSelectionTimeoutMS: CONNECTION_TIMEOUT,
+          connectionFactory: async (connection) => {
+            try {
+              await connection.asPromise();
+              console.log('✅ Kết nối MongoDB thành công!');
+            } catch (error) {
+              console.error('❌ Lỗi kết nối MongoDB:', error.message);
+              process.exit(1);
+            }
+
+            connection.on('disconnected', () => {
+              console.warn('⚠️ Mất kết nối với MongoDB.');
+            });
+
+            return connection;
+          },
+        };
+      },
+    }),
+  ],
+})
+export class DatabaseModule implements OnModuleInit {
+  async onModuleInit() {
+    console.log('⏳ Đang chờ kết nối MongoDB hoàn tất...');
+    try {
+      await mongoose.connection.asPromise();
+      console.log('🚀 MongoDB đã sẵn sàng, ứng dụng NestJS bắt đầu hoạt động!');
+    } catch (error) {
+      console.error('❌ Kết nối MongoDB thất bại:', error.message);
+      process.exit(1);
+    }
+  }
+}
+
+================
+File: src/main.ts
+================
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE,PATCH',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
+
+  await app.listen(8080);
+}
+bootstrap();
+
+================
+File: src/modules/attendance/attendance.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Attendance, AttendanceSchema } from './schemas/attendance.schema';
+import { AttendanceService } from './services/attendance.service';
+import { AttendanceController } from './controllers/attendance.controller';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Attendances', schema: AttendanceSchema }]),
+  ],
+  controllers: [AttendanceController],
+  providers: [AttendanceService],
+})
+export class AttendanceModule {}
+
+================
+File: src/modules/attendance/controllers/attendance.controller.ts
+================
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { AttendanceService } from '../services/attendance.service';
+import { CreateAttendanceDto } from '../dtos/create-attendance.dto';
+import { UpdateAttendanceDto } from '../dtos/update-attendance.dto';
+import { Attendance } from '../schemas/attendance.schema';
+
+@Controller('api/attendances')
+export class AttendanceController {
+  constructor(private readonly attendanceService: AttendanceService) { }
+
+  @Post()
+  async create(@Body() createAttendanceDto: CreateAttendanceDto): Promise<Attendance> {
+    return this.attendanceService.create(createAttendanceDto);
+  }
+
+  @Get()
+  async findAll(): Promise<Attendance[]> {
+    return this.attendanceService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Attendance> {
+    return this.attendanceService.findOne(id);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto): Promise<Attendance> {
+    return this.attendanceService.update(id, updateAttendanceDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<Attendance> {
+    return this.attendanceService.remove(id);
+  }
+}
+
+================
+File: src/modules/attendance/dtos/create-attendance.dto.ts
+================
+export class CreateAttendanceDto {
+  attendanceId: string;
+  employeeId: string; // Chuỗi vì sẽ được chuyển thành ObjectId trong schema
+  date: Date;
+  checkIn: Date;
+  checkOut: Date;
+  status: string;
+}
+
+================
+File: src/modules/attendance/dtos/update-attendance.dto.ts
+================
+export class UpdateAttendanceDto {
+  attendanceId?: string;
+  employeeId?: string;
+  date?: Date;
+  checkIn?: Date;
+  checkOut?: Date;
+  status?: string;
+}
+
+================
+File: src/modules/attendance/schemas/attendance.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'Attendances' })
+export class Attendance extends Document {
+  @Prop({ unique: true, required: true })
+  attendanceId: string  ;
+
+  @Prop({ type: Types.ObjectId, ref: 'Employees' })
+  employeeId: Types.ObjectId;
+
+  @Prop()
+  date: Date;
+
+  @Prop()
+  checkIn: Date;
+
+  @Prop()
+  checkOut: Date;
+
+  @Prop({
+    enum: ['Đúng giờ', 'Đi muộn', 'Về sớm', 'Chưa chấm công', 'Nghỉ làm'],
+  })
+  status: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const AttendanceSchema = SchemaFactory.createForClass(Attendance);
+
+================
+File: src/modules/attendance/services/attendance.service.ts
+================
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Attendance } from '../schemas/attendance.schema';
+import { CreateAttendanceDto } from '../dtos/create-attendance.dto';
+import { UpdateAttendanceDto } from '../dtos/update-attendance.dto';
+
+@Injectable()
+export class AttendanceService {
+  constructor(@InjectModel('Attendances') private attendanceModel: Model<Attendance>) {}
+
+  // Thêm mới attendance
+  async create(createAttendance: any): Promise<Attendance> {
+    const lastUser = await this.attendanceModel.findOne().sort({ attendanceId: -1 }).exec();
+    let newAttendanceId = 'ATT0001';
+  
+    if (lastUser && lastUser.attendanceId) {
+      const lastNumber = parseInt(lastUser.attendanceId.replace('ATT', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newAttendanceId = `ATT${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdAttendance = new this.attendanceModel({
+      ...createAttendance,
+      attendanceId: newAttendanceId
+    });
+  
+    return createdAttendance.save();
+  }
+
+  // Lấy tất cả attendance
+  async findAll(): Promise<Attendance[]> {
+    return this.attendanceModel.find().exec();
+  }
+
+  // Lấy một attendance theo ID
+  async findOne(id: string): Promise<Attendance> {
+    const attendance = await this.attendanceModel.findById(id).exec();
+    if (!attendance) {
+      throw new Error(`Attendance with ID ${id} not found`);
+    }
+    return attendance;
+  }
+
+  // Cập nhật attendance
+  async update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<Attendance> {
+    const updatedAttendance = await this.attendanceModel.findByIdAndUpdate(id, updateAttendanceDto, { new: true }).exec();
+    if (!updatedAttendance) {
+      throw new Error(`Attendance with ID ${id} not found`);
+    }
+    return updatedAttendance;
+  }
+
+  // Xóa attendance
+  async remove(id: string): Promise<Attendance> {
+    const deletedAttendance = await this.attendanceModel.findByIdAndDelete(id).exec();
+    if (!deletedAttendance) {
+      throw new Error(`Attendance with ID ${id} not found`);
+    }
+    return deletedAttendance;
+  }
+}
+
+================
+File: src/modules/auth/controllers/user.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { UserService } from '../services/user.service';
+import { User } from '../schemas/user.schema';
+
+@Controller('api/auth')
+export class UserController {
+  constructor(private readonly userService: UserService) { }
+
+  @Post()
+  create(@Body() createUserDto: any) {
+    return this.userService.create(createUserDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.userService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.userService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: any) {
+    return this.userService.update(id, updateUserDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.userService.remove(id);
+  }
+
+  @Post('register')
+  register(@Body() registerDto: any) {
+    return this.userService.register(registerDto);
+  }
+
+  @Post('login')
+  login(@Body() loginDto: any) {
+    return this.userService.login(loginDto.email, loginDto.password);
+  }
+}
+
+================
+File: src/modules/auth/guard/auth.guard.ts
+================
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException, ForbiddenException } from '@nestjs/common';
+import * as jwt from 'jsonwebtoken';
+
+@Injectable()
+export class AdminGuard implements CanActivate {
+  canActivate(context: ExecutionContext): boolean {
+    const request = context.switchToHttp().getRequest();
+    const authHeader = request.headers.authorization;
+
+    if (!authHeader) {
+      throw new UnauthorizedException('Missing token');
+    }
+
+    try {
+      const token = authHeader.split(' ')[1];
+      const decoded = jwt.verify(token, 'your-secret-key') as { isAdmin: boolean };
+
+      if (!decoded.isAdmin) {
+        throw new ForbiddenException('Admin access required');
+      }
+
+      return true;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
+  }
+}
+
+================
+File: src/modules/auth/schemas/user.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
+@Schema({ collection: 'Users' })
+export class User extends Document {
+  @Prop({ required: true, unique: true })
+  userId: string;
+
+  @Prop({ required: true })
+  username: string;
+
+  @Prop({ required: true })
+  password: string;
+
+  @Prop()
+  fullName: string;
+
+  @Prop({ enum: ['admin', 'user', 'employee'], default: 'employee' })
+  role: string;
+  
+
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
+  branch: Types.ObjectId;
+
+  @Prop({ match: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/ })
+  email: string;
+  
+
+  @Prop()
+  phone: string;
+
+  @Prop({ default: false })
+  isAdmin: boolean;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);
+
+================
+File: src/modules/auth/services/user.service.ts
+================
+import { Injectable, ConflictException, UnauthorizedException, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
+import { User } from '../schemas/user.schema';
+
+@Injectable()
+export class UserService {
+  constructor(
+    @InjectModel('Users') private userModel: Model<User>,
+  ) { }
+
+  async create(createUserDto: any): Promise<User> {
+    const existingUser = await this.userModel.findOne({ email: createUserDto.email });
+    if (existingUser) {
+      throw new ConflictException('Email already exists');
+    }
+  
+    // Lấy userId lớn nhất từ database
+    const lastUser = await this.userModel.findOne().sort({ userId: -1 }).exec();
+    let newUserId = 'USR0001'; // Giá trị mặc định nếu chưa có user nào
+  
+    if (lastUser && lastUser.userId) {
+      const lastNumber = parseInt(lastUser.userId.replace('USR', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newUserId = `USR${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    const createdUser = new this.userModel({
+      ...createUserDto,
+      userId: newUserId,
+      password: hashedPassword,
+    });
+  
+    return createdUser.save();
+  }
+  
+
+  async findAll(): Promise<User[]> {
+    return this.userModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<User> {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async update(id: string, updateUserDto: any): Promise<User> {
+    if (updateUserDto.password) {
+      updateUserDto.password = await bcrypt.hash(updateUserDto.password, 10);
+    }
+
+    const user = await this.userModel
+      .findByIdAndUpdate(id, updateUserDto, { new: true })
+      .exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async remove(id: string): Promise<User> {
+    const user = await this.userModel.findByIdAndDelete(id).exec();
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
+  }
+
+  async login(email: string, password: string) {
+    const user = await this.userModel.findOne({ email });
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        role: user.role
+      },
+      'your-secret-key',
+      { expiresIn: '1h' }
+    );
+
+    return { token, user };
+  }
+
+  async register(registerDto: any) {
+    const existingUser = await this.userModel.findOne({ email: registerDto.email });
+    if (existingUser) {
+      throw new ConflictException('Email already exists');
+    }
+
+    // Lấy userId lớn nhất từ database
+    const lastUser = await this.userModel.findOne().sort({ userId: -1 }).exec();
+    let newUserId = 'USR0001'; // Giá trị mặc định nếu chưa có user nào
+  
+    if (lastUser && lastUser.userId) {
+      const lastNumber = parseInt(lastUser.userId.replace('USR', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newUserId = `USR${nextNumber.toString().padStart(4, '0')}`;
+    }
+
+    const hashedPassword = await bcrypt.hash(registerDto.password, 10);
+    const user = new this.userModel({
+      ...registerDto,
+      userId: newUserId,
+      password: hashedPassword,
+    });
+    await user.save();
+    return { message: 'User registered successfully' };
+  }
+}
+
+================
+File: src/modules/auth/user.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { User, UserSchema } from './schemas/user.schema';
+import { Branch, BranchSchema } from '../branch/schemas/branch.schema';
+import { UserService } from './services/user.service';
+import { UserController } from './controllers/user.controller';
+
+@Module({
+  imports: [
+    // MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: 'Users', schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: 'Branches', schema: BranchSchema }]),
+  ],
+  controllers: [UserController],
+  providers: [UserService],
+  exports: [UserService]
+})
+export class UserModule { }
+
+================
+File: src/modules/branch/branch.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BranchController } from './controllers/branch.controller';
+import { BranchService } from './services/branch.service';
+import { Branch, BranchSchema } from './schemas/branch.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Branches', schema: BranchSchema }])
+  ],
+  controllers: [BranchController],
+  providers: [BranchService],
+  exports: [BranchService]
+})
+export class BranchModule { }
+
+================
+File: src/modules/branch/controllers/branch.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { BranchService } from '../services/branch.service';
+import { Branch } from '../schemas/branch.schema';
+import { CreateBranchDto } from '../dtos/create-branch.dto';
+
+@Controller('api/branches')
+export class BranchController {
+  constructor(private readonly branchService: BranchService) { }
+
+  @Post()
+  async create(@Body() createBranchDto: CreateBranchDto): Promise<Branch> {
+    return this.branchService.create(createBranchDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.branchService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.branchService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateBranchDto: any) {
+    return this.branchService.update(id, updateBranchDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.branchService.remove(id);
+  }
+}
+
+================
+File: src/modules/branch/dtos/create-branch.dto.ts
+================
+export class CreateBranchDto {
+  attendanceId: string;
+  employeeId: string; // Chuỗi vì sẽ được chuyển thành ObjectId trong schema
+  date: Date;
+  checkIn: Date;
+  checkOut: Date;
+  status: string;
+}
+
+================
+File: src/modules/branch/schemas/branch.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ collection: 'Branches' })
+export class Branch extends Document {
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ required: true })
+  location: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+
+  @Prop({ default: Date.now })
+  updateAt: Date;
+}
+export const BranchSchema = SchemaFactory.createForClass(Branch);
+
+================
+File: src/modules/branch/services/branch.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Branch } from '../schemas/branch.schema';
+
+@Injectable()
+export class BranchService {
+  constructor(
+    @InjectModel('Branches') private branchModel: Model<Branch>,
+  ) { }
+
+  async create(createBranchDto: any): Promise<Branch> {
+    const createdBranch = new this.branchModel(createBranchDto);
+    return createdBranch.save();
+  }
+
+  async findAll(): Promise<Branch[]> {
+    return this.branchModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Branch> {
+    const branch = await this.branchModel.findById(id).exec();
+    if (!branch) {
+      throw new NotFoundException(`Branch with ID ${id} not found`);
+    }
+    return branch;
+  }
+
+  async update(id: string, updateBranchDto: any): Promise<Branch> {
+    const branch = await this.branchModel
+      .findByIdAndUpdate(id, updateBranchDto, { new: true })
+      .exec();
+    if (!branch) {
+      throw new NotFoundException(`Branch with ID ${id} not found`);
+    }
+    return branch;
+  }
+
+  async remove(id: string): Promise<Branch> {
+    const branch = await this.branchModel.findByIdAndDelete(id).exec();
+    if (!branch) {
+      throw new NotFoundException(`Branch with ID ${id} not found`);
+    }
+    return branch;
+  }
+}
+
+================
+File: src/modules/brand/brand.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BrandController } from './controllers/brand.controller';
+import { BrandService } from './services/brand.service';
+import { Brand, BrandSchema } from './schemas/brand.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Brands', schema: BrandSchema }])
+  ],
+  controllers: [BrandController],
+  providers: [BrandService],
+  exports: [BrandService]
+})
+export class BrandModule { }
+
+================
+File: src/modules/brand/controllers/brand.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { BrandService } from '../services/brand.service';
+import { Brand } from '../schemas/brand.schema';
+
+@Controller('api/brands')
+export class BrandController {
+  constructor(private readonly brandService: BrandService) { }
+
+  @Post()
+  async create(@Body() createBranchDto: any): Promise<Brand> {
+    return this.brandService.create(createBranchDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.brandService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.brandService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateBrandDto: any) {
+    return this.brandService.update(id, updateBrandDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.brandService.remove(id);
+  }
+}
+
+================
+File: src/modules/brand/schemas/brand.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ collection: 'Brands', timestamps: true })
+export class Brand extends Document {
+  @Prop({ unique: true, required: true })
+  brandId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const BrandSchema = SchemaFactory.createForClass(Brand);
+
+================
+File: src/modules/brand/services/brand.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Brand } from '../schemas/brand.schema';
+
+@Injectable()
+export class BrandService {
+  constructor(
+    @InjectModel('Brands') private brandModel: Model<Brand>,
+  ) { }
+
+  async create(createBrandDto: any): Promise<Brand> {
+    const lastBrand = await this.brandModel.findOne().sort({ brandId: -1 }).exec();
+    let newBrandId = 'BR0001';
+  
+    if (lastBrand && lastBrand.brandId) {
+      const lastNumber = parseInt(lastBrand.brandId.replace('BR', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newBrandId = `BR${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdBrand = new this.brandModel({
+      ...createBrandDto,
+      brandId: newBrandId
+    });
+  
+    return createdBrand.save();
+  }
+
+  async findAll(): Promise<Brand[]> {
+    return this.brandModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Brand> {
+    const brand = await this.brandModel.findById(id).exec();
+    if (!brand) {
+      throw new NotFoundException(`Brand with ID ${id} not found`);
+    }
+    return brand;
+  }
+
+  async update(id: string, updateBrandDto: any): Promise<Brand> {
+    const brand = await this.brandModel
+      .findByIdAndUpdate(id, updateBrandDto, { new: true })
+      .exec();
+    if (!brand) {
+      throw new NotFoundException(`Brand with ID ${id} not found`);
+    }
+    return brand;
+  }
+
+  async remove(id: string): Promise<Brand> {
+    const brand = await this.brandModel.findByIdAndDelete(id).exec();
+    if (!brand) {
+      throw new NotFoundException(`Brand with ID ${id} not found`);
+    }
+    return brand;
+  }
+}
+
+================
+File: src/modules/carrier-group/carrier-group.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CarrierGroup, CarrierGroupSchema } from './schemas/carrier-group.schema';
+import { CarrierGroupController } from './controllers/carrier-group.controller';
+import { CarrierGroupService } from './services/carrier-group.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'CarrierGroups', schema: CarrierGroupSchema }])
+  ],
+  controllers: [CarrierGroupController],
+  providers: [CarrierGroupService],
+  exports: [CarrierGroupService]
+})
+export class CarrierGroupModule { }
+
+================
+File: src/modules/carrier-group/controllers/carrier-group.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CarrierGroupService } from '../services/carrier-group.service';
+import { CarrierGroup } from '../schemas/carrier-group.schema';
+
+@Controller('api/carriers-groups')
+export class CarrierGroupController {
+  constructor(private readonly carriersService: CarrierGroupService) { }
+
+  @Post()
+  async create(@Body() createCarrierGroupDto: any): Promise<CarrierGroup> {
+    return this.carriersService.create(createCarrierGroupDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.carriersService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.carriersService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateCarrierGroupDto: any) {
+    return this.carriersService.update(id, updateCarrierGroupDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.carriersService.remove(id);
+  }
+}
+
+================
+File: src/modules/carrier-group/schemas/carrier-group.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ collection: 'CarrierGroups' })
+export class CarrierGroup extends Document {
+  @Prop({ unique: true, required: true })
+  groupId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  description: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const CarrierGroupSchema = SchemaFactory.createForClass(CarrierGroup);
+
+================
+File: src/modules/carrier-group/services/carrier-group.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CarrierGroup } from '../schemas/carrier-group.schema';
+
+@Injectable()
+export class CarrierGroupService {
+  constructor(
+    @InjectModel('CarrierGroups') private carrierGroupModel: Model<CarrierGroup>,
+  ) { }
+
+  async create(createCarrierGroupDto: any): Promise<CarrierGroup> {
+    const lastCarrierGroup = await this.carrierGroupModel.findOne().sort({ groupId: -1 }).exec();
+    let newCarrierGroupId = 'CG0001';
+  
+    if (lastCarrierGroup && lastCarrierGroup.groupId) {
+      const lastNumber = parseInt(lastCarrierGroup.groupId.replace('CG', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newCarrierGroupId = `CG${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdCarrierGroup = new this.carrierGroupModel({
+      ...createCarrierGroupDto,
+      carrierGroupId: newCarrierGroupId
+    });
+  
+    return createdCarrierGroup.save();
+  }
+
+  async findAll(): Promise<CarrierGroup[]> {
+    return this.carrierGroupModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<CarrierGroup> {
+    const carrierGroup = await this.carrierGroupModel.findById(id).exec();
+    if (!carrierGroup) {
+      throw new NotFoundException(`carrierGroup with ID ${id} not found`);
+    }
+    return carrierGroup;
+  }
+
+  async update(id: string, updateCarrierGroupDto: any): Promise<CarrierGroup> {
+    const carrierGroup = await this.carrierGroupModel
+      .findByIdAndUpdate(id, updateCarrierGroupDto, { new: true })
+      .exec();
+    if (!carrierGroup) {
+      throw new NotFoundException(`carrierGroup with ID ${id} not found`);
+    }
+    return carrierGroup;
+  }
+
+  async remove(id: string): Promise<CarrierGroup> {
+    const carrierGroup = await this.carrierGroupModel.findByIdAndDelete(id).exec();
+    if (!carrierGroup) {
+      throw new NotFoundException(`carrierGroup with ID ${id} not found`);
+    }
+    return carrierGroup;
+  }
+}
+
+================
+File: src/modules/carrier/carrier.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Carrier, CarrierSchema } from './schemas/carrier.schema';
+import { CarrierService } from './services/carrier.service';
+import { CarrierController } from './controllers/carrier.controller';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Carriers', schema: CarrierSchema }])
+  ],
+  controllers: [CarrierController],
+  providers: [CarrierService],
+  exports: [CarrierService]
+})
+export class CarrierModule { }
+
+================
+File: src/modules/carrier/controllers/carrier.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CarrierService } from '../services/carrier.service';
+
+@Controller('api/carriers')
+export class CarrierController {
+  constructor(private readonly carrierService: CarrierService) { }
+  @Post()
+  create(@Body() createBrandDto: any) {
+    return this.carrierService.create(createBrandDto);
+  }
+  @Get()
+  findAll() {
+    return this.carrierService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.carrierService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateBrandDto: any) {
+    return this.carrierService.update(id, updateBrandDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.carrierService.remove(id);
+  }
+}
+
+================
+File: src/modules/carrier/schemas/carrier.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'Carriers' })
+export class Carrier extends Document {
+  @Prop({ unique: true, required: true })
+  carrierId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  phone: string;
+
+  @Prop()
+  email: string;
+
+  @Prop()
+  address: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'CarrierGroups' })
+  group: Types.ObjectId;
+
+  @Prop({ default: 0 })
+  totalOrders: number;
+
+  @Prop({ default: 0 })
+  totalFees: number;
+
+  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  status: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+
+  @Prop({ default: Date.now })
+  updateAt: Date;
+}
+
+export const CarrierSchema = SchemaFactory.createForClass(Carrier);
+
+================
+File: src/modules/carrier/services/carrier.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Carrier } from '../schemas/carrier.schema';
+
+@Injectable()
+export class CarrierService {
+  constructor(@InjectModel('Carriers') private CarrierModel: Model<Carrier>) {}
+
+  async create(createCarrierDto: any): Promise<Carrier> {
+    const lastCarrier = await this.CarrierModel.findOne().sort({ carrierId: -1 }).exec();
+    let newCarrierId = 'CG0001';
+  
+    if (lastCarrier && lastCarrier.carrierId) {
+      const lastNumber = parseInt(lastCarrier.carrierId.replace('CG', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newCarrierId = `CG${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdCarrier = new this.CarrierModel({
+      ...createCarrierDto,
+      carrierId: newCarrierId
+    });
+  
+    return createdCarrier.save();
+  }
+  async findAll(): Promise<Carrier[]> {
+    return this.CarrierModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Carrier> {
+    const brand = await this.CarrierModel.findById(id).exec();
+    if (!brand) {
+      throw new NotFoundException(`Carrier with ID ${id} not found`);
+    }
+    return brand;
+  }
+
+  async update(id: string, updateBrandDto: any): Promise<Carrier> {
+    const brand = await this.CarrierModel.findByIdAndUpdate(
+      id,
+      updateBrandDto,
+      { new: true },
+    ).exec();
+    if (!brand) {
+      throw new NotFoundException(`Carrier with ID ${id} not found`);
+    }
+    return brand;
+  }
+
+  async remove(id: string): Promise<Carrier> {
+    const brand = await this.CarrierModel.findByIdAndDelete(id).exec();
+    if (!brand) {
+      throw new NotFoundException(`Carrier with ID ${id} not found`);
+    }
+    return brand;
+  }
+}
+
+================
+File: src/modules/cash-book/cash-book.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CashBookController } from './controllers/cash-book.controller';
+import { CashBookService } from './services/cash-book.service';
+import { CashBook, CashBookSchema } from './schemas/cash-book.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'CashBooks', schema: CashBookSchema }])
+  ],
+  controllers: [CashBookController],
+  providers: [CashBookService],
+  exports: [CashBookService]
+})
+export class CashBookModule { }
+
+================
+File: src/modules/cash-book/controllers/cash-book.controller.ts
+================
+import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import { CashBookService } from '../services/cash-book.service';
+import { CashBook } from '../schemas/cash-book.schema';
+
+@Controller('api/cash-books')
+export class CashBookController {
+  constructor(private readonly cashBookService: CashBookService) { }
+
+  @Post()
+  async create(@Body() createCashBookDto: any): Promise<CashBook> {
+    return this.cashBookService.create(createCashBookDto);
+  }
+
+  @Get()
+  async findAll(
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
+    @Query('type') type?: string
+  ): Promise<CashBook[]> {
+    return this.cashBookService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<CashBook> {
+    return this.cashBookService.findOne(id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateCashBookDto: any,
+  ): Promise<CashBook> {
+    return this.cashBookService.update(id, updateCashBookDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<CashBook> {
+    return this.cashBookService.remove(id);
+  }
+
+  @Put(':id/approve')
+  async approve(@Param('id') id: string): Promise<CashBook> {
+    const updateDto = { status: 'approved' };
+    return this.cashBookService.update(id, updateDto);
+  }
+
+  @Put(':id/reject')
+  async reject(@Param('id') id: string): Promise<CashBook> {
+    const updateDto = { status: 'rejected' };
+    return this.cashBookService.update(id, updateDto);
+  }
+}
+
+================
+File: src/modules/cash-book/schemas/cash-book.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ timestamps: true, collection: 'CashBooks' })
+export class CashBook extends Document {
+  @Prop({ unique: true, required: true })
+  cashBookId: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
+  @Prop({ enum: ['Thu', 'Chi'], required: true })
+  type: string;
+
+  @Prop({
+    enum: [
+      'Thu từ bán hàng',
+      'Thu từ khác',
+      'Chi mua hàng',
+      'Chi lương',
+      'Chi vận chuyển',
+      'Chi marketing',
+      'Chi khác',
+    ],
+    required: true,
+  })
+  category: string;
+
+  @Prop({ required: true })
+  amount: number;
+
+  @Prop({
+    enum: ['Tiền mặt', 'Chuyển khoản', 'Thẻ tín dụng', 'Ví điện tử'],
+    required: true,
+  })
+  paymentMethod: string;
+
+  @Prop({
+    enum: ['Đơn hàng', 'Hóa đơn', 'Phiếu nhập', 'Phiếu xuất', 'Khác'],
+    required: true,
+  })
+  reference: string;
+
+  @Prop({ type: Types.ObjectId })
+  referenceId: Types.ObjectId;
+
+  @Prop()
+  description: string;
+
+  @Prop({ required: true, default: Date.now })
+  date: Date;
+
+  @Prop({ type: Types.ObjectId, ref: 'Employees', required: true })
+  employeeId: Types.ObjectId;
+
+  @Prop([String])
+  attachments: string[];
+
+  @Prop({ enum: ['Đã xác nhận', 'Chờ xác nhận', 'Đã hủy'], default: 'Chờ xác nhận' })
+  status: string;
+
+  @Prop()
+  notes: string;
+}
+
+export const CashBookSchema = SchemaFactory.createForClass(CashBook);
+
+CashBookSchema.index({ storeId: 1 });
+CashBookSchema.index({ type: 1 });
+CashBookSchema.index({ category: 1 });
+CashBookSchema.index({ date: 1 });
+CashBookSchema.index({ referenceId: 1 });
+
+================
+File: src/modules/cash-book/services/cash-book.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CashBook } from '../schemas/cash-book.schema';
+
+@Injectable()
+export class CashBookService {
+  constructor(
+    @InjectModel('CashBooks') private cashBookModel: Model<CashBook>,
+  ) { }
+
+  async create(createCashBookDto: any): Promise<CashBook> {
+    const lastCashBook = await this.cashBookModel.findOne().sort({ cashBookId: -1 }).exec();
+    let newCashBookId = 'CB0001';
+  
+    if (lastCashBook && lastCashBook.cashBookId) {
+      const lastNumber = parseInt(lastCashBook.cashBookId.replace('CB', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newCashBookId = `CB${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdCashBook = new this.cashBookModel({
+      ...createCashBookDto,
+      cashBookId: newCashBookId
+    });
+  
+    return createdCashBook.save();
+  }
+
+  async findAll(): Promise<CashBook[]> {
+    return this.cashBookModel
+      .find()
+      .populate('branch')
+      .populate('createdBy')
+      .populate('account')
+      .exec();
+  }
+
+  async findOne(id: string): Promise<CashBook> {
+    const cashBook = await this.cashBookModel
+      .findById(id)
+      .populate('branch')
+      .populate('createdBy')
+      .populate('account')
+      .exec();
+    if (!cashBook) {
+      throw new NotFoundException(`Cash book with ID ${id} not found`);
+    }
+    return cashBook;
+  }
+
+  async update(id: string, updateCashBookDto: any): Promise<CashBook> {
+    const cashBook = await this.cashBookModel
+      .findByIdAndUpdate(id, updateCashBookDto, { new: true })
+      .populate('branch')
+      .populate('createdBy')
+      .populate('account')
+      .exec();
+    if (!cashBook) {
+      throw new NotFoundException(`Cash book with ID ${id} not found`);
+    }
+    return cashBook;
+  }
+
+  async remove(id: string): Promise<CashBook> {
+    const cashBook = await this.cashBookModel.findByIdAndDelete(id).exec();
+    if (!cashBook) {
+      throw new NotFoundException(`Cash book with ID ${id} not found`);
+    }
+    return cashBook;
+  }
+}
+
+================
+File: src/modules/category/categories.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CategoriesController } from './controllers/categories.controller';
+import { CategoriesService } from './services/categories.service';
+import { Categories, CategoriesSchema } from './schemas/categories.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Categories', schema: CategoriesSchema }])
+  ],
+  controllers: [CategoriesController],
+  providers: [CategoriesService],
+  exports: [CategoriesService]
+})
+export class CategoriesModule { }
+
+================
+File: src/modules/category/controllers/categories.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CategoriesService } from '../services/categories.service';
+import { Categories } from '../schemas/categories.schema';
+
+@Controller('api/categories')
+export class CategoriesController {
+  constructor(private readonly categoriesService: CategoriesService) { }
+
+  @Post()
+  create(@Body() createCategoriesDto: any) {
+    return this.categoriesService.create(createCategoriesDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.categoriesService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.categoriesService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateCategoriesDto: any) {
+    return this.categoriesService.update(id, updateCategoriesDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.categoriesService.remove(id);
+  }
+}
+
+================
+File: src/modules/category/schemas/categories.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'Categories' })
+export class Categories extends Document {
+  @Prop({ unique: true, required: true })
+  categoryId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Categories' })
+  parentCategory: Types.ObjectId;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const CategoriesSchema = SchemaFactory.createForClass(Categories);
+
+================
+File: src/modules/category/services/categories.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Categories } from '../schemas/categories.schema';
+
+@Injectable()
+export class CategoriesService {
+  constructor(
+    @InjectModel('Categories') private categoriesModel: Model<Categories>,
+  ) { }
+
+  async create(createCategoriesDto: any): Promise<Categories> {
+    const lastCategories = await this.categoriesModel.findOne().sort({ categoryId: -1 }).exec();
+    let newCategoryId = 'CT0001';
+  
+    if (lastCategories && lastCategories.categoryId) {
+      const lastNumber = parseInt(lastCategories.categoryId.replace('CT', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newCategoryId = `CT${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdCategories = new this.categoriesModel({
+      ...createCategoriesDto,
+      categoryId: newCategoryId
+    });
+  
+    return createdCategories.save();
+  }
+
+  async findAll(): Promise<Categories[]> {
+    return this.categoriesModel.find().populate('parentCategory').exec();
+  }
+
+  async findOne(id: string): Promise<Categories> {
+    const category = await this.categoriesModel.findById(id).populate('parentCategory').exec();
+    if (!category) {
+      throw new NotFoundException(`Category with ID ${id} not found`);
+    }
+    return category;
+  }
+
+  async update(id: string, updateCategoriesDto: any): Promise<Categories> {
+    const category = await this.categoriesModel
+      .findByIdAndUpdate(id, updateCategoriesDto, { new: true })
+      .populate('parentCategory')
+      .exec();
+    if (!category) {
+      throw new NotFoundException(`Category with ID ${id} not found`);
+    }
+    return category;
+  }
+
+  async remove(id: string): Promise<Categories> {
+    const category = await this.categoriesModel.findByIdAndDelete(id).exec();
+    if (!category) {
+      throw new NotFoundException(`Category with ID ${id} not found`);
+    }
+    return category;
+  }
+}
+
+================
+File: src/modules/commission-setting/commission-setting.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CommissionSetting, CommissionSettingSchema } from './schemas/commission-setting.schema';
+import { CommissionSettingController } from './controllers/commission-setting.controller';
+import { CommissionSettingService } from './services/commission-setting.service';
+
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'CommissionSettings', schema: CommissionSettingSchema }])
+  ],
+  controllers: [CommissionSettingController],
+  providers: [CommissionSettingService],
+  exports: [CommissionSettingService]
+})
+export class CommissionSettingModule { }
+
+================
+File: src/modules/commission-setting/controllers/commission-setting.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CommissionSettingService } from '../services/commission-setting.service';
+import { CommissionSetting } from '../schemas/commission-setting.schema';
+
+@Controller('api/commission-settings')
+export class CommissionSettingController {
+  constructor(private readonly commissionSettingService: CommissionSettingService) { }
+
+  @Post()
+  async create(@Body() createCashBookDto: any): Promise<CommissionSetting> {
+    return this.commissionSettingService.create(createCashBookDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.commissionSettingService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.commissionSettingService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateBrandDto: any) {
+    return this.commissionSettingService.update(id, updateBrandDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.commissionSettingService.remove(id);
+  }
+}
+
+================
+File: src/modules/commission-setting/schemas/commission-setting.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'CommissionDetails' })
+export class CommissionDetail {
+  @Prop({ type: Types.ObjectId, ref: 'Products' })
+  productId: Types.ObjectId;
+
+  @Prop()
+  rate: number;
+}
+
+export const CommissionDetailSchema = SchemaFactory.createForClass(CommissionDetail);
+
+@Schema({ collection: 'CommissionSettings' })
+export class CommissionSetting extends Document {
+  @Prop({ unique: true, required: true })
+  commissionId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ enum: ['Toàn hệ thống', 'Chi nhánh'] })
+  scope: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
+  branchId: Types.ObjectId;
+
+  @Prop({ enum: ['Áp dụng', 'Ngừng áp dụng'], default: 'Áp dụng' })
+  status: string;
+
+  @Prop({ type: [CommissionDetailSchema] })
+  details: CommissionDetail[];
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const CommissionSettingSchema = SchemaFactory.createForClass(CommissionSetting);
+
+================
+File: src/modules/commission-setting/services/commission-setting.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, Types } from 'mongoose';
+import { CommissionSetting } from '../schemas/commission-setting.schema';
+
+@Injectable()
+export class CommissionSettingService {
+  constructor(
+    @InjectModel('CommissionSettings')
+    private commissionSettingModel: Model<CommissionSetting>,
+  ) {}
+
+  async create(createCommissionSettingDto: any): Promise<CommissionSetting> {
+    // Convert string IDs to ObjectIds in details array
+    if (createCommissionSettingDto.details) {
+      createCommissionSettingDto.details =
+        createCommissionSettingDto.details.map((detail) => ({
+          ...detail,
+          productId: new Types.ObjectId(detail.productId),
+        }));
+    }
+
+    const lastCommissionSetting = await this.commissionSettingModel
+      .findOne()
+      .sort({ commissionId: -1 })
+      .exec();
+    let newCommissionSettingId = 'CMS0001';
+
+    if (lastCommissionSetting && lastCommissionSetting.commissionId) {
+      const lastNumber = parseInt(
+        lastCommissionSetting.commissionId.replace('CMS', ''),
+        10,
+      );
+      const nextNumber = lastNumber + 1;
+      newCommissionSettingId = `CS${nextNumber.toString().padStart(4, '0')}`;
+    }
+
+    const createdCommissionSetting = new this.commissionSettingModel({
+      ...createCommissionSettingDto,
+      commissionId: newCommissionSettingId,
+    });
+
+    return createdCommissionSetting.save();
+  }
+
+  async findAll(): Promise<CommissionSetting[]> {
+    return this.commissionSettingModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<CommissionSetting> {
+    const commissionSetting = await this.commissionSettingModel
+      .findById(id)
+      .exec();
+    if (!commissionSetting) {
+      throw new NotFoundException(`Commission setting with ID ${id} not found`);
+    }
+    return commissionSetting;
+  }
+
+  async update(
+    id: string,
+    updateCommissionSettingDto: any,
+  ): Promise<CommissionSetting> {
+    // Convert string IDs to ObjectIds in details array if present
+    if (updateCommissionSettingDto.details) {
+      updateCommissionSettingDto.details =
+        updateCommissionSettingDto.details.map((detail) => ({
+          ...detail,
+          productId: new Types.ObjectId(detail.productId),
+        }));
+    }
+
+    const commissionSetting = await this.commissionSettingModel
+      .findByIdAndUpdate(id, updateCommissionSettingDto, { new: true })
+      .exec();
+    if (!commissionSetting) {
+      throw new NotFoundException(`Commission setting with ID ${id} not found`);
+    }
+    return commissionSetting;
+  }
+
+  async remove(id: string): Promise<CommissionSetting> {
+    const commissionSetting = await this.commissionSettingModel
+      .findByIdAndDelete(id)
+      .exec();
+    if (!commissionSetting) {
+      throw new NotFoundException(`Commission setting with ID ${id} not found`);
+    }
+    return commissionSetting;
+  }
+}
+
+================
+File: src/modules/customer/controllers/customer.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { CustomerService } from '../services/customer.service';
+import { Customer } from '../schemas/customer.schema';
+
+@Controller('api/customers')
+export class CustomerController {
+  constructor(private readonly customerService: CustomerService) { }
+
+  @Post()
+  create(@Body() createCustomerDto: any) {
+    return this.customerService.create(createCustomerDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.customerService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.customerService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateCustomerDto: any) {
+    return this.customerService.update(id, updateCustomerDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.customerService.remove(id);
+  }
+}
+
+================
+File: src/modules/customer/customer.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CustomerController } from './controllers/customer.controller';
+import { CustomerService } from './services/customer.service';
+import { Customer, CustomerSchema } from './schemas/customer.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Customers', schema: CustomerSchema }])
+  ],
+  controllers: [CustomerController],
+  providers: [CustomerService],
+  exports: [CustomerService]
+})
+export class CustomerModule { }
+
+================
+File: src/modules/customer/schemas/customer.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'Customers' })
+export class Customer extends Document {
+  @Prop({ unique: true, required: true })
+  customerId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  phone: string;
+
+  @Prop()
+  email: string;
+
+  @Prop()
+  address: string;
+
+  @Prop({ enum: ['Cá nhân', 'Công ty'] })
+  customerType: string;
+
+  @Prop()
+  taxCode: string;
+
+  @Prop()
+  idCard: string;
+
+  @Prop({ type: Types.ObjectId })
+  group: Types.ObjectId;
+
+  @Prop({ default: 0 })
+  debt: number;
+
+  @Prop({ default: 0 })
+  totalSales: number;
+
+  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  status: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const CustomerSchema = SchemaFactory.createForClass(Customer);
+
+================
+File: src/modules/customer/services/customer.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Customer } from '../schemas/customer.schema';
+
+@Injectable()
+export class CustomerService {
+  constructor(
+    @InjectModel('Customers') private customerModel: Model<Customer>,
+  ) { }
+
+  async create(createCustomerDto: any): Promise<Customer> {
+    const lastCustomer = await this.customerModel.findOne().sort({ customerId: -1 }).exec();
+    let newCustomerId = 'KH0001';
+  
+    if (lastCustomer && lastCustomer.customerId) {
+      const lastNumber = parseInt(lastCustomer.customerId.replace('KH', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newCustomerId = `KH${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdCustomer = new this.customerModel({
+      ...createCustomerDto,
+      customerId: newCustomerId
+    });
+  
+    return createdCustomer.save();
+  }
+
+  async findAll(): Promise<Customer[]> {
+    return this.customerModel.find().populate('group').exec();
+  }
+
+  async findOne(id: string): Promise<Customer> {
+    const customer = await this.customerModel.findById(id).populate('group').exec();
+    if (!customer) {
+      throw new NotFoundException(`Customer with ID ${id} not found`);
+    }
+    return customer;
+  }
+
+  async update(id: string, updateCustomerDto: any): Promise<Customer> {
+    const customer = await this.customerModel
+      .findByIdAndUpdate(id, updateCustomerDto, { new: true })
+      .populate('group')
+      .exec();
+    if (!customer) {
+      throw new NotFoundException(`Customer with ID ${id} not found`);
+    }
+    return customer;
+  }
+
+  async remove(id: string): Promise<Customer> {
+    const customer = await this.customerModel.findByIdAndDelete(id).exec();
+    if (!customer) {
+      throw new NotFoundException(`Customer with ID ${id} not found`);
+    }
+    return customer;
+  }
+}
+
+================
+File: src/modules/department/controllers/department.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { DepartmentService } from '../services/department.service';
+import { Department } from '../schemas/department.schema';
+
+@Controller('api/departments')
+export class DepartmentController {
+  constructor(private readonly departmentService: DepartmentService) { }
+
+  @Post()
+  async create(@Body() createDepartmentDto: any): Promise<Department> {
+    return this.departmentService.create(createDepartmentDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.departmentService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.departmentService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateBrandDto: any) {
+    return this.departmentService.update(id, updateBrandDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.departmentService.remove(id);
+  }
+}
+
+================
+File: src/modules/department/department.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Department, DepartmentSchema } from './schemas/department.schema';
+import { DepartmentController } from './controllers/department.controller';
+import { DepartmentService } from './services/department.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Departments', schema: DepartmentSchema }])
+  ],
+  controllers: [DepartmentController],
+  providers: [DepartmentService],
+  exports: [DepartmentService]
+})
+export class DepartmentModule { }
+
+================
+File: src/modules/department/schemas/department.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ collection: 'Departments' })
+export class Department extends Document {
+  @Prop({ unique: true, required: true })
+  departmentId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  description: string;
+
+  @Prop({ enum: ['Hoạt động', 'Ngừng hoạt động'], default: 'Hoạt động' })
+  status: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const DepartmentSchema = SchemaFactory.createForClass(Department);
+
+================
+File: src/modules/department/services/department.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Department } from '../schemas/department.schema';
+
+@Injectable()
+export class DepartmentService {
+  constructor(
+    @InjectModel('Departments') private departmentModel: Model<Department>,
+  ) { }
+
+  async create(createDepartmentDto: any): Promise<Department> {
+    const lastDepartment = await this.departmentModel.findOne().sort({ departmentId: -1 }).exec();
+    let newDepartmentId = 'DV0001';
+  
+    if (lastDepartment && lastDepartment.departmentId) {
+      const lastNumber = parseInt(lastDepartment.departmentId.replace('DV', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newDepartmentId = `DV${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdDepartment = new this.departmentModel({
+      ...createDepartmentDto,
+      departmentId: newDepartmentId
+    });
+  
+    return createdDepartment.save();
+  }
+
+  async findAll(): Promise<Department[]> {
+    return this.departmentModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Department> {
+    const department = await this.departmentModel.findById(id).exec();
+    if (!department) {
+      throw new NotFoundException(`Department with ID ${id} not found`);
+    }
+    return department;
+  }
+
+  async update(id: string, updateDepartmentDto: any): Promise<Department> {
+    const department = await this.departmentModel
+      .findByIdAndUpdate(id, updateDepartmentDto, { new: true })
+      .exec();
+    if (!department) {
+      throw new NotFoundException(`Department with ID ${id} not found`);
+    }
+    return department;
+  }
+
+  async remove(id: string): Promise<Department> {
+    const department = await this.departmentModel.findByIdAndDelete(id).exec();
+    if (!department) {
+      throw new NotFoundException(`Department with ID ${id} not found`);
+    }
+    return department;
+  }
+}
+
+================
+File: src/modules/employee/controllers/employee.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { EmployeeService } from '../services/employee.service';
+import { Employee } from '../schemas/employee.schema';
+
+@Controller('api/employees')
+export class EmployeeController {
+  constructor(private readonly employeeService: EmployeeService) { }
+
+  @Post()
+  create(@Body() createEmployeeDto: any) {
+    return this.employeeService.create(createEmployeeDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.employeeService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.employeeService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateEmployeeDto: any) {
+    return this.employeeService.update(id, updateEmployeeDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.employeeService.remove(id);
+  }
+}
+
+================
+File: src/modules/employee/employee.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { EmployeeController } from './controllers/employee.controller';
+import { EmployeeService } from './services/employee.service';
+import { Employee, EmployeeSchema } from './schemas/employee.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: 'Employees', schema: EmployeeSchema }
+    ]),
+  ],
+  controllers: [EmployeeController],
+  providers: [EmployeeService],
+  exports: [EmployeeService],
+})
+export class EmployeeModule { }
+
+================
+File: src/modules/employee/schemas/employee.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'Bonuses' })
+export class Bonus {
+  @Prop({ enum: ['Doanh thu cá nhân', 'Lợi nhuận chi nhánh', 'Lợi nhuận gộp'] })
+  type: string;
+
+  @Prop({ enum: ['Tổng doanh thu', 'Bậc thang doanh thu', 'Vượt doanh thu'] })
+  form: string;
+
+  @Prop()
+  value: number;
+}
+
+export const BonusSchema = SchemaFactory.createForClass(Bonus);
+
+@Schema({ collection: 'Allowances' })
+export class Allowance {
+  @Prop()
+  name: string;
+
+  @Prop({ enum: ['Theo ngày', 'Hàng tháng cố định', 'Hàng tháng tính trên ngày công'] })
+  type: string;
+
+  @Prop()
+  value: number;
+
+  @Prop({ enum: ['VND', '%'] })
+  valueType: string;
+}
+
+export const AllowanceSchema = SchemaFactory.createForClass(Allowance);
+
+@Schema({ collection: 'Deductions' })
+export class Deduction {
+  @Prop()
+  name: string;
+
+  @Prop({ enum: ['Đi muộn', 'Về sớm', 'Cố định'] })
+  type: string;
+
+  @Prop({ enum: ['Theo số lần', 'Theo phút'] })
+  condition: string;
+
+  @Prop()
+  value: number;
+}
+
+export const DeductionSchema = SchemaFactory.createForClass(Deduction);
+
+@Schema({ timestamps: true, collection: 'Employees' })
+export class Employee extends Document {
+  @Prop({ unique: true, required: true })
+  employeeId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  phone: string;
+
+  @Prop()
+  email: string;
+
+  @Prop()
+  address: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
+  branchSalary: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
+  branchWork: Types.ObjectId;
+
+  @Prop()
+  startDate: Date;
+
+  @Prop({ type: Types.ObjectId, ref: 'Positions' })
+  position: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Departments' })
+  department: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Users' })
+  userAccount: Types.ObjectId;
+
+  @Prop()
+  idCard: string;
+
+  @Prop()
+  dob: Date;
+
+  @Prop({ enum: ['Nam', 'Nữ', 'Khác'] })
+  gender: string;
+
+  @Prop({ enum: ['Theo ca', 'Theo giờ', 'Theo ngày công', 'Cố định'] })
+  salaryType: string;
+
+  @Prop({
+    type: {
+      shiftRate: Number,
+      hourlyRate: Number,
+      dailyRate: Number,
+      fixedRate: Number,
+    },
+  })
+  salaryDetails: {
+    shiftRate: number;
+    hourlyRate: number;
+    dailyRate: number;
+    fixedRate: number;
+  };
+
+  @Prop({ type: [BonusSchema] })
+  bonus: Bonus[];
+
+  @Prop()
+  commission: number;
+
+  @Prop({ type: Types.ObjectId, ref: 'CommissionSettings' })
+  commissionTable: Types.ObjectId;
+
+  @Prop({ type: [AllowanceSchema] })
+  allowance: Allowance[];
+
+  @Prop({ type: [DeductionSchema] })
+  deduction: Deduction[];
+
+  @Prop({ enum: ['Đang làm việc', 'Đã nghỉ'], default: 'Đang làm việc' })
+  status: string;
+}
+
+export const EmployeeSchema = SchemaFactory.createForClass(Employee);
+
+================
+File: src/modules/employee/services/employee.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Employee } from '../schemas/employee.schema';
+
+@Injectable()
+export class EmployeeService {
+  constructor(
+    @InjectModel('Employees') private employeeModel: Model<Employee>,
+  ) { }
+
+  async create(createEmployeeDto: any): Promise<Employee> {
+    const lastEmployee = await this.employeeModel.findOne().sort({ employeeId: -1 }).exec();
+    let newEmployeeId = 'NV0001';
+  
+    if (lastEmployee && lastEmployee.employeeId) {
+      const lastNumber = parseInt(lastEmployee.employeeId.replace('NV', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newEmployeeId = `NV${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdEmployee = new this.employeeModel({
+      ...createEmployeeDto,
+      employeeId: newEmployeeId
+    });
+  
+    return createdEmployee.save();
+  }
+
+  async findAll(): Promise<Employee[]> {
+    return this.employeeModel
+      .find()
+      .populate('branchSalary')
+      .populate('branchWork')
+      .populate('position')
+      .populate('department')
+      .populate('userAccount')
+      .populate('commissionTable')
+      .exec();
+  }
+
+  async findOne(id: string): Promise<Employee> {
+    const employee = await this.employeeModel
+      .findById(id)
+      .populate('branchSalary')
+      .populate('branchWork')
+      .populate('position')
+      .populate('department')
+      .populate('userAccount')
+      .populate('commissionTable')
+      .exec();
+    if (!employee) {
+      throw new NotFoundException(`Employee with ID ${id} not found`);
+    }
+    return employee;
+  }
+
+  async update(id: string, updateEmployeeDto: any): Promise<Employee> {
+    const employee = await this.employeeModel
+      .findByIdAndUpdate(id, updateEmployeeDto, { new: true })
+      .populate('branchSalary')
+      .populate('branchWork')
+      .populate('position')
+      .populate('department')
+      .populate('userAccount')
+      .populate('commissionTable')
+      .exec();
+    if (!employee) {
+      throw new NotFoundException(`Employee with ID ${id} not found`);
+    }
+    return employee;
+  }
+
+  async remove(id: string): Promise<Employee> {
+    const employee = await this.employeeModel.findByIdAndDelete(id).exec();
+    if (!employee) {
+      throw new NotFoundException(`Employee with ID ${id} not found`);
+    }
+    return employee;
+  }
+}
+
+================
+File: src/modules/holiday/controllers/holiday.controller.ts
+================
+import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
+import { HolidayService } from '../services/holiday.service';
+import { Holiday } from '../schemas/holiday.schema';
+
+@Controller('api/holidays')
+export class HolidayController {
+  constructor(private readonly holidayService: HolidayService) { }
+
+  @Post()
+  async create(@Body() createHolidayDto: any): Promise<Holiday> {
+    return this.holidayService.create(createHolidayDto);
+  }
+
+  @Get()
+  async findAll(@Query() query: any): Promise<Holiday[]> {
+    return this.holidayService.findAll(query);
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Holiday> {
+    return this.holidayService.findOne(id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateHolidayDto: any,
+  ): Promise<Holiday> {
+    return this.holidayService.update(id, updateHolidayDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<Holiday> {
+    return this.holidayService.remove(id);
+  }
+
+  @Get('store/:storeId')
+  async findByStore(@Param('storeId') storeId: string): Promise<Holiday[]> {
+    return this.holidayService.findByStore(storeId);
+  }
+
+  @Get('date/:date')
+  async findByDate(@Param('date') date: string): Promise<Holiday[]> {
+    return this.holidayService.findByDate(date);
+  }
+
+  @Get('month/:year/:month')
+  async findByMonth(
+    @Param('year') year: number,
+    @Param('month') month: number,
+  ): Promise<Holiday[]> {
+    return this.holidayService.findByMonth(year, month);
+  }
+
+  @Put(':id/status')
+  async updateStatus(
+    @Param('id') id: string,
+    @Body('status') status: string,
+  ): Promise<Holiday> {
+    return this.holidayService.updateStatus(id, status);
+  }
+}
+
+================
+File: src/modules/holiday/holiday.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Holiday, HolidaySchema } from './schemas/holiday.schema';
+import { HolidayController } from './controllers/holiday.controller';
+import { HolidayService } from './services/holiday.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Holidays', schema: HolidaySchema }])
+  ],
+  controllers: [HolidayController],
+  providers: [HolidayService],
+  exports: [HolidayService]
+})
+export class HolidayModule { }
+
+================
+File: src/modules/holiday/schemas/holiday.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ timestamps: true, collection: 'Holidays' })
+export class Holiday extends Document {
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ enum: ['Ngày lễ', 'Ngày đặc biệt', 'Sự kiện của công ty'], required: true })
+  type: string;
+
+  @Prop({ required: true })
+  startDate: Date;
+
+  @Prop({ required: true })
+  endDate: Date;
+
+  @Prop()
+  duration: number;
+
+  @Prop()
+  description: string;
+
+  @Prop({ default: false })
+  isRecurring: boolean;
+
+  @Prop({
+    type: {
+      frequency: { type: String, enum: ['Hàng năm', 'Hàng tháng', 'Hàng tuần'] },
+      interval: Number,
+      endAfter: Date,
+    },
+  })
+  recurringPattern: {
+    frequency: string;
+    interval: number;
+    endAfter: Date;
+  };
+
+  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  status: string;
+}
+
+export const HolidaySchema = SchemaFactory.createForClass(Holiday);
+
+HolidaySchema.index({ storeId: 1 });
+HolidaySchema.index({ startDate: 1 });
+HolidaySchema.index({ endDate: 1 });
+HolidaySchema.index({ type: 1 });
+HolidaySchema.index({ status: 1 });
+
+================
+File: src/modules/holiday/services/holiday.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Holiday } from '../schemas/holiday.schema';
+
+@Injectable()
+export class HolidayService {
+  constructor(
+    @InjectModel('Holidays')
+    private holidayModel: Model<Holiday>,
+  ) { }
+
+  async create(createHolidayDto: any): Promise<Holiday> {
+    const created = new this.holidayModel(createHolidayDto);
+    return created.save();
+  }
+
+  async findAll(query: any = {}): Promise<Holiday[]> {
+    return this.holidayModel.find(query).exec();
+  }
+
+  async findOne(id: string): Promise<Holiday> {
+    const holiday = await this.holidayModel.findById(id).exec();
+    if (!holiday) {
+      throw new NotFoundException(`Holiday with ID ${id} not found`);
+    }
+    return holiday;
+  }
+
+  async update(id: string, updateHolidayDto: any): Promise<Holiday> {
+    const holiday = await this.holidayModel
+      .findByIdAndUpdate(id, updateHolidayDto, { new: true })
+      .exec();
+    if (!holiday) {
+      throw new NotFoundException(`Holiday with ID ${id} not found`);
+    }
+    return holiday;
+  }
+
+  async remove(id: string): Promise<Holiday> {
+    const holiday = await this.holidayModel.findByIdAndDelete(id).exec();
+    if (!holiday) {
+      throw new NotFoundException(`Holiday with ID ${id} not found`);
+    }
+    return holiday;
+  }
+
+  async findByStore(storeId: string): Promise<Holiday[]> {
+    return this.holidayModel.find({ storeId }).exec();
+  }
+
+  async findByDate(date: string): Promise<Holiday[]> {
+    const startDate = new Date(date);
+    startDate.setHours(0, 0, 0, 0);
+    const endDate = new Date(date);
+    endDate.setHours(23, 59, 59, 999);
+
+    return this.holidayModel.find({
+      date: {
+        $gte: startDate,
+        $lte: endDate,
+      },
+    }).exec();
+  }
+
+  async findByMonth(year: number, month: number): Promise<Holiday[]> {
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 0);
+
+    return this.holidayModel.find({
+      date: {
+        $gte: startDate,
+        $lte: endDate,
+      },
+    }).exec();
+  }
+
+  async updateStatus(id: string, status: string): Promise<Holiday> {
+    const holiday = await this.holidayModel
+      .findByIdAndUpdate(id, { status }, { new: true })
+      .exec();
+    if (!holiday) {
+      throw new NotFoundException(`Holiday with ID ${id} not found`);
+    }
+    return holiday;
+  }
+}
+
+================
+File: src/modules/invoice/controllers/invoice.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { InvoiceService } from '../services/invoice.service';
+import { Invoice } from '../schemas/invoice.schema';
+
+@Controller('api/invoices')
+export class InvoiceController {
+  constructor(private readonly invoiceService: InvoiceService) { }
+
+  @Post()
+  create(@Body() createInvoiceDto: any) {
+    return this.invoiceService.create(createInvoiceDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.invoiceService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.invoiceService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateInvoiceDto: any) {
+    return this.invoiceService.update(id, updateInvoiceDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.invoiceService.remove(id);
+  }
+}
+
+================
+File: src/modules/invoice/invoice.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { InvoiceController } from './controllers/invoice.controller';
+import { InvoiceService } from './services/invoice.service';
+import { Invoice, InvoiceSchema } from './schemas/invoice.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Invoices', schema: InvoiceSchema }])
+  ],
+  controllers: [InvoiceController],
+  providers: [InvoiceService],
+  exports: [InvoiceService]
+})
+export class InvoiceModule { }
+
+================
+File: src/modules/invoice/schemas/invoice.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'InvoiceItems' })
+export class InvoiceItem {
+  @Prop({ type: Types.ObjectId, ref: 'Products', required: true })
+  productId: Types.ObjectId;
+
+  @Prop({ required: true })
+  quantity: number;
+
+  @Prop({ required: true })
+  unitPrice: number;
+
+  @Prop({ default: 0 })
+  discount: number;
+
+  @Prop({ required: true })
+  total: number;
+}
+
+export const InvoiceItemSchema = SchemaFactory.createForClass(InvoiceItem);
+
+@Schema({ timestamps: true, collection: 'Invoices' })
+export class Invoice extends Document {
+  @Prop({ unique: true, required: true })
+  invoiceId: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Orders', required: true })
+  orderId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Customers', required: true })
+  customerId: Types.ObjectId;
+
+  @Prop({ required: true })
+  invoiceNumber: string;
+
+  @Prop({ required: true, default: Date.now })
+  invoiceDate: Date;
+
+  @Prop()
+  dueDate: Date;
+
+  @Prop({ type: [InvoiceItemSchema] })
+  items: InvoiceItem[];
+
+  @Prop({ required: true })
+  subtotal: number;
+
+  @Prop({ default: 0 })
+  tax: number;
+
+  @Prop({ default: 0 })
+  shipping: number;
+
+  @Prop({ required: true })
+  total: number;
+
+  @Prop({
+    enum: ['Tiền mặt', 'Chuyển khoản', 'Thẻ tín dụng', 'Ví điện tử'],
+    required: true,
+  })
+  paymentMethod: string;
+
+  @Prop({
+    enum: [
+      'Chưa thanh toán',
+      'Đã thanh toán một phần',
+      'Đã thanh toán',
+      'Đã hủy',
+    ],
+    default: 'Chưa thanh toán',
+  })
+  paymentStatus: string;
+
+  @Prop()
+  notes: string;
+
+  @Prop({ enum: ['Draft', 'Issued', 'Cancelled', 'Void'], default: 'Draft' })
+  status: string;
+}
+
+export const InvoiceSchema = SchemaFactory.createForClass(Invoice);
+
+InvoiceSchema.index({ storeId: 1 });
+InvoiceSchema.index({ orderId: 1 });
+InvoiceSchema.index({ customerId: 1 });
+InvoiceSchema.index({ invoiceNumber: 1 });
+
+================
+File: src/modules/invoice/services/invoice.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Invoice } from '../schemas/invoice.schema';
+
+@Injectable()
+export class InvoiceService {
+  constructor(
+    @InjectModel('Invoices') private invoiceModel: Model<Invoice>,
+  ) { }
+
+  async create(createInvoiceDto: any): Promise<Invoice> {
+    const lastInvoice = await this.invoiceModel.findOne().sort({ invoiceId: -1 }).exec();
+    let newInvoiceId = 'HD0001';
+  
+    if (lastInvoice && lastInvoice.invoiceId) {
+      const lastNumber = parseInt(lastInvoice.invoiceId.replace('HD', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newInvoiceId = `HD${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdInvoice = new this.invoiceModel({
+      ...createInvoiceDto,
+      invoiceId: newInvoiceId
+    });
+  
+    return createdInvoice.save();
+  }
+
+  async findAll(): Promise<Invoice[]> {
+    return this.invoiceModel
+      .find()
+      .populate('storeId')
+      .populate('orderId')
+      .populate('customerId')
+      .populate('items.productId')
+      .exec();
+  }
+
+  async findOne(id: string): Promise<Invoice> {
+    const invoice = await this.invoiceModel
+      .findById(id)
+      .populate('storeId')
+      .populate('orderId')
+      .populate('customerId')
+      .populate('items.productId')
+      .exec();
+    if (!invoice) {
+      throw new NotFoundException(`Invoice with ID ${id} not found`);
+    }
+    return invoice;
+  }
+
+  async update(id: string, updateInvoiceDto: any): Promise<Invoice> {
+    const invoice = await this.invoiceModel
+      .findByIdAndUpdate(id, updateInvoiceDto, { new: true })
+      .populate('storeId')
+      .populate('orderId')
+      .populate('customerId')
+      .populate('items.productId')
+      .exec();
+    if (!invoice) {
+      throw new NotFoundException(`Invoice with ID ${id} not found`);
+    }
+    return invoice;
+  }
+
+  async remove(id: string): Promise<Invoice> {
+    const invoice = await this.invoiceModel.findByIdAndDelete(id).exec();
+    if (!invoice) {
+      throw new NotFoundException(`Invoice with ID ${id} not found`);
+    }
+    return invoice;
+  }
+}
+
+================
+File: src/modules/order/controllers/order.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { OrderService } from '../services/order.service';
+import { Order } from '../schemas/order.schema';
+
+@Controller('api/orders')
+export class OrderController {
+  constructor(private readonly orderService: OrderService) { }
+
+  @Post()
+  create(@Body() createOrderDto: any) {
+    return this.orderService.create(createOrderDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.orderService.findAll();
+  }
+
+  @Get('doanhthu')
+  doanhThu() {
+    return this.orderService.doanhThu();
+  }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.orderService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateOrderDto: any) {
+    return this.orderService.update(id, updateOrderDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.orderService.remove(id);
+  }
+}
+
+================
+File: src/modules/order/order.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { OrderController } from './controllers/order.controller';
+import { OrderService } from './services/order.service';
+import { Order, OrderSchema } from './schemas/order.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Orders', schema: OrderSchema }])
+  ],
+  controllers: [OrderController],
+  providers: [OrderService],
+  exports: [OrderService]
+})
+export class OrderModule { }
+
+================
+File: src/modules/order/schemas/order.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'OrderProducts' })
+export class OrderProduct {
+  @Prop({ type: Types.ObjectId, ref: 'Products' })
+  productId: Types.ObjectId;
+
+  @Prop()
+  quantity: number;
+
+  @Prop()
+  price: number;
+
+  @Prop({ default: 0 })
+  discount: number;
+}
+
+export const OrderProductSchema = SchemaFactory.createForClass(OrderProduct);
+
+@Schema({ timestamps: true, collection: 'Orders' })
+export class Order extends Document {
+  @Prop({ unique: true, required: true })
+  orderId: string;
+
+  @Prop({ unique: true })
+  orderCode: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Customers' })
+  customerId: Types.ObjectId;
+
+  @Prop({ type: [OrderProductSchema] })
+  products: OrderProduct[];
+
+  @Prop()
+  totalAmount: number;
+
+  @Prop({ default: 0 })
+  discount: number;
+
+  @Prop({ enum: ['Tiền mặt', 'Chuyển khoản', 'Thẻ', 'Ví'] })
+  paymentMethod: string;
+
+  @Prop({
+    enum: [
+      'Phiếu tạm thời',
+      'Đã xác nhận',
+      'Đang giao hàng',
+      'Hoàn thành',
+      'Đã hủy',
+    ],
+    default: 'Phiếu tạm thời',
+  })
+  status: string;
+
+  @Prop({ type: Types.ObjectId })
+  channel: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Carriers' })
+  carrierId: Types.ObjectId;
+
+  @Prop()
+  deliveryDate: Date;
+}
+
+export const OrderSchema = SchemaFactory.createForClass(Order);
+
+================
+File: src/modules/order/services/order.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Order } from '../schemas/order.schema';
+
+@Injectable()
+export class OrderService {
+  constructor(
+    @InjectModel('Orders') private orderModel: Model<Order>,
+  ) { }
+
+  async create(createOrderDto: any): Promise<Order> {
+    const lastOrder = await this.orderModel.findOne().sort({ orderId: -1 }).exec();
+    let newOrderId = 'HD0001';
+  
+    if (lastOrder && lastOrder.orderId) {
+      const lastNumber = parseInt(lastOrder.orderId.replace('HD', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newOrderId = `HD${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdOrder = new this.orderModel({
+      ...createOrderDto,
+      orderId: newOrderId
+    });
+  
+    return createdOrder.save();
+  }
+
+  async findAll(): Promise<Order[]> {
+    return this.orderModel
+      .find()
+      .populate('customerId')
+      .populate('products.productId')
+      .populate('channel')
+      .populate('carrierId')
+      .exec();
+  }
+  async doanhThu(): Promise<Order[]> {
+    return this.orderModel
+      .find()
+      .populate('customerId')
+      .populate('products.productId')
+      .populate('channel')
+      .populate('carrierId')
+      .populate('products.productId.priceList')
+      .exec();
+  }
+  async findOne(id: string): Promise<Order> {
+    const order = await this.orderModel
+      .findById(id)
+      .populate('customerId')
+      .populate('products.productId')
+      .populate('channel')
+      .populate('carrierId')
+      .exec();
+    if (!order) {
+      throw new NotFoundException(`Order with ID ${id} not found`);
+    }
+    return order;
+  }
+
+  async update(id: string, updateOrderDto: any): Promise<Order> {
+    const order = await this.orderModel
+      .findByIdAndUpdate(id, updateOrderDto, { new: true })
+      .populate('customerId')
+      .populate('products.productId')
+      .populate('channel')
+      .populate('carrierId')
+      .exec();
+    if (!order) {
+      throw new NotFoundException(`Order with ID ${id} not found`);
+    }
+    return order;
+  }
+
+  async remove(id: string): Promise<Order> {
+    const order = await this.orderModel.findByIdAndDelete(id).exec();
+    if (!order) {
+      throw new NotFoundException(`Order with ID ${id} not found`);
+    }
+    return order;
+  }
+
+}
+
+================
+File: src/modules/payroll/controllers/payroll.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Payroll } from '../schemas/payroll.schema';
+import { PayrollService } from '../services/payroll.service';
+
+@Controller('api/payrolls')
+export class PayrollController {
+  constructor(private readonly payrollService: PayrollService) { }
+
+  @Post()
+  async create(@Body() createPayrollDto: any): Promise<Payroll> {
+    return this.payrollService.create(createPayrollDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.payrollService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.payrollService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatepayrollDto: any) {
+    return this.payrollService.update(id, updatepayrollDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.payrollService.remove(id);
+  }
+}
+
+================
+File: src/modules/payroll/payroll.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Payroll, PayrollSchema } from './schemas/payroll.schema';
+import { PayrollController } from './controllers/payroll.controller';
+import { PayrollService } from  './services/payroll.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Payrolls', schema: PayrollSchema }])
+  ],
+  controllers: [PayrollController],
+  providers: [PayrollService],
+  exports: [PayrollService]
+})
+export class PayrollModule { }
+
+================
+File: src/modules/payroll/schemas/payroll.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ timestamps: true, collection: 'Payrolls' })
+export class Payroll extends Document {
+  @Prop({ unique: true, required: true })
+  payrollId: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Employees' })
+  employeeId: Types.ObjectId;
+
+  @Prop()
+  month: number;
+
+  @Prop()
+  year: number;
+
+  @Prop()
+  basicSalary: number;
+
+  @Prop({ default: 0 })
+  bonus: number;
+
+  @Prop({ default: 0 })
+  commission: number;
+
+  @Prop({ default: 0 })
+  allowance: number;
+
+  @Prop({ default: 0 })
+  deduction: number;
+
+  @Prop()
+  total: number;
+
+  @Prop({ default: 0 })
+  paid: number;
+
+  @Prop({ enum: ['Đang tạo', 'Tạm tính', 'Đã chốt lương', 'Đã hủy'], default: 'Đang tạo' })
+  status: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Branches' })
+  branch: Types.ObjectId;
+}
+
+export const PayrollSchema = SchemaFactory.createForClass(Payroll);
+
+================
+File: src/modules/payroll/services/payroll.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Payroll } from '../schemas/payroll.schema';
+
+@Injectable()
+export class PayrollService {
+  constructor(
+    @InjectModel('Payrolls') private payrollModel: Model<Payroll>,
+  ) { }
+
+  async create(createPayrollDto: any): Promise<Payroll> {
+    const lastPayroll = await this.payrollModel.findOne().sort({ payrollId: -1 }).exec();
+    let newPayrollId = 'PR0001';
+  
+    if (lastPayroll && lastPayroll.payrollId) {
+      const lastNumber = parseInt(lastPayroll.payrollId.replace('PR', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newPayrollId = `PR${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdPayroll = new this.payrollModel({
+      ...createPayrollDto,
+      payrollId: newPayrollId
+    });
+  
+    return createdPayroll.save();
+  }
+
+  async findAll(): Promise<Payroll[]> {
+    return this.payrollModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Payroll> {
+    const payroll = await this.payrollModel.findById(id).exec();
+    if (!payroll) {
+      throw new NotFoundException(`payroll with ID ${id} not found`);
+    }
+    return payroll;
+  }
+
+  async update(id: string, updatePayrollDto: any): Promise<Payroll> {
+    const payroll = await this.payrollModel
+      .findByIdAndUpdate(id, updatePayrollDto, { new: true })
+      .exec();
+    if (!payroll) {
+      throw new NotFoundException(`payroll with ID ${id} not found`);
+    }
+    return payroll;
+  }
+
+  async remove(id: string): Promise<Payroll> {
+    const payroll = await this.payrollModel.findByIdAndDelete(id).exec();
+    if (!payroll) {
+      throw new NotFoundException(`payroll with ID ${id} not found`);
+    }
+    return payroll;
+  }
+}
+
+================
+File: src/modules/position/controllers/position.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Position } from '../schemas/position.schema';
+import { PositionService } from '../services/position.service';
+
+@Controller('api/positions')
+export class PositionController {
+  constructor(private readonly positionService: PositionService) { }
+
+  @Post()
+  async create(@Body() createPositionDto: any): Promise<Position> {
+    return this.positionService.create(createPositionDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.positionService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.positionService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatePositionDto: any) {
+    return this.positionService.update(id, updatePositionDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.positionService.remove(id);
+  }
+}
+
+================
+File: src/modules/position/position.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Position, PositionSchema } from './schemas/position.schema';
+import { PositionService } from './services/position.service';
+import { PositionController } from  './controllers/position.controller';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Positions', schema: PositionSchema }])
+  ],
+  controllers: [PositionController],
+  providers: [PositionService],
+  exports: [PositionService]
+})
+export class PositionModule { }
+
+================
+File: src/modules/position/schemas/position.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ collection: 'Positions' })
+export class Position extends Document {
+  @Prop({ unique: true, required: true })
+  positionId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  description: string;
+
+  @Prop({ enum: ['Hoạt động', 'Ngừng hoạt động'], default: 'Hoạt động' })
+  status: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const PositionSchema = SchemaFactory.createForClass(Position);
+
+================
+File: src/modules/position/services/position.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Position } from '../schemas/position.schema';
+
+@Injectable()
+export class PositionService {
+  constructor(
+    @InjectModel('Positions') private PositionModel: Model<Position>,
+  ) { }
+
+  async create(createPositionDto: any): Promise<Position> {
+    const lastPosition = await this.PositionModel.findOne().sort({ positionId: -1 }).exec();
+    let newPositionId = 'CV0001';
+  
+    if (lastPosition && lastPosition.positionId) {
+      const lastNumber = parseInt(lastPosition.positionId.replace('CV', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newPositionId = `CV${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdPosition = new this.PositionModel({
+      ...createPositionDto,
+      positionId: newPositionId
+    });
+  
+    return createdPosition.save();
+  }
+
+  async findAll(): Promise<Position[]> {
+    return this.PositionModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Position> {
+    const position = await this.PositionModel.findById(id).exec();
+    if (!position) {
+      throw new NotFoundException(`Position with ID ${id} not found`);
+    }
+    return position;
+  }
+
+  async update(id: string, updatePositionDto: any): Promise<Position> {
+    const position = await this.PositionModel
+      .findByIdAndUpdate(id, updatePositionDto, { new: true })
+      .exec();
+    if (!position) {
+      throw new NotFoundException(`Position with ID ${id} not found`);
+    }
+    return position;
+  }
+
+  async remove(id: string): Promise<Position> {
+    const position = await this.PositionModel.findByIdAndDelete(id).exec();
+    if (!position) {
+      throw new NotFoundException(`Position with ID ${id} not found`);
+    }
+    return position;
+  }
+}
+
+================
+File: src/modules/product/controllers/product.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ProductService } from '../services/product.service';
+import { Product } from '../schemas/product.schema';
+
+@Controller('api/products')
+export class ProductController {
+  constructor(private readonly productService: ProductService) { }
+
+  @Post()
+  create(@Body() createProductDto: any) {
+    return this.productService.create(createProductDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.productService.findAll();
+  }
+
+  @Get(':id')
+  async getProduct(@Param('id') id: string) {
+    return this.productService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateProductDto: any) {
+    return this.productService.update(id, updateProductDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.productService.remove(id);
+  }
+}
+
+================
+File: src/modules/product/product.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ProductController } from './controllers/product.controller';
+import { ProductService } from './services/product.service';
+import { ProductSchema } from './schemas/product.schema';
+import { BrandModule } from '../brand/brand.module';
+import { CategoriesModule } from '../category/categories.module';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Products', schema: ProductSchema }]),
+    BrandModule,
+    CategoriesModule
+  ],
+  controllers: [ProductController],
+  providers: [ProductService],
+  exports: [ProductService]
+})
+export class ProductModule { }
+
+================
+File: src/modules/product/schemas/product.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+import { Categories } from '../../category/schemas/categories.schema';
+import { Brand } from '../../brand/schemas/brand.schema';
+
+@Schema({ timestamps: true, collection: 'Products' })
+export class Product extends Document {
+  @Prop({ unique: true, required: true })
+  productId: string;
+
+  @Prop()
+  barcode: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Categories' })
+  category: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Brands' })
+  brand: Types.ObjectId;
+
+  @Prop({ required: true })
+  price: number;
+
+  @Prop()
+  cost: number;
+
+  @Prop({ default: 0 })
+  stock: number;
+
+  @Prop()
+  location: string;
+
+  @Prop()
+  minStock: number;
+
+  @Prop()
+  maxStock: number;
+
+  @Prop({ enum: ['Cho phép kinh doanh', 'Ngừng kinh doanh'], default: 'Cho phép kinh doanh' })
+  status: string;
+
+  @Prop()
+  image: string;
+
+  @Prop()
+  weight: number;
+
+  @Prop()
+  unit: string;
+
+  @Prop()
+  description: string;
+}
+
+export const ProductSchema = SchemaFactory.createForClass(Product);
+
+================
+File: src/modules/product/services/product.service.ts
+================
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Product } from '../schemas/product.schema';
+
+@Injectable()
+export class ProductService {
+  constructor(
+    @InjectModel('Products') private productModel: Model<Product>,
+  ) { }
+
+  async create(createProductDto: any): Promise<Product> {
+    const lastUser = await this.productModel.findOne().sort({ productId: -1 }).exec();
+    let newProductId = 'SP0001';
+  
+    if (lastUser && lastUser.productId) {
+      const lastNumber = parseInt(lastUser.productId.replace('SP', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newProductId = `SP${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdProduct = new this.productModel({
+      ...createProductDto,
+      productId: newProductId
+    });
+  
+    return createdProduct.save();
+  }
+
+  async findAll(): Promise<Product[]> {
+    try {
+      const products = await this.productModel.find().exec();
+      
+      // Populate category and brand only if they exist
+      const populatedProducts = await Promise.all(
+        products.map(async (product) => {
+          if (product.category) {
+            await product.populate('category');
+          }
+          if (product.brand) {
+            await product.populate('brand');
+          }
+          return product;
+        })
+      );
+      
+      return populatedProducts;
+    } catch (error) {
+      console.error('Error in findAll:', error);
+      throw error;
+    }
+  }
+
+  async findOne(id: string): Promise<Product | null> {
+    try {
+      const product = await this.productModel.findById(id).exec();
+      if (!product) {
+        return null;
+      }
+      
+      if (product.category) {
+        await product.populate('category');
+      }
+      if (product.brand) {
+        await product.populate('brand');
+      }
+      
+      return product;
+    } catch (error) {
+      console.error('Error in findOne:', error);
+      throw error;
+    }
+  }
+
+  async update(id: string, updateProductDto: any): Promise<Product | null> {
+    try {
+      const product = await this.productModel
+        .findByIdAndUpdate(id, updateProductDto, { new: true })
+        .exec();
+        
+      if (!product) {
+        return null;
+      }
+      
+      if (product.category) {
+        await product.populate('category');
+      }
+      if (product.brand) {
+        await product.populate('brand');
+      }
+      
+      return product;
+    } catch (error) {
+      console.error('Error in update:', error);
+      throw error;
+    }
+  }
+
+  async remove(id: string): Promise<Product | null> {
+    return this.productModel.findByIdAndDelete(id).exec();
+  }
+}
+
+================
+File: src/modules/purchase-history/controllers/purchase-history.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { PurchaseHistoryService } from '../services/purchase-history.service';
+import { PurchaseHistory } from '../schemas/purchase-history.schema';
+
+@Controller('api/purchase-historys')
+export class PurchaseHistoryController {
+  constructor(private readonly PurchaseHistoryService: PurchaseHistoryService) { }
+
+  @Post()
+  async create(@Body() createPurchaseHistoryDto: any): Promise<PurchaseHistory> {
+    return this.PurchaseHistoryService.create(createPurchaseHistoryDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.PurchaseHistoryService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.PurchaseHistoryService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatePurchaseHistoryDto: any) {
+    return this.PurchaseHistoryService.update(id, updatePurchaseHistoryDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.PurchaseHistoryService.remove(id);
+  }
+}
+
+================
+File: src/modules/purchase-history/purchase-history.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { PurchaseHistory, PurchaseHistorySchema } from './schemas/purchase-history.schema';
+import { PurchaseHistoryService } from './services/purchase-history.service';
+import { PurchaseHistoryController } from './controllers/purchase-history.controller';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'PurchaseHistories', schema: PurchaseHistorySchema }])
+  ],
+  controllers: [PurchaseHistoryController],
+  providers: [PurchaseHistoryService],
+  exports: [PurchaseHistoryService]
+})
+export class PurchaseHistoryModule { }
+
+================
+File: src/modules/purchase-history/schemas/purchase-history.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ timestamps: true, collection: 'PurchaseHistories' })
+export class PurchaseHistory extends Document {
+  @Prop({ unique: true, required: true })
+  purchaseHistoryId: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Stores' })
+  storeId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'ServicePackages' })
+  packageId: Types.ObjectId;
+
+  @Prop({ default: Date.now })
+  purchaseDate: Date;
+
+  @Prop()
+  duration: number;
+
+  @Prop()
+  totalAmount: number;
+
+  @Prop({
+    enum: ['Hoàn thành', 'Đang xử lý', 'Hủy'],
+    default: 'Hoàn thành',
+  })
+  status: string;
+}
+
+export const PurchaseHistorySchema = SchemaFactory.createForClass(PurchaseHistory);
+
+================
+File: src/modules/purchase-history/services/purchase-history.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { PurchaseHistory } from '../schemas/purchase-history.schema';
+
+@Injectable()
+export class PurchaseHistoryService {
+  constructor(
+    @InjectModel('PurchaseHistories') private PurchaseHistoryModel: Model<PurchaseHistory>,
+  ) { }
+
+  async create(createPurchaseHistoryDto: any): Promise<PurchaseHistory> {
+    const lastPurchaseHistory = await this.PurchaseHistoryModel.findOne().sort({ purchaseHistoryId: -1 }).exec();
+    let newPurchaseHistoryId = 'PH0001';
+  
+    if (lastPurchaseHistory && lastPurchaseHistory.purchaseHistoryId) {
+      const lastNumber = parseInt(lastPurchaseHistory.purchaseHistoryId.replace('PH', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newPurchaseHistoryId = `PH${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdPurchaseHistory = new this.PurchaseHistoryModel({
+      ...createPurchaseHistoryDto,
+      purchaseHistoryId: newPurchaseHistoryId
+    });
+  
+    return createdPurchaseHistory.save();
+  }
+
+  async findAll(): Promise<PurchaseHistory[]> {
+    return this.PurchaseHistoryModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<PurchaseHistory> {
+    const PurchaseHistory = await this.PurchaseHistoryModel.findById(id).exec();
+    if (!PurchaseHistory) {
+      throw new NotFoundException(`PurchaseHistory with ID ${id} not found`);
+    }
+    return PurchaseHistory;
+  }
+
+  async update(id: string, updatePurchaseHistoryDto: any): Promise<PurchaseHistory> {
+    const PurchaseHistory = await this.PurchaseHistoryModel
+      .findByIdAndUpdate(id, updatePurchaseHistoryDto, { new: true })
+      .exec();
+    if (!PurchaseHistory) {
+      throw new NotFoundException(`PurchaseHistory with ID ${id} not found`);
+    }
+    return PurchaseHistory;
+  }
+
+  async remove(id: string): Promise<PurchaseHistory> {
+    const PurchaseHistory = await this.PurchaseHistoryModel.findByIdAndDelete(id).exec();
+    if (!PurchaseHistory) {
+      throw new NotFoundException(`PurchaseHistory with ID ${id} not found`);
+    }
+    return PurchaseHistory;
+  }
+}
+
+================
+File: src/modules/purchase-order/controllers/purchase-orders.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { PurchaseOrderService } from '../services/purchase-orders.service';
+import { PurchaseOrder } from '../schemas/purchase-orders.schema';
+
+@Controller('api/purchase-orders')
+export class PurchaseOrderController {
+  constructor(private readonly purchaseOrderService: PurchaseOrderService) { }
+
+  @Post()
+  async create(@Body() createBranchDto: any): Promise<PurchaseOrder> {
+    return this.purchaseOrderService.create(createBranchDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.purchaseOrderService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.purchaseOrderService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatepurchaseOrderDto: any) {
+    return this.purchaseOrderService.update(id, updatepurchaseOrderDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.purchaseOrderService.remove(id);
+  }
+}
+
+================
+File: src/modules/purchase-order/purchase-orders.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { PurchaseOrder, PurchaseOrderSchema } from './schemas/purchase-orders.schema';
+import { PurchaseOrderController } from './controllers/purchase-orders.controller';
+import { PurchaseOrderService } from './services/purchase-orders.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'PurchaseOrders', schema: PurchaseOrderSchema }])
+  ],
+  controllers: [PurchaseOrderController],
+  providers: [PurchaseOrderService],
+  exports: [PurchaseOrderService]
+})
+export class PurchaseOrderModule { }
+
+================
+File: src/modules/purchase-order/schemas/purchase-orders.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'PurchaseOrderProducts' })
+export class PurchaseOrderProduct {
+  @Prop({ type: Types.ObjectId, ref: 'Products' })
+  productId: Types.ObjectId;
+
+  @Prop()
+  quantity: number;
+
+  @Prop()
+  price: number;
+}
+
+export const PurchaseOrderProductSchema = SchemaFactory.createForClass(PurchaseOrderProduct);
+
+@Schema({ timestamps: true, collection: 'PurchaseOrders' })
+export class PurchaseOrder extends Document {
+  @Prop({ unique: true, required: true })
+  purchaseOrderId: string;
+
+  @Prop()
+  purchaseOrderCode: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Suppliers' })
+  supplierId: Types.ObjectId;
+
+  @Prop({ type: [PurchaseOrderProductSchema] })
+  products: PurchaseOrderProduct[];
+
+  @Prop()
+  totalAmount: number;
+
+  @Prop({ enum: ['Phiếu tạm thời', 'Đã nhập hàng', 'Đã hủy'], default: 'Phiếu tạm thời' })
+  status: string;
+}
+
+export const PurchaseOrderSchema = SchemaFactory.createForClass(PurchaseOrder);
+
+================
+File: src/modules/purchase-order/services/purchase-orders.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { PurchaseOrder } from '../schemas/purchase-orders.schema';
+
+@Injectable()
+export class PurchaseOrderService {
+  constructor(
+    @InjectModel('PurchaseOrders') private PurchaseOrderModel: Model<PurchaseOrder>,
+  ) { }
+
+  async create(createPurchaseOrderDto: any): Promise<PurchaseOrder> {
+    const lastPurchaseOrder = await this.PurchaseOrderModel.findOne().sort({ purchaseOrderId: -1 }).exec();
+    let newPurchaseOrderId = 'PO0001';
+  
+    if (lastPurchaseOrder && lastPurchaseOrder.purchaseOrderId) {
+      const lastNumber = parseInt(lastPurchaseOrder.purchaseOrderId.replace('PO', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newPurchaseOrderId = `PO${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdPurchaseOrder = new this.PurchaseOrderModel({
+      ...createPurchaseOrderDto,
+      purchaseOrderId: newPurchaseOrderId
+    });
+  
+    return createdPurchaseOrder.save();
+  }
+
+  async findAll(): Promise<PurchaseOrder[]> {
+    return this.PurchaseOrderModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<PurchaseOrder> {
+    const PurchaseOrder = await this.PurchaseOrderModel.findById(id).exec();
+    if (!PurchaseOrder) {
+      throw new NotFoundException(`PurchaseOrder with ID ${id} not found`);
+    }
+    return PurchaseOrder;
+  }
+
+  async update(id: string, updatePurchaseOrderDto: any): Promise<PurchaseOrder> {
+    const PurchaseOrder = await this.PurchaseOrderModel
+      .findByIdAndUpdate(id, updatePurchaseOrderDto, { new: true })
+      .exec();
+    if (!PurchaseOrder) {
+      throw new NotFoundException(`PurchaseOrder with ID ${id} not found`);
+    }
+    return PurchaseOrder;
+  }
+
+  async remove(id: string): Promise<PurchaseOrder> {
+    const PurchaseOrder = await this.PurchaseOrderModel.findByIdAndDelete(id).exec();
+    if (!PurchaseOrder) {
+      throw new NotFoundException(`PurchaseOrder with ID ${id} not found`);
+    }
+    return PurchaseOrder;
+  }
+}
+
+================
+File: src/modules/ruturn/controllers/return.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ReturnService } from '../services/return.service';
+import { Return } from '../schemas/return.schema';
+
+@Controller('api/returns')
+export class ReturnController {
+  constructor(private readonly returnService: ReturnService) { }
+
+  @Post()
+  async create(@Body() createBranchDto: any): Promise<Return> {
+    return this.returnService.create(createBranchDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.returnService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.returnService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateReturnDto: any) {
+    return this.returnService.update(id, updateReturnDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.returnService.remove(id);
+  }
+}
+
+================
+File: src/modules/ruturn/return.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Return, ReturnSchema } from './schemas/return.schema';
+import { ReturnController } from './controllers/return.controller';
+import { ReturnService } from './services/return.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Returns', schema: ReturnSchema }])
+  ],
+  controllers: [ReturnController],
+  providers: [ReturnService],
+  exports: [ReturnService]
+})
+export class ReturnModule { }
+
+================
+File: src/modules/ruturn/schemas/return.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'ReturnProducts' })
+export class ReturnProduct {
+  @Prop({ type: Types.ObjectId, ref: 'Products' })
+  productId: Types.ObjectId;
+
+  @Prop()
+  quantity: number;
+}
+
+export const ReturnProductSchema = SchemaFactory.createForClass(ReturnProduct);
+
+@Schema({ timestamps: true, collection: 'Returns' })
+export class Return extends Document {
+  @Prop({ unique: true, required: true })
+  returnId: string;
+
+  @Prop()
+  returnCode: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Orders' })
+  orderId: Types.ObjectId;
+
+  @Prop({ type: [ReturnProductSchema] })
+  products: ReturnProduct[];
+
+  @Prop()
+  reason: string;
+
+  @Prop()
+  totalRefund: number;
+
+  @Prop({ enum: ['Đã trả', 'Đã hủy'], default: 'Đã trả' })
+  status: string;
+}
+
+export const ReturnSchema = SchemaFactory.createForClass(Return);
+
+================
+File: src/modules/ruturn/services/return.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Return } from '../schemas/return.schema';
+
+@Injectable()
+export class ReturnService {
+  constructor(
+    @InjectModel('Returns') private ReturnModel: Model<Return>,
+  ) { }
+
+  async create(createReturnDto: any): Promise<Return> {
+    const lastReturn = await this.ReturnModel.findOne().sort({ returnId: -1 }).exec();
+    let newReturnId = 'RT0001';
+  
+    if (lastReturn && lastReturn.returnId) {
+      const lastNumber = parseInt(lastReturn.returnId.replace('RT', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newReturnId = `RT${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdReturn = new this.ReturnModel({
+      ...createReturnDto,
+      returnId: newReturnId
+    });
+  
+    return createdReturn.save();
+  }
+
+  async findAll(): Promise<Return[]> {
+    return this.ReturnModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<Return> {
+    const Return = await this.ReturnModel.findById(id).exec();
+    if (!Return) {
+      throw new NotFoundException(`Return with ID ${id} not found`);
+    }
+    return Return;
+  }
+
+  async update(id: string, updateReturnDto: any): Promise<Return> {
+    const Return = await this.ReturnModel
+      .findByIdAndUpdate(id, updateReturnDto, { new: true })
+      .exec();
+    if (!Return) {
+      throw new NotFoundException(`Return with ID ${id} not found`);
+    }
+    return Return;
+  }
+
+  async remove(id: string): Promise<Return> {
+    const Return = await this.ReturnModel.findByIdAndDelete(id).exec();
+    if (!Return) {
+      throw new NotFoundException(`Return with ID ${id} not found`);
+    }
+    return Return;
+  }
+}
+
+================
+File: src/modules/service-package/controllers/service-package.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ServicePackageService } from '../services/service-package.service';
+import { ServicePackage } from '../schemas/service-package.schems';
+
+@Controller('api/service-packages')
+export class ServicePackageController {
+  constructor(private readonly ServicePackageService: ServicePackageService) { }
+
+  @Post()
+  async create(@Body() createServicePackageDto: any): Promise<ServicePackage> {
+    return this.ServicePackageService.create(createServicePackageDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.ServicePackageService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.ServicePackageService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateServicePackageDto: any) {
+    return this.ServicePackageService.update(id, updateServicePackageDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.ServicePackageService.remove(id);
+  }
+}
+
+================
+File: src/modules/service-package/schemas/service-package.schems.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ timestamps: true, collection: 'ServicePackages' })
+export class ServicePackage extends Document {
+  @Prop({ unique: true, required: true })
+  packageId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  description: string;
+
+  @Prop([String])
+  features: string[];
+
+  @Prop({ required: true })
+  price: number;
+
+  @Prop([Number])
+  durationOptions: number[];
+}
+
+export const ServicePackageSchema = SchemaFactory.createForClass(ServicePackage);
+
+================
+File: src/modules/service-package/service-package.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ServicePackage, ServicePackageSchema } from './schemas/service-package.schems';
+import { ServicePackageService } from './services/service-package.service';
+import { ServicePackageController } from './controllers/service-package.controller';
+
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'ServicePackages', schema: ServicePackageSchema }])
+  ],
+  controllers: [ServicePackageController],
+  providers: [ServicePackageService],
+  exports: [ServicePackageService]
+})
+export class ServicePackageModule { }
+
+================
+File: src/modules/service-package/services/service-package.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { ServicePackage } from '../schemas/service-package.schems';
+
+@Injectable()
+export class ServicePackageService {
+  constructor(
+    @InjectModel('ServicePackages') private ServicePackageModel: Model<ServicePackage>,
+  ) { }
+
+  async create(createServicePackageDto: any): Promise<ServicePackage> {
+    const lastServicePackage = await this.ServicePackageModel.findOne().sort({ packageId: -1 }).exec();
+    let newServicePackageId = 'SVP0001';
+  
+    if (lastServicePackage && lastServicePackage.packageId) {
+      const lastNumber = parseInt(lastServicePackage.packageId.replace('SVP', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newServicePackageId = `SVP${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdServicePackage = new this.ServicePackageModel({
+      ...createServicePackageDto,
+      servicePackageId: newServicePackageId
+    });
+  
+    return createdServicePackage.save();
+  }
+
+  async findAll(): Promise<ServicePackage[]> {
+    return this.ServicePackageModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<ServicePackage> {
+    const ServicePackage = await this.ServicePackageModel.findById(id).exec();
+    if (!ServicePackage) {
+      throw new NotFoundException(`ServicePackage with ID ${id} not found`);
+    }
+    return ServicePackage;
+  }
+
+  async update(id: string, updateServicePackageDto: any): Promise<ServicePackage> {
+    const ServicePackage = await this.ServicePackageModel
+      .findByIdAndUpdate(id, updateServicePackageDto, { new: true })
+      .exec();
+    if (!ServicePackage) {
+      throw new NotFoundException(`ServicePackage with ID ${id} not found`);
+    }
+    return ServicePackage;
+  }
+
+  async remove(id: string): Promise<ServicePackage> {
+    const ServicePackage = await this.ServicePackageModel.findByIdAndDelete(id).exec();
+    if (!ServicePackage) {
+      throw new NotFoundException(`ServicePackage with ID ${id} not found`);
+    }
+    return ServicePackage;
+  }
+}
+
+================
+File: src/modules/shipment/controllers/shipment.controller.ts
+================
+import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
+import { ShipmentService } from '../services/shipment.service';
+import { Shipment } from '../schemas/shipment.schema';
+
+@Controller('api/shipments')
+export class ShipmentController {
+  constructor(private readonly shipmentService: ShipmentService) { }
+
+  @Post()
+  async create(@Body() createShipmentDto: any): Promise<Shipment> {
+    return this.shipmentService.create(createShipmentDto);
+  }
+
+  @Get()
+  async findAll(@Query() query: any): Promise<Shipment[]> {
+    return this.shipmentService.findAll(query);
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Shipment> {
+    return this.shipmentService.findOne(id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateShipmentDto: any,
+  ): Promise<Shipment> {
+    return this.shipmentService.update(id, updateShipmentDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<Shipment> {
+    return this.shipmentService.remove(id);
+  }
+
+  @Put(':id/status')
+  async updateStatus(
+    @Param('id') id: string,
+    @Body('status') status: string,
+  ): Promise<Shipment> {
+    return this.shipmentService.updateStatus(id, status);
+  }
+
+  @Put(':id/tracking')
+  async updateTracking(
+    @Param('id') id: string,
+    @Body() tracking: any,
+  ): Promise<Shipment> {
+    return this.shipmentService.updateTracking(id, tracking);
+  }
+
+  @Put(':id/carrier')
+  async updateCarrier(
+    @Param('id') id: string,
+    @Body('carrierId') carrierId: string,
+  ): Promise<Shipment> {
+    return this.shipmentService.updateCarrier(id, carrierId);
+  }
+
+  @Get('store/:storeId')
+  async findByStore(@Param('storeId') storeId: string): Promise<Shipment[]> {
+    return this.shipmentService.findByStore(storeId);
+  }
+
+  @Get('order/:orderId')
+  async findByOrder(@Param('orderId') orderId: string): Promise<Shipment[]> {
+    return this.shipmentService.findByOrder(orderId);
+  }
+}
+
+================
+File: src/modules/shipment/schemas/shipment.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'TrackingHistories' })
+export class TrackingHistory {
+  @Prop({ required: true })
+  status: string;
+
+  @Prop()
+  location: string;
+
+  @Prop({ default: Date.now })
+  timestamp: Date;
+
+  @Prop()
+  note: string;
+}
+
+export const TrackingHistorySchema = SchemaFactory.createForClass(TrackingHistory);
+
+@Schema({ timestamps: true, collection: 'Shipments' })
+export class Shipment extends Document {
+  @Prop({ unique: true, required: true })
+  shipmentId: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
+  storeId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Orders', required: true })
+  orderId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Customers', required: true })
+  customerId: Types.ObjectId;
+
+  @Prop({
+    enum: [
+      'Giao hàng nhanh',
+      'Giao hàng tiết kiệm',
+      'Viettel Post',
+      'Grab Express',
+      'Tự giao',
+    ],
+    required: true,
+  })
+  shippingMethod: string;
+
+  @Prop()
+  trackingNumber: string;
+
+  @Prop({ required: true })
+  shippingFee: number;
+
+  @Prop()
+  estimatedDeliveryDate: Date;
+
+  @Prop()
+  actualDeliveryDate: Date;
+
+  @Prop({
+    type: {
+      fullName: { type: String, required: true },
+      phone: { type: String, required: true },
+      address: { type: String, required: true },
+      ward: String,
+      district: String,
+      city: String,
+      province: String,
+      country: { type: String, default: 'Việt Nam' },
+    },
+  })
+  shippingAddress: {
+    fullName: string;
+    phone: string;
+    address: string;
+    ward: string;
+    district: string;
+    city: string;
+    province: string;
+    country: string;
+  };
+
+  @Prop({
+    enum: [
+      'Chờ xử lý',
+      'Đã nhận đơn',
+      'Đang vận chuyển',
+      'Đã giao hàng',
+      'Giao hàng thất bại',
+      'Đã hủy',
+    ],
+    default: 'Chờ xử lý',
+  })
+  status: string;
+
+  @Prop({ type: [TrackingHistorySchema] })
+  trackingHistory: TrackingHistory[];
+
+  @Prop()
+  notes: string;
+}
+
+export const ShipmentSchema = SchemaFactory.createForClass(Shipment);
+
+ShipmentSchema.index({ storeId: 1 });
+ShipmentSchema.index({ orderId: 1 });
+ShipmentSchema.index({ customerId: 1 });
+ShipmentSchema.index({ trackingNumber: 1 });
+
+================
+File: src/modules/shipment/services/shipment.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Shipment } from '../schemas/shipment.schema';
+
+@Injectable()
+export class ShipmentService {
+  constructor(
+    @InjectModel('Shipments')
+    private shipmentModel: Model<Shipment>,
+  ) { }
+
+  async create(createShipmentDto: any): Promise<Shipment> {
+    const lastShipment = await this.shipmentModel.findOne().sort({ shipmentId: -1 }).exec();
+    let newShipmentId = 'SM0001';
+  
+    if (lastShipment && lastShipment.shipmentId) {
+      const lastNumber = parseInt(lastShipment.shipmentId.replace('SM', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newShipmentId = `SM${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdShipment = new this.shipmentModel({
+      ...createShipmentDto,
+      shipmentId: newShipmentId
+    });
+  
+    return createdShipment.save();
+  }
+
+  async findAll(query: any = {}): Promise<Shipment[]> {
+    return this.shipmentModel.find(query).exec();
+  }
+
+  async findOne(id: string): Promise<Shipment> {
+    const shipment = await this.shipmentModel.findById(id).exec();
+    if (!shipment) {
+      throw new NotFoundException(`Shipment with ID ${id} not found`);
+    }
+    return shipment;
+  }
+
+  async update(id: string, updateShipmentDto: any): Promise<Shipment> {
+    const shipment = await this.shipmentModel
+      .findByIdAndUpdate(id, updateShipmentDto, { new: true })
+      .exec();
+    if (!shipment) {
+      throw new NotFoundException(`Shipment with ID ${id} not found`);
+    }
+    return shipment;
+  }
+
+  async remove(id: string): Promise<Shipment> {
+    const shipment = await this.shipmentModel.findByIdAndDelete(id).exec();
+    if (!shipment) {
+      throw new NotFoundException(`Shipment with ID ${id} not found`);
+    }
+    return shipment;
+  }
+
+  async updateStatus(id: string, status: string): Promise<Shipment> {
+    const shipment = await this.shipmentModel
+      .findByIdAndUpdate(id, { status }, { new: true })
+      .exec();
+    if (!shipment) {
+      throw new NotFoundException(`Shipment with ID ${id} not found`);
+    }
+    return shipment;
+  }
+
+  async updateTracking(id: string, tracking: any): Promise<Shipment> {
+    const shipment = await this.shipmentModel
+      .findByIdAndUpdate(id, { tracking }, { new: true })
+      .exec();
+    if (!shipment) {
+      throw new NotFoundException(`Shipment with ID ${id} not found`);
+    }
+    return shipment;
+  }
+
+  async updateCarrier(id: string, carrierId: string): Promise<Shipment> {
+    const shipment = await this.shipmentModel
+      .findByIdAndUpdate(id, { carrier: carrierId }, { new: true })
+      .exec();
+    if (!shipment) {
+      throw new NotFoundException(`Shipment with ID ${id} not found`);
+    }
+    return shipment;
+  }
+
+  async findByStore(storeId: string): Promise<Shipment[]> {
+    return this.shipmentModel.find({ storeId }).exec();
+  }
+
+  async findByOrder(orderId: string): Promise<Shipment[]> {
+    return this.shipmentModel.find({ order: orderId }).exec();
+  }
+}
+
+================
+File: src/modules/shipment/shipment.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Shipment, ShipmentSchema } from './schemas/shipment.schema';
+import { ShipmentController } from './controllers/shipment.controller';
+import { ShipmentService } from './services/shipment.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'Shipments', schema: ShipmentSchema }])
+  ],
+  controllers: [ShipmentController],
+  providers: [ShipmentService],
+  exports: [ShipmentService]
+})
+export class ShipmentModule { }
+
+================
+File: src/modules/store/controllers/store.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { StoreService } from '../services/store.service';
+import { Store } from '../schemas/store.schema';
+
+@Controller('api/stores')
+export class StoreController {
+  constructor(private readonly storeService: StoreService) { }
+
+  @Post()
+  create(@Body() createStoreDto: any) {
+    return this.storeService.create(createStoreDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.storeService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.storeService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateStoreDto: any) {
+    return this.storeService.update(id, updateStoreDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.storeService.remove(id);
+  }
+}
+
+================
+File: src/modules/store/schemas/store.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ timestamps: true, collection: 'Stores' })
+export class Store extends Document {
+  @Prop({ unique: true, required: true })
+  storeId: string;
+
+  @Prop({ enum: ['Cá nhân', 'Doanh nghiệp'] })
+  accountType: string;
+
+  @Prop({ required: true })
+  representative: string;
+
+  @Prop({ required: true })
+  phone: string;
+
+  @Prop()
+  email: string;
+
+  @Prop({ enum: ['Nam', 'Nữ', 'Khác'] })
+  gender: string;
+
+  @Prop()
+  dob: Date;
+
+  @Prop()
+  idCard: string;
+
+  @Prop()
+  issueDate: Date;
+
+  @Prop()
+  issuePlace: string;
+
+  @Prop()
+  address: string;
+
+  @Prop({ required: true })
+  storeName: string;
+
+  @Prop()
+  industry: string;
+
+  @Prop({ default: 0 })
+  branchCount: number;
+
+  @Prop({ default: 0 })
+  employeeCount: number;
+
+  @Prop({ enum: ['Đang sử dụng', 'Ngừng sử dụng'], default: 'Đang sử dụng' })
+  status: string;
+
+  @Prop()
+  expirationDate: Date;
+
+  @Prop({ type: Types.ObjectId, ref: 'ServicePackages' })
+  servicePackage: Types.ObjectId;
+
+  @Prop({ default: 0 })
+  warehouseCount: number;
+}
+
+export const StoreSchema = SchemaFactory.createForClass(Store);
+
+================
+File: src/modules/store/services/store.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Store } from '../schemas/store.schema';
+
+@Injectable()
+export class StoreService {
+  constructor(
+    @InjectModel('Stores') private storeModel: Model<Store>,
+  ) {}
+
+  async create(createStoreDto: any): Promise<Store> {
+    const lastStore = await this.storeModel.findOne().sort({ storeId: -1 }).exec();
+    let newStoreId = 'ST0001';
+  
+    if (lastStore && lastStore.storeId) {
+      const lastNumber = parseInt(lastStore.storeId.replace('ST', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newStoreId = `ST${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdStore = new this.storeModel({
+      ...createStoreDto,
+      storeId: newStoreId
+    });
+  
+    return createdStore.save();
+  }
+
+  async findAll(): Promise<Store[]> {
+    return this.storeModel.find().populate('servicePackage').exec();
+  }
+
+  async findOne(id: string): Promise<Store> {
+    const store = await this.storeModel.findById(id).populate('servicePackage').exec();
+    if (!store) {
+      throw new NotFoundException(`Store with ID ${id} not found`);
+    }
+    return store;
+  }
+
+  async update(id: string, updateStoreDto: any): Promise<Store> {
+    const store = await this.storeModel
+      .findByIdAndUpdate(id, updateStoreDto, { new: true })
+      .populate('servicePackage')
+      .exec();
+    if (!store) {
+      throw new NotFoundException(`Store with ID ${id} not found`);
+    }
+    return store;
+  }
+
+  async remove(id: string): Promise<Store> {
+    const store = await this.storeModel.findByIdAndDelete(id).exec();
+    if (!store) {
+      throw new NotFoundException(`Store with ID ${id} not found`);
+    }
+    return store;
+  }
+}
+
+================
+File: src/modules/store/store.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { StoreController } from './controllers/store.controller';
+import { StoreService } from './services/store.service';
+import { Store, StoreSchema } from './schemas/store.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: 'Stores', schema: StoreSchema },
+    ]),
+  ],
+  controllers: [StoreController],
+  providers: [StoreService],
+  exports: [StoreService],
+})
+export class StoreModule { }
+
+================
+File: src/modules/supplier-group/controllers/supplier-group.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { SupplierGroupService } from '../services/supplier-group.service';
+import { SupplierGroup } from '../schemas/supplier-group.schema';
+
+@Controller('api/supplier-groups')
+export class SupplierGroupController {
+  constructor(private readonly supplierGroupService: SupplierGroupService) { }
+
+  @Post()
+  async create(@Body() createBranchDto: any): Promise<SupplierGroup> {
+    return this.supplierGroupService.create(createBranchDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.supplierGroupService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.supplierGroupService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateSupplierGroupDto: any) {
+    return this.supplierGroupService.update(id, updateSupplierGroupDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.supplierGroupService.remove(id);
+  }
+}
+
+================
+File: src/modules/supplier-group/schemas/supplier-group.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ collection: 'SupplierGroups' })
+export class SupplierGroup extends Document {
+  @Prop({ unique: true, required: true })
+  groupId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  description: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const SupplierGroupSchema = SchemaFactory.createForClass(SupplierGroup);
+
+================
+File: src/modules/supplier-group/services/supplier-group.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { SupplierGroup } from '../schemas/supplier-group.schema';
+
+@Injectable()
+export class SupplierGroupService {
+  constructor(
+    @InjectModel('SupplierGroups') private SupplierGroupModel: Model<SupplierGroup>,
+  ) { }
+
+  async create(createSupplierGroupDto: any): Promise<SupplierGroup> {
+    const lastSupplierGroup = await this.SupplierGroupModel.findOne().sort({ groupId: -1 }).exec();
+    let newSupplierGroupId = 'SSG0001';
+  
+    if (lastSupplierGroup && lastSupplierGroup.groupId) {
+      const lastNumber = parseInt(lastSupplierGroup.groupId.replace('SSG', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newSupplierGroupId = `SSG${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdSupplierGroup = new this.SupplierGroupModel({
+      ...createSupplierGroupDto,
+      supplierGroupId: newSupplierGroupId
+    });
+  
+    return createdSupplierGroup.save();
+  }
+
+  async findAll(): Promise<SupplierGroup[]> {
+    return this.SupplierGroupModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<SupplierGroup> {
+    const SupplierGroup = await this.SupplierGroupModel.findById(id).exec();
+    if (!SupplierGroup) {
+      throw new NotFoundException(`SupplierGroup with ID ${id} not found`);
+    }
+    return SupplierGroup;
+  }
+
+  async update(id: string, updateSupplierGroupDto: any): Promise<SupplierGroup> {
+    const SupplierGroup = await this.SupplierGroupModel
+      .findByIdAndUpdate(id, updateSupplierGroupDto, { new: true })
+      .exec();
+    if (!SupplierGroup) {
+      throw new NotFoundException(`SupplierGroup with ID ${id} not found`);
+    }
+    return SupplierGroup;
+  }
+
+  async remove(id: string): Promise<SupplierGroup> {
+    const SupplierGroup = await this.SupplierGroupModel.findByIdAndDelete(id).exec();
+    if (!SupplierGroup) {
+      throw new NotFoundException(`SupplierGroup with ID ${id} not found`);
+    }
+    return SupplierGroup;
+  }
+}
+
+================
+File: src/modules/supplier-group/supplier-group.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { SupplierGroup, SupplierGroupSchema } from './schemas/supplier-group.schema';
+import { SupplierGroupController } from './controllers/supplier-group.controller';
+import { SupplierGroupService } from './services/supplier-group.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: 'SupplierGroups', schema: SupplierGroupSchema }])
+  ],
+  controllers: [SupplierGroupController],
+  providers: [SupplierGroupService],
+  exports: [SupplierGroupService]
+})
+export class SupplierGroupModule { }
+
+================
+File: src/modules/supplier/controllers/supplier.controller.ts
+================
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { SupplierService } from '../services/supplier.service';
+import { Supplier } from '../schemas/supplier.schema';
+
+@Controller('api/suppliers')
+export class SupplierController {
+  constructor(private readonly supplierService: SupplierService) { }
+
+  @Post()
+  create(@Body() createSupplierDto: any) {
+    return this.supplierService.create(createSupplierDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.supplierService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.supplierService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateSupplierDto: any) {
+    return this.supplierService.update(id, updateSupplierDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.supplierService.remove(id);
+  }
+}
+
+================
+File: src/modules/supplier/schemas/supplier.schema.ts
+================
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema({ collection: 'Suppliers' })
+export class Supplier extends Document {
+  @Prop({ unique: true, required: true })
+  supplierId: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  phone: string;
+
+  @Prop()
+  email: string;
+
+  @Prop()
+  address: string;
+
+  @Prop({ type: Types.ObjectId, ref: 'SupplierGroups' })
+  group: Types.ObjectId;
+
+  @Prop({ default: 0 })
+  debt: number;
+
+  @Prop({ default: 0 })
+  totalPurchases: number;
+
+  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  status: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date;
+}
+
+export const SupplierSchema = SchemaFactory.createForClass(Supplier);
+
+================
+File: src/modules/supplier/services/supplier.service.ts
+================
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Supplier } from '../schemas/supplier.schema';
+import { Product } from '../../product/schemas/product.schema';
+
+@Injectable()
+export class SupplierService {
+  constructor(
+    @InjectModel('Suppliers') private supplierModel: Model<Supplier>,
+  ) { }
+
+  async create(createSupplierDto: any): Promise<Supplier> {
+    const lastSupplier = await this.supplierModel.findOne().sort({ supplierId: -1 }).exec();
+    let newSupplierId = 'SSE0001';
+  
+    if (lastSupplier && lastSupplier.supplierId) {
+      const lastNumber = parseInt(lastSupplier.supplierId.replace('SSE', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newSupplierId = `SSE${nextNumber.toString().padStart(4, '0')}`;
+    }
+  
+    const createdSupplier = new this.supplierModel({
+      ...createSupplierDto,
+      supplierId: newSupplierId
+    });
+  
+    return createdSupplier.save();
+  }
+  async findAll(): Promise<Supplier[]> {
+    return this.supplierModel.find().populate('group').exec();
+  }
+
+  async findOne(id: string): Promise<Supplier> {
+    const supplier = await this.supplierModel.findById(id).populate('group').exec();
+    if (!supplier) {
+      throw new NotFoundException(`Supplier with ID ${id} not found`);
+    }
+    return supplier;
+  }
+
+  async update(id: string, updateSupplierDto: any): Promise<Supplier> {
+    const supplier = await this.supplierModel
+      .findByIdAndUpdate(id, updateSupplierDto, { new: true })
+      .populate('group')
+      .exec();
+    if (!supplier) {
+      throw new NotFoundException(`Supplier with ID ${id} not found`);
+    }
+    return supplier;
+  }
+
+  async remove(id: string): Promise<Supplier> {
+    const supplier = await this.supplierModel.findByIdAndDelete(id).exec();
+    if (!supplier) {
+      throw new NotFoundException(`Supplier with ID ${id} not found`);
+    }
+    return supplier;
+  }
+}
+
+================
+File: src/modules/supplier/supplier.module.ts
+================
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { SupplierController } from './controllers/supplier.controller';
+import { SupplierService } from './services/supplier.service';
+import { Supplier, SupplierSchema } from './schemas/supplier.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: 'Suppliers', schema: SupplierSchema }
+    ]),
+  ],
+  controllers: [SupplierController],
+  providers: [SupplierService],
+  exports: [SupplierService],
+})
+export class SupplierModule { }
+
+================
+File: test/app.e2e-spec.ts
+================
+import { Test, TestingModule } from '@nestjs/testing';
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { App } from 'supertest/types';
+import { AppModule } from './../src/app.module';
+
+describe('AppController (e2e)', () => {
+  let app: INestApplication<App>;
+
+  beforeEach(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
+
+  it('/ (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/')
+      .expect(200)
+      .expect('Hello World!');
+  });
+});
+
+================
+File: test/jest-e2e.json
+================
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  }
+}
+
+================
+File: tsconfig.build.json
+================
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+}
+
+================
+File: tsconfig.json
+================
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false
+  }
+}
+
+
+
+================================================================
+End of Codebase
+================================================================
