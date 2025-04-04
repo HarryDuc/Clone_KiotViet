@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { WorkScheduleService } from '../services/work-schedule.service';
-import { WorkSchedule } from '../work-schedule.schema';
+import { WorkSchedule } from '../schemas/work-schedule.schema';
 
 @Controller('work-schedules')
 export class WorkScheduleController {

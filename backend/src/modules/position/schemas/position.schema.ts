@@ -4,19 +4,19 @@ import { Document } from 'mongoose';
 @Schema({ collection: 'Positions' })
 export class Position extends Document {
   @Prop({ unique: true, required: true })
-  positionId: string;
+  positionId: string; // Mã vị trí
 
   @Prop({ required: true })
-  name: string;
+  name: string; // Tên vị trí
 
   @Prop()
-  description: string;
+  description: string; // Mô tả
 
-  @Prop({ enum: ['Hoạt động', 'Ngừng hoạt động'], default: 'Hoạt động' })
-  status: string;
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
+  status: string; // Trạng thái
 
   @Prop({ default: Date.now })
-  createdAt: Date;
+  createdAt: Date; // Thời gian tạo
 }
 
 export const PositionSchema = SchemaFactory.createForClass(Position);

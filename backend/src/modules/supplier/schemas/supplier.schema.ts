@@ -21,17 +21,18 @@ export class Supplier extends Document {
   @Prop({ type: Types.ObjectId, ref: 'SupplierGroups' })
   group: Types.ObjectId;
 
-  @Prop({ default: 0 })
-  debt: number;
-
-  @Prop({ default: 0 })
-  totalPurchases: number;
-
-  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
   status: string;
 
   @Prop({ default: Date.now })
   createdAt: Date;
+
+  // Trường mới
+  @Prop({ type: [Types.ObjectId], ref: 'Products' })
+  products: Types.ObjectId[];
+
+  @Prop({ type: [Types.ObjectId], ref: 'Transactions' })
+  transactionHistory: Types.ObjectId[];
 }
 
 export const SupplierSchema = SchemaFactory.createForClass(Supplier);

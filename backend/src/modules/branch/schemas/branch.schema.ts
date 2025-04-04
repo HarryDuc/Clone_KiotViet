@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema({ collection: 'Branches' })
 export class Branch extends Document {
@@ -13,6 +13,14 @@ export class Branch extends Document {
   createdAt: Date;
 
   @Prop({ default: Date.now })
-  updateAt: Date;
+  updatedAt: Date;
+
+  // Trường mới
+  @Prop({ type: Types.ObjectId, ref: 'Employees' })
+  managerId: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'Warehouses' })
+  warehouseId: Types.ObjectId;
 }
+
 export const BranchSchema = SchemaFactory.createForClass(Branch);

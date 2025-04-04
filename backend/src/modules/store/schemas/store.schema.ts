@@ -1,64 +1,53 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ timestamps: true, collection: 'Stores' })
+@Schema({ collection: 'Stores' })
 export class Store extends Document {
   @Prop({ unique: true, required: true })
   storeId: string;
 
-  @Prop({ enum: ['Cá nhân', 'Doanh nghiệp'] })
-  accountType: string;
+  @Prop({ required: true })
+  name: string; // Tên cửa hàng
 
   @Prop({ required: true })
-  representative: string;
+  phone: string; // Số điện thoại cửa hàng
 
   @Prop({ required: true })
-  phone: string;
-
-  @Prop()
-  email: string;
-
-  @Prop({ enum: ['Nam', 'Nữ', 'Khác'] })
-  gender: string;
-
-  @Prop()
-  dob: Date;
-
-  @Prop()
-  idCard: string;
-
-  @Prop()
-  issueDate: Date;
-
-  @Prop()
-  issuePlace: string;
-
-  @Prop()
-  address: string;
+  country: string; // Quốc gia
 
   @Prop({ required: true })
-  storeName: string;
+  region: string; // Khu vực
 
-  @Prop()
-  industry: string;
+  @Prop({ required: true })
+  businessIndustry: string; // Ngành hàng kinh doanh
 
-  @Prop({ default: 0 })
-  branchCount: number;
+  @Prop({ type: Types.ObjectId, ref: 'Users', required: true })
+  managerId: Types.ObjectId; // Liên kết với tài khoản chính (Store Owner)
 
-  @Prop({ default: 0 })
-  employeeCount: number;
-
-  @Prop({ enum: ['Đang sử dụng', 'Ngừng sử dụng'], default: 'Đang sử dụng' })
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
   status: string;
 
+  @Prop({ default: Date.now })
+  createdAt: Date;
+
+  // Các trường tùy chọn khác (từ gợi ý trước)
   @Prop()
-  expirationDate: Date;
+  address?: string;
+
+  @Prop()
+  email?: string;
+
+  @Prop({ type: { timezone: String } })
+  settings?: { timezone: string };
 
   @Prop({ type: Types.ObjectId, ref: 'ServicePackages' })
-  servicePackage: Types.ObjectId;
+  servicePackage?: Types.ObjectId;
 
-  @Prop({ default: 0 })
-  warehouseCount: number;
+  @Prop({ type: [Types.ObjectId], ref: 'Branches' })
+  branches?: Types.ObjectId[];
+
+  @Prop([String])
+  paymentMethods?: string[];
 }
 
 export const StoreSchema = SchemaFactory.createForClass(Store);

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { BranchService } from '../services/branch.service';
 import { Branch } from '../schemas/branch.schema';
-import { CreateBranchDto } from '../dtos/create-branch.dto';
+import { CreateBranchDto } from '../dtos/branch.dto';
 
 @Controller('api/branches')
 export class BranchController {

@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/
 import { BlogPostService } from '../services/blog-post.service';
 import { BlogPost } from '../schemas/blog-post.schema';
 
-@Controller('blog-posts')
+@Controller('api/blog-posts')
 export class BlogPostController {
   constructor(private readonly blogPostService: BlogPostService) { }
 

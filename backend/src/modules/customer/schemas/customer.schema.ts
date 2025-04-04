@@ -4,43 +4,43 @@ import { Document, Types } from 'mongoose';
 @Schema({ collection: 'Customers' })
 export class Customer extends Document {
   @Prop({ unique: true, required: true })
-  customerId: string; // Mã khách hàng duy nhất
+  customerId: string; // Mã khách hàng
 
   @Prop({ required: true })
   name: string; // Tên khách hàng
 
   @Prop()
-  phone: string; // Số điện thoại liên hệ
+  phone: string; // Số điện thoại
 
   @Prop()
-  email: string; // Email liên hệ
+  email: string; // Email
 
   @Prop()
   address: string; // Địa chỉ
 
-  @Prop({ enum: ['Cá nhân', 'Công ty'] })
-  customerType: string; // Loại khách hàng: Cá nhân hoặc Công ty
+  @Prop({ enum: ['individual', 'company'], required: true })
+  customerType: string; // Loại khách hàng
 
   @Prop()
-  taxCode: string; // Mã số thuế (cho khách hàng công ty)
+  taxCode: string; // Mã số thuế
 
   @Prop()
-  idCard: string; // Số CMND/CCCD (cho khách hàng cá nhân)
+  idCard: string; // CMND/CCCD
 
   @Prop({ type: Types.ObjectId, ref: 'CustomerGroups' })
-  group: Types.ObjectId; // Liên kết với nhóm khách hàng
+  group: Types.ObjectId; // Mã nhóm khách hàng
 
   @Prop({ default: 0 })
-  debt: number; // Số tiền nợ hiện tại
+  debt: number; // Nợ hiện tại
 
   @Prop({ default: 0 })
-  totalSales: number; // Tổng doanh số mua hàng
+  totalSales: number; // Tổng doanh số
 
-  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
-  status: string; // Trạng thái hoạt động của khách hàng
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
+  status: string; // Trạng thái
 
   @Prop({ default: Date.now })
-  createdAt: Date; // Ngày tạo khách hàng
+  createdAt: Date; // Thời gian tạo
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

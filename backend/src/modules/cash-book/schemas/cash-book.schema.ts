@@ -64,9 +64,3 @@ export class CashBook extends Document {
 }
 
 export const CashBookSchema = SchemaFactory.createForClass(CashBook);
-
-CashBookSchema.index({ storeId: 1 });
-CashBookSchema.index({ type: 1 });
-CashBookSchema.index({ category: 1 });
-CashBookSchema.index({ date: 1 });
-CashBookSchema.index({ referenceId: 1 });

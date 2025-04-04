@@ -4,16 +4,16 @@ import { Document } from 'mongoose';
 @Schema({ collection: 'CarrierGroups' })
 export class CarrierGroup extends Document {
   @Prop({ unique: true, required: true })
-  groupId: string;
+  groupId: string; // Mã nhóm đơn vị vận chuyển
 
   @Prop({ required: true })
-  name: string;
+  name: string; // Tên nhóm
 
   @Prop()
-  description: string;
+  description: string; // Mô tả
 
   @Prop({ default: Date.now })
-  createdAt: Date;
+  createdAt: Date; // Thời gian tạo
 }
 
 export const CarrierGroupSchema = SchemaFactory.createForClass(CarrierGroup);

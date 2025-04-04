@@ -1,83 +1,59 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
-export class Comment {
-  @Prop({ type: Types.ObjectId, ref: 'Users' })
-  user: Types.ObjectId;
-
-  @Prop()
-  content: string;
-
-  @Prop({ default: Date.now })
-  createdAt: Date;
-}
-
-export const CommentSchema = SchemaFactory.createForClass(Comment);
-
-@Schema({ timestamps: true })
+@Schema({ collection: 'BlogPosts' })
 export class BlogPost extends Document {
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
-  storeId: Types.ObjectId;
+  storeId: Types.ObjectId; // Mã cửa hàng
 
   @Prop({ required: true })
-  title: string;
+  title: string; // Tiêu đề
 
   @Prop({ required: true, unique: true })
-  slug: string;
+  slug: string; // Đường dẫn tĩnh
 
-  @Prop({ type: Types.ObjectId, ref: 'BlogCategories' })
-  category: Types.ObjectId;
-
-  @Prop()
-  thumbnail: string;
+  @Prop({ type: Types.ObjectId, ref: 'BlogCategories', required: true })
+  category: Types.ObjectId; // Mã danh mục
 
   @Prop()
-  content: string;
+  thumbnail: string; // Ảnh đại diện
+
+  @Prop({ required: true })
+  content: string; // Nội dung
 
   @Prop()
-  excerpt: string;
+  excerpt: string; // Đoạn trích
 
-  @Prop({ type: Types.ObjectId, ref: 'Employees' })
-  author: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Employees', required: true })
+  author: Types.ObjectId; // Mã tác giả
 
-  @Prop([String])
-  tags: string[];
+  @Prop({ type: [String], default: [] })
+  tags: string[]; // Thẻ tag
 
-  @Prop({ enum: ['Bản nháp', 'Đã xuất bản', 'Đã lưu trữ'], default: 'Bản nháp' })
-  status: string;
+  @Prop({ enum: ['draft', 'published', 'archived'], default: 'draft' })
+  status: string; // Trạng thái
 
   @Prop()
-  publishedAt: Date;
+  publishedAt: Date; // Thời gian xuất bản
 
   @Prop({ default: 0 })
-  views: number;
+  views: number; // Lượt xem
 
   @Prop({ default: 0 })
-  likes: number;
+  likes: number; // Lượt thích
 
-  @Prop({ type: [CommentSchema] })
-  comments: Comment[];
+  @Prop({ type: [{ user: { type: Types.ObjectId, ref: 'Users' }, content: String, createdAt: Date }], default: [] })
+  comments: { user: Types.ObjectId; content: string; createdAt: Date }[]; // Bình luận
 
-  @Prop({
-    type: {
-      metaTitle: String,
-      metaDescription: String,
-      ogImage: String,
-    },
-  })
+  @Prop({ type: { metaTitle: String, metaDescription: String, ogImage: String } })
   seo: {
-    metaTitle: string;
-    metaDescription: string;
-    ogImage: string;
+    metaTitle: string; // Tiêu đề SEO
+    metaDescription: string; // Mô tả SEO
+    ogImage: string; // Ảnh Open Graph
   };
+
+  @Prop()
+  title_en?: string; // Tiêu đề tiếng Anh
 }
 
 export const BlogPostSchema = SchemaFactory.createForClass(BlogPost);
-
-BlogPostSchema.index({ storeId: 1 });
-BlogPostSchema.index({ slug: 1 }, { unique: true });
-BlogPostSchema.index({ category: 1 });
-BlogPostSchema.index({ status: 1 });
-BlogPostSchema.index({ publishedAt: 1 });
-BlogPostSchema.index({ tags: 1 });

@@ -1,39 +1,25 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ collection: 'PurchaseOrderProducts' })
-export class PurchaseOrderProduct {
-  @Prop({ type: Types.ObjectId, ref: 'Products' })
-  productId: Types.ObjectId;
-
-  @Prop()
-  quantity: number;
-
-  @Prop()
-  price: number;
-}
-
-export const PurchaseOrderProductSchema = SchemaFactory.createForClass(PurchaseOrderProduct);
-
-@Schema({ timestamps: true, collection: 'PurchaseOrders' })
+@Schema({ collection: 'PurchaseOrders' })
 export class PurchaseOrder extends Document {
   @Prop({ unique: true, required: true })
-  purchaseOrderId: string;
+  purchaseOrderId: string; // Mã đơn đặt hàng
 
-  @Prop()
-  purchaseOrderCode: string;
+  @Prop({ type: Types.ObjectId, ref: 'Suppliers', required: true })
+  supplierId: Types.ObjectId; // Mã nhà cung cấp
 
-  @Prop({ type: Types.ObjectId, ref: 'Suppliers' })
-  supplierId: Types.ObjectId;
+  @Prop({ type: [{ productId: Types.ObjectId, quantity: Number, price: Number }] })
+  products: { productId: Types.ObjectId; quantity: number; price: number }[]; // Sản phẩm
 
-  @Prop({ type: [PurchaseOrderProductSchema] })
-  products: PurchaseOrderProduct[];
+  @Prop({ required: true })
+  totalAmount: number; // Tổng tiền
 
-  @Prop()
-  totalAmount: number;
+  @Prop({ enum: ['pending', 'confirmed', 'shipping', 'completed', 'cancelled'], default: 'pending' })
+  status: string; // Trạng thái
 
-  @Prop({ enum: ['Phiếu tạm thời', 'Đã nhập hàng', 'Đã hủy'], default: 'Phiếu tạm thời' })
-  status: string;
+  @Prop({ default: Date.now })
+  createdAt: Date; // Thời gian tạo
 }
 
 export const PurchaseOrderSchema = SchemaFactory.createForClass(PurchaseOrder);

@@ -1,107 +1,28 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ collection: 'TrackingHistories' })
-export class TrackingHistory {
-  @Prop({ required: true })
-  status: string;
-
-  @Prop()
-  location: string;
-
-  @Prop({ default: Date.now })
-  timestamp: Date;
-
-  @Prop()
-  note: string;
-}
-
-export const TrackingHistorySchema = SchemaFactory.createForClass(TrackingHistory);
-
-@Schema({ timestamps: true, collection: 'Shipments' })
+@Schema({ collection: 'Shipments' })
 export class Shipment extends Document {
   @Prop({ unique: true, required: true })
-  shipmentId: string;
+  shipmentId: string; // Mã vận chuyển, định danh duy nhất
 
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
-  storeId: Types.ObjectId;
+  storeId: Types.ObjectId; // Mã cửa hàng, liên kết đến bảng Stores
 
   @Prop({ type: Types.ObjectId, ref: 'Orders', required: true })
-  orderId: Types.ObjectId;
+  orderId: Types.ObjectId; // Mã đơn hàng, liên kết đến bảng Orders
 
   @Prop({ type: Types.ObjectId, ref: 'Customers', required: true })
-  customerId: Types.ObjectId;
-
-  @Prop({
-    enum: [
-      'Giao hàng nhanh',
-      'Giao hàng tiết kiệm',
-      'Viettel Post',
-      'Grab Express',
-      'Tự giao',
-    ],
-    required: true,
-  })
-  shippingMethod: string;
-
-  @Prop()
-  trackingNumber: string;
+  customerId: Types.ObjectId; // Mã khách hàng, liên kết đến bảng Customers
 
   @Prop({ required: true })
-  shippingFee: number;
+  shippingAddress: string; // Địa chỉ giao hàng
 
-  @Prop()
-  estimatedDeliveryDate: Date;
+  @Prop({ enum: ['pending', 'shipped', 'delivered', 'cancelled'], default: 'pending' })
+  status: string; // Trạng thái: đang chờ, đã giao, hoàn thành, hủy
 
-  @Prop()
-  actualDeliveryDate: Date;
-
-  @Prop({
-    type: {
-      fullName: { type: String, required: true },
-      phone: { type: String, required: true },
-      address: { type: String, required: true },
-      ward: String,
-      district: String,
-      city: String,
-      province: String,
-      country: { type: String, default: 'Việt Nam' },
-    },
-  })
-  shippingAddress: {
-    fullName: string;
-    phone: string;
-    address: string;
-    ward: string;
-    district: string;
-    city: string;
-    province: string;
-    country: string;
-  };
-
-  @Prop({
-    enum: [
-      'Chờ xử lý',
-      'Đã nhận đơn',
-      'Đang vận chuyển',
-      'Đã giao hàng',
-      'Giao hàng thất bại',
-      'Đã hủy',
-    ],
-    default: 'Chờ xử lý',
-  })
-  status: string;
-
-  @Prop({ type: [TrackingHistorySchema] })
-  trackingHistory: TrackingHistory[];
-
-  @Prop()
-  notes: string;
+  @Prop({ default: Date.now })
+  createdAt: Date; // Thời gian tạo bản ghi
 }
 
 export const ShipmentSchema = SchemaFactory.createForClass(Shipment);
-
-ShipmentSchema.index({ storeId: 1 });
-ShipmentSchema.index({ orderId: 1 });
-ShipmentSchema.index({ customerId: 1 });
-ShipmentSchema.index({ trackingNumber: 1 });

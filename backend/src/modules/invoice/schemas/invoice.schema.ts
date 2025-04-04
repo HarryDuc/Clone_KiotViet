@@ -1,91 +1,55 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ collection: 'InvoiceItems' })
-export class InvoiceItem {
-  @Prop({ type: Types.ObjectId, ref: 'Products', required: true })
-  productId: Types.ObjectId;
-
-  @Prop({ required: true })
-  quantity: number;
-
-  @Prop({ required: true })
-  unitPrice: number;
-
-  @Prop({ default: 0 })
-  discount: number;
-
-  @Prop({ required: true })
-  total: number;
-}
-
-export const InvoiceItemSchema = SchemaFactory.createForClass(InvoiceItem);
-
-@Schema({ timestamps: true, collection: 'Invoices' })
+@Schema({ collection: 'Invoices' })
 export class Invoice extends Document {
   @Prop({ unique: true, required: true })
-  invoiceId: string;
+  invoiceId: string; // Mã hóa đơn
 
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
-  storeId: Types.ObjectId;
+  storeId: Types.ObjectId; // Mã cửa hàng
 
   @Prop({ type: Types.ObjectId, ref: 'Orders', required: true })
-  orderId: Types.ObjectId;
+  orderId: Types.ObjectId; // Mã đơn hàng
 
   @Prop({ type: Types.ObjectId, ref: 'Customers', required: true })
-  customerId: Types.ObjectId;
+  customerId: Types.ObjectId; // Mã khách hàng
 
   @Prop({ required: true })
-  invoiceNumber: string;
+  invoiceNumber: string; // Số hóa đơn
 
   @Prop({ required: true, default: Date.now })
-  invoiceDate: Date;
+  invoiceDate: Date; // Ngày hóa đơn
 
   @Prop()
-  dueDate: Date;
+  dueDate: Date; // Ngày đến hạn
 
-  @Prop({ type: [InvoiceItemSchema] })
-  items: InvoiceItem[];
-
-  @Prop({ required: true })
-  subtotal: number;
-
-  @Prop({ default: 0 })
-  tax: number;
-
-  @Prop({ default: 0 })
-  shipping: number;
+  @Prop({ type: [{ productId: Types.ObjectId, quantity: Number, unitPrice: Number, discount: Number, total: Number }] })
+  items: { productId: Types.ObjectId; quantity: number; unitPrice: number; discount: number; total: number }[]; // Chi tiết hóa đơn
 
   @Prop({ required: true })
-  total: number;
+  subtotal: number; // Tạm tính
 
-  @Prop({
-    enum: ['Tiền mặt', 'Chuyển khoản', 'Thẻ tín dụng', 'Ví điện tử'],
-    required: true,
-  })
-  paymentMethod: string;
+  @Prop({ default: 0 })
+  tax: number; // Thuế
 
-  @Prop({
-    enum: [
-      'Chưa thanh toán',
-      'Đã thanh toán một phần',
-      'Đã thanh toán',
-      'Đã hủy',
-    ],
-    default: 'Chưa thanh toán',
-  })
-  paymentStatus: string;
+  @Prop({ default: 0 })
+  shipping: number; // Phí vận chuyển
+
+  @Prop({ required: true })
+  total: number; // Tổng cộng
+
+  @Prop({ enum: ['cash', 'bank_transfer', 'credit_card', 'wallet'], required: true })
+  paymentMethod: string; // Phương thức thanh toán
+
+  @Prop({ enum: ['unpaid', 'partial', 'paid', 'cancelled'], default: 'unpaid' })
+  paymentStatus: string; // Trạng thái thanh toán
 
   @Prop()
-  notes: string;
+  notes: string; // Ghi chú
 
-  @Prop({ enum: ['Draft', 'Issued', 'Cancelled', 'Void'], default: 'Draft' })
-  status: string;
+  @Prop({ enum: ['draft', 'issued', 'cancelled', 'void'], default: 'draft' })
+  status: string; // Trạng thái hóa đơn
 }
 
 export const InvoiceSchema = SchemaFactory.createForClass(Invoice);
-
-InvoiceSchema.index({ storeId: 1 });
-InvoiceSchema.index({ orderId: 1 });
-InvoiceSchema.index({ customerId: 1 });
-InvoiceSchema.index({ invoiceNumber: 1 });

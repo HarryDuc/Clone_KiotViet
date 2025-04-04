@@ -1,46 +1,46 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ timestamps: true, collection: 'Payrolls' })
+@Schema({ collection: 'Payrolls' })
 export class Payroll extends Document {
   @Prop({ unique: true, required: true })
-  payrollId: string;
+  payrollId: string; // Mã bảng lương
 
-  @Prop({ type: Types.ObjectId, ref: 'Employees' })
-  employeeId: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Employees', required: true })
+  employeeId: Types.ObjectId; // Mã nhân viên
 
-  @Prop()
-  month: number;
+  @Prop({ required: true })
+  month: number; // Tháng
 
-  @Prop()
-  year: number;
+  @Prop({ required: true })
+  year: number; // Năm
 
-  @Prop()
-  basicSalary: number;
-
-  @Prop({ default: 0 })
-  bonus: number;
+  @Prop({ required: true })
+  basicSalary: number; // Lương cơ bản
 
   @Prop({ default: 0 })
-  commission: number;
+  bonus: number; // Thưởng
 
   @Prop({ default: 0 })
-  allowance: number;
+  commission: number; // Hoa hồng
 
   @Prop({ default: 0 })
-  deduction: number;
-
-  @Prop()
-  total: number;
+  allowance: number; // Phụ cấp
 
   @Prop({ default: 0 })
-  paid: number;
+  deduction: number; // Khấu trừ
 
-  @Prop({ enum: ['Đang tạo', 'Tạm tính', 'Đã chốt lương', 'Đã hủy'], default: 'Đang tạo' })
-  status: string;
+  @Prop({ required: true })
+  total: number; // Tổng lương
 
-  @Prop({ type: Types.ObjectId, ref: 'Branches' })
-  branch: Types.ObjectId;
+  @Prop({ default: 0 })
+  paid: number; // Đã trả
+
+  @Prop({ enum: ['creating', 'calculated', 'confirmed', 'cancelled'], default: 'creating' })
+  status: string; // Trạng thái
+
+  @Prop({ type: Types.ObjectId, ref: 'Branches', required: true })
+  branch: Types.ObjectId; // Mã chi nhánh
 }
 
 export const PayrollSchema = SchemaFactory.createForClass(Payroll);

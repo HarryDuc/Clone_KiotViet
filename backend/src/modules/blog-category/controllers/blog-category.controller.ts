@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
-import { BlogCategoryService } from '../../services/blog-category.service';
+import { BlogCategoryService } from '../services/blog-category.service';
 import { BlogCategory } from '../schemas/blog-category.schema';
 
-@Controller('blog-categories')
+@Controller('api/blog-categories')
 export class BlogCategoryController {
   constructor(private readonly blogCategoryService: BlogCategoryService) { }
 

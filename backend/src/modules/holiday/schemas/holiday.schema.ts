@@ -1,53 +1,41 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ timestamps: true, collection: 'Holidays' })
+@Schema({ collection: 'Holidays' })
 export class Holiday extends Document {
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
-  storeId: Types.ObjectId;
+  storeId: Types.ObjectId; // Mã cửa hàng
 
   @Prop({ required: true })
-  name: string;
+  name: string; // Tên ngày lễ
 
-  @Prop({ enum: ['Ngày lễ', 'Ngày đặc biệt', 'Sự kiện của công ty'], required: true })
-  type: string;
-
-  @Prop({ required: true })
-  startDate: Date;
+  @Prop({ enum: ['holiday', 'special', 'company'], required: true })
+  type: string; // Loại ngày lễ
 
   @Prop({ required: true })
-  endDate: Date;
+  startDate: Date; // Ngày bắt đầu
+
+  @Prop({ required: true })
+  endDate: Date; // Ngày kết thúc
 
   @Prop()
-  duration: number;
+  duration: number; // Thời gian (ngày)
 
   @Prop()
-  description: string;
+  description: string; // Mô tả
 
   @Prop({ default: false })
-  isRecurring: boolean;
+  isRecurring: boolean; // Lặp lại hàng năm
 
-  @Prop({
-    type: {
-      frequency: { type: String, enum: ['Hàng năm', 'Hàng tháng', 'Hàng tuần'] },
-      interval: Number,
-      endAfter: Date,
-    },
-  })
+  @Prop({ type: { frequency: String, interval: Number, endAfter: Date } })
   recurringPattern: {
-    frequency: string;
-    interval: number;
-    endAfter: Date;
+    frequency: string; // Tần suất lặp
+    interval: number; // Khoảng cách
+    endAfter: Date; // Kết thúc sau
   };
 
-  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
-  status: string;
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
+  status: string; // Trạng thái
 }
 
 export const HolidaySchema = SchemaFactory.createForClass(Holiday);
-
-HolidaySchema.index({ storeId: 1 });
-HolidaySchema.index({ startDate: 1 });
-HolidaySchema.index({ endDate: 1 });
-HolidaySchema.index({ type: 1 });
-HolidaySchema.index({ status: 1 });

@@ -1,39 +1,25 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ collection: 'ReturnProducts' })
-export class ReturnProduct {
-  @Prop({ type: Types.ObjectId, ref: 'Products' })
-  productId: Types.ObjectId;
-
-  @Prop()
-  quantity: number;
-}
-
-export const ReturnProductSchema = SchemaFactory.createForClass(ReturnProduct);
-
-@Schema({ timestamps: true, collection: 'Returns' })
+@Schema({ collection: 'Returns' })
 export class Return extends Document {
   @Prop({ unique: true, required: true })
-  returnId: string;
+  returnId: string; // Mã trả hàng
 
-  @Prop()
-  returnCode: string;
+  @Prop({ type: Types.ObjectId, ref: 'Orders', required: true })
+  orderId: Types.ObjectId; // Mã đơn hàng
 
-  @Prop({ type: Types.ObjectId, ref: 'Orders' })
-  orderId: Types.ObjectId;
+  @Prop({ type: [{ productId: Types.ObjectId, quantity: Number }] })
+  products: { productId: Types.ObjectId; quantity: number }[]; // Sản phẩm trả
 
-  @Prop({ type: [ReturnProductSchema] })
-  products: ReturnProduct[];
+  @Prop({ required: true })
+  totalAmount: number; // Tổng tiền trả
 
-  @Prop()
-  reason: string;
+  @Prop({ enum: ['pending', 'confirmed', 'completed', 'cancelled'], default: 'pending' })
+  status: string; // Trạng thái
 
-  @Prop()
-  totalRefund: number;
-
-  @Prop({ enum: ['Đã trả', 'Đã hủy'], default: 'Đã trả' })
-  status: string;
+  @Prop({ default: Date.now })
+  createdAt: Date; // Thời gian tạo
 }
 
 export const ReturnSchema = SchemaFactory.createForClass(Return);

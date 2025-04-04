@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ timestamps: true })
+@Schema({ collection: 'BlogCategories' })
 export class BlogCategory extends Document {
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
   storeId: Types.ObjectId;
@@ -21,25 +21,18 @@ export class BlogCategory extends Document {
   @Prop({ default: 0 })
   order: number;
 
-  @Prop({ enum: ['Đang hoạt động', 'Ngừng hoạt động'], default: 'Đang hoạt động' })
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
   status: string;
 
-  @Prop({
-    type: {
-      metaTitle: String,
-      metaDescription: String,
-    },
-  })
-  seo: {
-    metaTitle: string;
-    metaDescription: string;
-  };
+  @Prop({ type: { metaTitle: String, metaDescription: String } })
+  seo: { metaTitle: string; metaDescription: string };
+
+  // Trường mới
+  @Prop()
+  name_en: string; // Tên tiếng Anh
+
+  @Prop()
+  description_en: string; // Mô tả tiếng Anh
 }
 
 export const BlogCategorySchema = SchemaFactory.createForClass(BlogCategory);
-
-BlogCategorySchema.index({ storeId: 1 });
-BlogCategorySchema.index({ slug: 1 }, { unique: true });
-BlogCategorySchema.index({ parentCategory: 1 });
-BlogCategorySchema.index({ status: 1 });
-BlogCategorySchema.index({ order: 1 });

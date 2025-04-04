@@ -1,133 +1,111 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-
-@Schema({ collection: 'Bonuses' })
-export class Bonus {
-  @Prop({ enum: ['Doanh thu cá nhân', 'Lợi nhuận chi nhánh', 'Lợi nhuận gộp'] })
-  type: string;
-
-  @Prop({ enum: ['Tổng doanh thu', 'Bậc thang doanh thu', 'Vượt doanh thu'] })
-  form: string;
-
-  @Prop()
-  value: number;
-}
-
-export const BonusSchema = SchemaFactory.createForClass(Bonus);
-
-@Schema({ collection: 'Allowances' })
-export class Allowance {
-  @Prop()
-  name: string;
-
-  @Prop({ enum: ['Theo ngày', 'Hàng tháng cố định', 'Hàng tháng tính trên ngày công'] })
-  type: string;
-
-  @Prop()
-  value: number;
-
-  @Prop({ enum: ['VND', '%'] })
-  valueType: string;
-}
-
-export const AllowanceSchema = SchemaFactory.createForClass(Allowance);
-
-@Schema({ collection: 'Deductions' })
-export class Deduction {
-  @Prop()
-  name: string;
-
-  @Prop({ enum: ['Đi muộn', 'Về sớm', 'Cố định'] })
-  type: string;
-
-  @Prop({ enum: ['Theo số lần', 'Theo phút'] })
-  condition: string;
-
-  @Prop()
-  value: number;
-}
-
-export const DeductionSchema = SchemaFactory.createForClass(Deduction);
-
-@Schema({ timestamps: true, collection: 'Employees' })
+@Schema({ collection: 'Employees' })
 export class Employee extends Document {
   @Prop({ unique: true, required: true })
-  employeeId: string;
+  employeeId: string; // Mã nhân viên
 
   @Prop({ required: true })
-  name: string;
+  name: string; // Tên nhân viên
 
-  @Prop()
-  phone: string;
+  @Prop({ required: true })
+  phone: string; // Số điện thoại
 
-  @Prop()
-  email: string;
+  @Prop({ type: Types.ObjectId, ref: 'Stores' })
+  storeId: Types.ObjectId; // Chi nhánh làm việc
 
-  @Prop()
-  address: string;
-
-  @Prop({ type: Types.ObjectId, ref: 'Branches' })
-  branchSalary: Types.ObjectId;
-
-  @Prop({ type: Types.ObjectId, ref: 'Branches' })
-  branchWork: Types.ObjectId;
-
-  @Prop()
-  startDate: Date;
-
-  @Prop({ type: Types.ObjectId, ref: 'Positions' })
-  position: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Stores' })
+  payrollStoreId: Types.ObjectId; // Chi nhánh trả lương
 
   @Prop({ type: Types.ObjectId, ref: 'Departments' })
-  department: Types.ObjectId;
+  departmentId: Types.ObjectId; // Mã phòng ban
 
-  @Prop({ type: Types.ObjectId, ref: 'Users' })
-  userAccount: Types.ObjectId;
-
-  @Prop()
-  idCard: string;
+  @Prop({ type: Types.ObjectId, ref: 'Positions' })
+  positionId: Types.ObjectId; // Mã chức danh
 
   @Prop()
-  dob: Date;
-
-  @Prop({ enum: ['Nam', 'Nữ', 'Khác'] })
-  gender: string;
-
-  @Prop({ enum: ['Theo ca', 'Theo giờ', 'Theo ngày công', 'Cố định'] })
-  salaryType: string;
+  startDate: Date; // Ngày bắt đầu làm việc
 
   @Prop({
     type: {
+      gender: String,
+      dateOfBirth: Date,
+      idNumber: String,
+    },
+  })
+  personalInfo: {
+    gender: string; // Giới tính
+    dateOfBirth: Date; // Ngày sinh
+    idNumber: string; // CMND/CCCD
+  }; // Thông tin cá nhân
+
+  @Prop({
+    type: {
+      address: String,
+      email: String,
+      facebook: String,
+    },
+  })
+  contactInfo: {
+    address: string; // Địa chỉ
+    email: string; // Email
+    facebook: string; // Facebook
+  }; // Thông tin liên hệ
+
+  @Prop({
+    type: {
+      salaryType: String,
+      baseSalary: Number,
       shiftRate: Number,
       hourlyRate: Number,
       dailyRate: Number,
-      fixedRate: Number,
+      overtimeRate: Number,
     },
   })
-  salaryDetails: {
-    shiftRate: number;
-    hourlyRate: number;
-    dailyRate: number;
-    fixedRate: number;
-  };
+  salarySettings: {
+    salaryType: string; // Loại lương: 'shift', 'hourly', 'daily', 'fixed'
+    baseSalary: number; // Lương cơ bản (nếu cố định)
+    shiftRate: number; // Lương theo ca
+    hourlyRate: number; // Lương theo giờ
+    dailyRate: number; // Lương theo ngày công
+    overtimeRate: number; // Tỷ lệ làm thêm giờ
+  }; // Thiết lập lương
 
-  @Prop({ type: [BonusSchema] })
-  bonus: Bonus[];
+  @Prop({
+    type: {
+      bonusType: String,
+      bonusRate: Number,
+      bonusScope: String,
+    },
+  })
+  bonusSettings: {
+    bonusType: string; // Loại thưởng: 'revenue', 'branchProfit', 'totalProfit'
+    bonusRate: number; // Tỷ lệ thưởng
+    bonusScope: string; // Phạm vi: 'personal', 'branch', 'system'
+  }; // Thiết lập thưởng
+
+  @Prop({
+    type: {
+      commissionRate: Number,
+    },
+  })
+  commissionSettings: {
+    commissionRate: number; // Tỷ lệ hoa hồng
+  }; // Thiết lập hoa hồng
+
+  @Prop({ type: [{ name: String, amount: Number, type: String }] })
+  allowanceSettings: { name: string; amount: number; type: string }[]; // Phụ cấp
+
+  @Prop({ type: [{ name: String, amount: Number, condition: String }] })
+  deductionSettings: { name: string; amount: number; condition: string }[]; // Giảm trừ
+
+  @Prop({ enum: ['active', 'inactive'], default: 'active' })
+  status: string; // Trạng thái
 
   @Prop()
-  commission: number;
+  notes: string; // Ghi chú
 
-  @Prop({ type: Types.ObjectId, ref: 'CommissionSettings' })
-  commissionTable: Types.ObjectId;
-
-  @Prop({ type: [AllowanceSchema] })
-  allowance: Allowance[];
-
-  @Prop({ type: [DeductionSchema] })
-  deduction: Deduction[];
-
-  @Prop({ enum: ['Đang làm việc', 'Đã nghỉ'], default: 'Đang làm việc' })
-  status: string;
+  @Prop({ default: Date.now })
+  createdAt: Date; // Thời gian tạo
 }
-
 export const EmployeeSchema = SchemaFactory.createForClass(Employee);

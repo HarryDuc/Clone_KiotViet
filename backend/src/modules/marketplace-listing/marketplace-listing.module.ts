@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MarketplaceListingController } from './marketplace-listing.controller';
 import { MarketplaceListingService } from './marketplace-listing.service';
-import { MarketplaceListing, MarketplaceListingSchema } from './marketplace-listing.schema';
+import { MarketplaceListing, MarketplaceListingSchema } from './schemas/marketplace-listing.schema';
 
 @Module({
   imports: [
