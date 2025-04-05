@@ -2,21 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Department } from '../schemas/department.schema';
-
+import { CreateDepartmentDTO, UpdateDepartmentDTO } from '../dtos/department.dto';
 @Injectable()
 export class DepartmentService {
   constructor(
     @InjectModel('Departments') private departmentModel: Model<Department>,
   ) { }
 
-  async create(createDepartmentDto: any): Promise<Department> {
+  async create(createDepartmentDto: CreateDepartmentDTO): Promise<Department> {
     const lastDepartment = await this.departmentModel.findOne().sort({ departmentId: -1 }).exec();
-    let newDepartmentId = 'DV0001';
+    let newDepartmentId = 'DV00001';
   
     if (lastDepartment && lastDepartment.departmentId) {
       const lastNumber = parseInt(lastDepartment.departmentId.replace('DV', ''), 10);
       const nextNumber = lastNumber + 1;
-      newDepartmentId = `DV${nextNumber.toString().padStart(4, '0')}`;
+      newDepartmentId = `DV${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdDepartment = new this.departmentModel({
@@ -39,7 +39,7 @@ export class DepartmentService {
     return department;
   }
 
-  async update(id: string, updateDepartmentDto: any): Promise<Department> {
+  async update(id: string, updateDepartmentDto: UpdateDepartmentDTO): Promise<Department> {
     const department = await this.departmentModel
       .findByIdAndUpdate(id, updateDepartmentDto, { new: true })
       .exec();

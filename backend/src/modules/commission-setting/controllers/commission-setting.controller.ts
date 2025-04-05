@@ -1,14 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CommissionSettingService } from '../services/commission-setting.service';
 import { CommissionSetting } from '../schemas/commission-setting.schema';
+import { CreateCommissionSettingDTO } from '../dtos/commisson-setting.dto';
 
 @Controller('api/commission-settings')
 export class CommissionSettingController {
   constructor(private readonly commissionSettingService: CommissionSettingService) { }
 
   @Post()
-  async create(@Body() createCashBookDto: any): Promise<CommissionSetting> {
-    return this.commissionSettingService.create(createCashBookDto);
+  async create(@Body() createCommissionSettingDto: CreateCommissionSettingDTO): Promise<CommissionSetting> {
+    return this.commissionSettingService.create(createCommissionSettingDto);
   }
 
   @Get()
@@ -22,8 +23,8 @@ export class CommissionSettingController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBrandDto: any) {
-    return this.commissionSettingService.update(id, updateBrandDto);
+  update(@Param('id') id: string, @Body() createCommissionSettingDto: CreateCommissionSettingDTO) {
+    return this.commissionSettingService.update(id, createCommissionSettingDto);
   }
 
   @Delete(':id')

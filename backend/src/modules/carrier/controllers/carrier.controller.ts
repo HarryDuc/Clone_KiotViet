@@ -1,12 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CarrierService } from '../services/carrier.service';
+import { CreateCarrierDTO, UpdateCarrierDTO } from '../dtos/carrier.dto';
 
 @Controller('api/carriers')
 export class CarrierController {
   constructor(private readonly carrierService: CarrierService) { }
   @Post()
-  create(@Body() createBrandDto: any) {
-    return this.carrierService.create(createBrandDto);
+  create(@Body() createCarrierDto: CreateCarrierDTO) {
+    return this.carrierService.create(createCarrierDto);
   }
   @Get()
   findAll() {
@@ -19,8 +20,8 @@ export class CarrierController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBrandDto: any) {
-    return this.carrierService.update(id, updateBrandDto);
+  update(@Param('id') id: string, @Body() updateCarrierDto: UpdateCarrierDTO) {
+    return this.carrierService.update(id, updateCarrierDto);
   }
 
   @Delete(':id')

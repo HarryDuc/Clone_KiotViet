@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { MarketingCampaignService } from '../services/marketing-campaign.service';
-import { MarketingCampaign } from './marketing-campaign.schema';
-
+import { MarketingCampaign } from '../schemas/marketing-campaign.schema';
+import { CreateMarketingCampaignDTO, UpdateMarketingCampaignDTO } from '../dtos/marketing-campaign.dto';
 @Controller('marketing-campaigns')
 export class MarketingCampaignController {
   constructor(private readonly marketingCampaignService: MarketingCampaignService) { }
 
   @Post()
-  async create(@Body() createCampaignDto: any): Promise<MarketingCampaign> {
+  async create(@Body() createCampaignDto: CreateMarketingCampaignDTO): Promise<MarketingCampaign> {
     return this.marketingCampaignService.create(createCampaignDto);
   }
 
@@ -31,7 +31,7 @@ export class MarketingCampaignController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateCampaignDto: any,
+    @Body() updateCampaignDto: UpdateMarketingCampaignDTO,
   ): Promise<MarketingCampaign> {
     return this.marketingCampaignService.update(id, updateCampaignDto);
   }
@@ -47,17 +47,6 @@ export class MarketingCampaignController {
     @Body('status') status: string,
   ): Promise<MarketingCampaign> {
     return this.marketingCampaignService.update(id, { status });
-  }
-
-  @Post(':id/schedule')
-  async schedule(
-    @Param('id') id: string,
-    @Body() schedule: any,
-  ): Promise<MarketingCampaign> {
-    return this.marketingCampaignService.update(id, {
-      'campaignSettings.schedule': schedule,
-      status: 'scheduled',
-    });
   }
 
   @Post(':id/launch')
@@ -80,9 +69,4 @@ export class MarketingCampaignController {
     return this.marketingCampaignService.update(id, { status: 'completed' });
   }
 
-  // @Get(':id/analytics')
-  // async getAnalytics(@Param('id') id: string): Promise<any> {
-  //   const campaign = await this.marketingCampaignService.findOne(id);
-  //   return campaign.analytics;
-  // }
 }

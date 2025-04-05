@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { SocialMediaPostController } from './social-media-post.controller';
+import { SocialMediaPostController } from './controllers/social-media-post.controller';
 import { SocialMediaPostService } from './services/social-media-post.service';
-import { SocialMediaPost, SocialMediaPostSchema } from './schemas/social-media-post.schema';
+import { SocialMediaPostSchema } from './schemas/social-media-post.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: SocialMediaPost.name, schema: SocialMediaPostSchema }
+      { name: 'SocialMediaPosts', schema: SocialMediaPostSchema }
     ])
   ],
   controllers: [SocialMediaPostController],

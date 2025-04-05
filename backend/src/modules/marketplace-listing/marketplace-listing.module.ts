@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { MarketplaceListingController } from './marketplace-listing.controller';
-import { MarketplaceListingService } from './marketplace-listing.service';
-import { MarketplaceListing, MarketplaceListingSchema } from './schemas/marketplace-listing.schema';
+import { MarketplaceListingSchema } from './schemas/marketplace-listing.schema';
+import { MarketplaceListingController } from './controllers/marketplace-listing.controller';
+import { MarketplaceListingService } from './services/marketplace-listing.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: MarketplaceListing.name, schema: MarketplaceListingSchema }
+      { name: 'MarketplaceListings', schema: MarketplaceListingSchema }
     ])
   ],
   controllers: [MarketplaceListingController],

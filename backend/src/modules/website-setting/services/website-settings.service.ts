@@ -1,16 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { WebsiteSettings } from '../website-setting/website-settings.schema';
-
+import { WebsiteSettings } from '../schemas/website-settings.schema';
+import { CreateWebsiteSettingsDTO, UpdateWebsiteSettingsDTO } from '../dtos/website-setting.dto';
 @Injectable()
 export class WebsiteSettingsService {
   constructor(
-    @InjectModel(WebsiteSettings.name)
+    @InjectModel('WebsiteSettings')
     private websiteSettingsModel: Model<WebsiteSettings>,
   ) { }
 
-  async create(createWebsiteSettingsDto: any): Promise<WebsiteSettings> {
+  async create(createWebsiteSettingsDto: CreateWebsiteSettingsDTO): Promise<WebsiteSettings> {
     const created = new this.websiteSettingsModel(createWebsiteSettingsDto);
     return created.save();
   }
@@ -35,7 +35,7 @@ export class WebsiteSettingsService {
     return settings;
   }
 
-  async update(id: string, updateWebsiteSettingsDto: any): Promise<WebsiteSettings> {
+  async update(id: string, updateWebsiteSettingsDto: UpdateWebsiteSettingsDTO): Promise<WebsiteSettings> {
     const settings = await this.websiteSettingsModel
       .findByIdAndUpdate(id, updateWebsiteSettingsDto, { new: true })
       .exec();

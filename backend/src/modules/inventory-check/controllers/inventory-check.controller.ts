@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { InventoryCheckService } from '../services/inventory-check.service';
-import { InventoryCheck } from './inventory-check.schema';
-
-@Controller('inventory-checks')
+import { InventoryCheck } from '../schemas/inventory-check.schema';
+import { CreateInventoryCheckDTO, UpdateInventoryCheckDTO } from '../dtos/inventory-check.dto';
+@Controller('api/inventory-checks')
 export class InventoryCheckController {
   constructor(private readonly inventoryCheckService: InventoryCheckService) { }
 
   @Post()
-  async create(@Body() createInventoryCheckDto: any): Promise<InventoryCheck> {
+  async create(@Body() createInventoryCheckDto: CreateInventoryCheckDTO): Promise<InventoryCheck> {
     return this.inventoryCheckService.create(createInventoryCheckDto);
   }
 
@@ -24,7 +24,7 @@ export class InventoryCheckController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateInventoryCheckDto: any,
+    @Body() updateInventoryCheckDto: UpdateInventoryCheckDTO,
   ): Promise<InventoryCheck> {
     return this.inventoryCheckService.update(id, updateInventoryCheckDto);
   }

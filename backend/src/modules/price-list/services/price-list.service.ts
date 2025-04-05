@@ -2,14 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PriceList } from '../schemas/price-list.schema';
-
+import { CreatePriceListDTO, UpdatePriceListDTO } from '../dtos/price-list.dto';
 @Injectable()
 export class PriceListService {
   constructor(
-    @InjectModel(PriceList.name) private priceListModel: Model<PriceList>,
+    @InjectModel('PriceLists') private priceListModel: Model<PriceList>,
   ) { }
 
-  async create(createPriceListDto: any): Promise<PriceList> {
+  async create(createPriceListDto: CreatePriceListDTO): Promise<PriceList> {
     const createdPriceList = new this.priceListModel(createPriceListDto);
     return createdPriceList.save();
   }
@@ -36,7 +36,7 @@ export class PriceListService {
     return priceList;
   }
 
-  async update(id: string, updatePriceListDto: any): Promise<PriceList> {
+  async update(id: string, updatePriceListDto: UpdatePriceListDTO): Promise<PriceList> {
     const priceList = await this.priceListModel
       .findByIdAndUpdate(id, updatePriceListDto, { new: true })
       .populate('branch')

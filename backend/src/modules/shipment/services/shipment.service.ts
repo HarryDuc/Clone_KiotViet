@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Shipment } from '../schemas/shipment.schema';
-
+import { CreateShipmentDTO, UpdateShipmentDTO } from '../dtos/shipment.dto';
 @Injectable()
 export class ShipmentService {
   constructor(
@@ -10,14 +10,14 @@ export class ShipmentService {
     private shipmentModel: Model<Shipment>,
   ) { }
 
-  async create(createShipmentDto: any): Promise<Shipment> {
+  async create(createShipmentDto: CreateShipmentDTO): Promise<Shipment> {
     const lastShipment = await this.shipmentModel.findOne().sort({ shipmentId: -1 }).exec();
-    let newShipmentId = 'SM0001';
+    let newShipmentId = 'SM00001';
   
     if (lastShipment && lastShipment.shipmentId) {
       const lastNumber = parseInt(lastShipment.shipmentId.replace('SM', ''), 10);
       const nextNumber = lastNumber + 1;
-      newShipmentId = `SM${nextNumber.toString().padStart(4, '0')}`;
+      newShipmentId = `SM${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdShipment = new this.shipmentModel({
@@ -40,7 +40,7 @@ export class ShipmentService {
     return shipment;
   }
 
-  async update(id: string, updateShipmentDto: any): Promise<Shipment> {
+  async update(id: string, updateShipmentDto: UpdateShipmentDTO): Promise<Shipment> {
     const shipment = await this.shipmentModel
       .findByIdAndUpdate(id, updateShipmentDto, { new: true })
       .exec();

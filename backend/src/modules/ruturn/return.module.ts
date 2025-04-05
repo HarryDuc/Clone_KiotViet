@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Return, ReturnSchema } from './schemas/return.schema';
+import { ReturnSchema } from './schemas/return.schema';
 import { ReturnController } from './controllers/return.controller';
 import { ReturnService } from './services/return.service';
 

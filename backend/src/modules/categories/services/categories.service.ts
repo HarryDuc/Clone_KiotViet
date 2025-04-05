@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Categories } from '../schemas/categories.schema';
+import { CreateCategoriesDTO, UpdateCategoriesDTO } from '../dtos/categories.dto';
 
 @Injectable()
 export class CategoriesService {
@@ -9,14 +10,14 @@ export class CategoriesService {
     @InjectModel('Categories') private categoriesModel: Model<Categories>,
   ) { }
 
-  async create(createCategoriesDto: any): Promise<Categories> {
+  async create(createCategoriesDto: CreateCategoriesDTO): Promise<Categories> {
     const lastCategories = await this.categoriesModel.findOne().sort({ categoryId: -1 }).exec();
-    let newCategoryId = 'CT0001';
+    let newCategoryId = 'CT00001';
   
     if (lastCategories && lastCategories.categoryId) {
       const lastNumber = parseInt(lastCategories.categoryId.replace('CT', ''), 10);
       const nextNumber = lastNumber + 1;
-      newCategoryId = `CT${nextNumber.toString().padStart(4, '0')}`;
+      newCategoryId = `CT${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdCategories = new this.categoriesModel({
@@ -39,7 +40,7 @@ export class CategoriesService {
     return category;
   }
 
-  async update(id: string, updateCategoriesDto: any): Promise<Categories> {
+  async update(id: string, updateCategoriesDto: UpdateCategoriesDTO): Promise<Categories> {
     const category = await this.categoriesModel
       .findByIdAndUpdate(id, updateCategoriesDto, { new: true })
       .populate('parentCategory')

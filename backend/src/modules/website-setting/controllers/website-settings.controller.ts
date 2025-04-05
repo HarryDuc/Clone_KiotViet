@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
 import { WebsiteSettingsService } from '../services/website-settings.service';
-import { WebsiteSettings } from './website-settings.schema';
-
+import { WebsiteSettings } from '../schemas/website-settings.schema';
+import { CreateWebsiteSettingsDTO, UpdateWebsiteSettingsDTO } from '../dtos/website-setting.dto';
 @Controller('website-settings')
 export class WebsiteSettingsController {
   constructor(private readonly websiteSettingsService: WebsiteSettingsService) { }
 
   @Post()
-  async create(@Body() createWebsiteSettingsDto: any): Promise<WebsiteSettings> {
+  async create(@Body() createWebsiteSettingsDto: CreateWebsiteSettingsDTO): Promise<WebsiteSettings> {
     return this.websiteSettingsService.create(createWebsiteSettingsDto);
   }
 
@@ -29,7 +29,7 @@ export class WebsiteSettingsController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateWebsiteSettingsDto: any,
+    @Body() updateWebsiteSettingsDto: UpdateWebsiteSettingsDTO,
   ): Promise<WebsiteSettings> {
     return this.websiteSettingsService.update(id, updateWebsiteSettingsDto);
   }
@@ -39,46 +39,11 @@ export class WebsiteSettingsController {
     return this.websiteSettingsService.remove(id);
   }
 
-  @Put(':id/maintenance')
-  async toggleMaintenance(
-    @Param('id') id: string,
-    @Body() data: { isEnabled: boolean; message?: string },
-  ): Promise<WebsiteSettings> {
-    return this.websiteSettingsService.update(id, {
-      'maintenance.isEnabled': data.isEnabled,
-      'maintenance.message': data.message,
-    });
-  }
-
-  @Put(':id/theme')
-  async updateTheme(
-    @Param('id') id: string,
-    @Body() theme: any,
-  ): Promise<WebsiteSettings> {
-    return this.websiteSettingsService.update(id, { theme });
-  }
-
   @Put(':id/seo')
   async updateSEO(
     @Param('id') id: string,
     @Body() seo: any,
   ): Promise<WebsiteSettings> {
     return this.websiteSettingsService.update(id, { seo });
-  }
-
-  @Put(':id/contact')
-  async updateContact(
-    @Param('id') id: string,
-    @Body() contact: any,
-  ): Promise<WebsiteSettings> {
-    return this.websiteSettingsService.update(id, { contact });
-  }
-
-  @Put(':id/social-media')
-  async updateSocialMedia(
-    @Param('id') id: string,
-    @Body() socialMedia: any,
-  ): Promise<WebsiteSettings> {
-    return this.websiteSettingsService.update(id, { socialMedia });
   }
 }

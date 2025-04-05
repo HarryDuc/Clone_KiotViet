@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { PurchaseHistoryService } from '../services/purchase-history.service';
 import { PurchaseHistory } from '../schemas/purchase-history.schema';
-
+import { CreatePurchaseHistoryDTO, UpdatePurchaseHistoryDTO } from '../dtos/purchase-history.dto';
 @Controller('api/purchase-historys')
 export class PurchaseHistoryController {
   constructor(private readonly PurchaseHistoryService: PurchaseHistoryService) { }
 
   @Post()
-  async create(@Body() createPurchaseHistoryDto: any): Promise<PurchaseHistory> {
+  async create(@Body() createPurchaseHistoryDto: CreatePurchaseHistoryDTO): Promise<PurchaseHistory> {
     return this.PurchaseHistoryService.create(createPurchaseHistoryDto);
   }
 
@@ -22,7 +22,7 @@ export class PurchaseHistoryController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePurchaseHistoryDto: any) {
+  update(@Param('id') id: string, @Body() updatePurchaseHistoryDto: UpdatePurchaseHistoryDTO) {
     return this.PurchaseHistoryService.update(id, updatePurchaseHistoryDto);
   }
 

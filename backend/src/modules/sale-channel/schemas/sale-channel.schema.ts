@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema({ timestamps: true })
-export class SalesChannel extends Document {
+@Schema({ timestamps: true, collection: 'SaleChannels' })
+export class SaleChannel extends Document {
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
   storeId: Types.ObjectId;
 
@@ -124,4 +124,4 @@ export class SalesChannel extends Document {
   };
 }
 
-export const SalesChannelSchema = SchemaFactory.createForClass(SalesChannel);
+export const SaleChannelSchema = SchemaFactory.createForClass(SaleChannel);

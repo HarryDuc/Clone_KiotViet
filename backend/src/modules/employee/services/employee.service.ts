@@ -2,21 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Employee } from '../schemas/employee.schema';
-
+import { CreateEmployeeDTO, UpdateEmployeeDTO } from '../dtos/employee.dto';
 @Injectable()
 export class EmployeeService {
   constructor(
     @InjectModel('Employees') private employeeModel: Model<Employee>,
   ) { }
 
-  async create(createEmployeeDto: any): Promise<Employee> {
+  async create(createEmployeeDto: CreateEmployeeDTO): Promise<Employee> {
     const lastEmployee = await this.employeeModel.findOne().sort({ employeeId: -1 }).exec();
-    let newEmployeeId = 'NV0001';
+    let newEmployeeId = 'NV00001';
   
     if (lastEmployee && lastEmployee.employeeId) {
       const lastNumber = parseInt(lastEmployee.employeeId.replace('NV', ''), 10);
       const nextNumber = lastNumber + 1;
-      newEmployeeId = `NV${nextNumber.toString().padStart(4, '0')}`;
+      newEmployeeId = `NV${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdEmployee = new this.employeeModel({
@@ -55,7 +55,7 @@ export class EmployeeService {
     return employee;
   }
 
-  async update(id: string, updateEmployeeDto: any): Promise<Employee> {
+  async update(id: string, updateEmployeeDto: UpdateEmployeeDTO): Promise<Employee> {
     const employee = await this.employeeModel
       .findByIdAndUpdate(id, updateEmployeeDto, { new: true })
       .populate('branchSalary')

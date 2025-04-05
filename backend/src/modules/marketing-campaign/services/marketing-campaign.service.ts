@@ -2,14 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { MarketingCampaign } from '../schemas/marketing-campaign.schema';
-
+import { CreateMarketingCampaignDTO, UpdateMarketingCampaignDTO } from '../dtos/marketing-campaign.dto';
 @Injectable()
 export class MarketingCampaignService {
   constructor(
-    @InjectModel(MarketingCampaign.name) private marketingCampaignModel: Model<MarketingCampaign>,
+    @InjectModel('MarketingCampaigns') private marketingCampaignModel: Model<MarketingCampaign>,
   ) { }
 
-  async create(createMarketingCampaignDto: any): Promise<MarketingCampaign> {
+  async create(createMarketingCampaignDto: CreateMarketingCampaignDTO): Promise<MarketingCampaign> {
     const createdCampaign = new this.marketingCampaignModel(createMarketingCampaignDto);
     return createdCampaign.save();
   }
@@ -38,7 +38,7 @@ export class MarketingCampaignService {
     return campaign;
   }
 
-  async update(id: string, updateMarketingCampaignDto: any): Promise<MarketingCampaign> {
+  async update(id: string, updateMarketingCampaignDto: UpdateMarketingCampaignDTO): Promise<MarketingCampaign> {
     const campaign = await this.marketingCampaignModel
       .findByIdAndUpdate(id, updateMarketingCampaignDto, { new: true })
       .populate('branch')

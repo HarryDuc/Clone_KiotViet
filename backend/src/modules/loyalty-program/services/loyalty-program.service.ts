@@ -6,7 +6,7 @@ import { LoyaltyProgram } from '../schemas/loyalty-program.schema';
 @Injectable()
 export class LoyaltyProgramService {
   constructor(
-    @InjectModel(LoyaltyProgram.name) private loyaltyProgramModel: Model<LoyaltyProgram>,
+    @InjectModel('LoyaltyPrograms') private loyaltyProgramModel: Model<LoyaltyProgram>,
   ) { }
 
   async create(createLoyaltyProgramDto: any): Promise<LoyaltyProgram> {

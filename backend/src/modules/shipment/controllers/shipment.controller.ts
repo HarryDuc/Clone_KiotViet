@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
 import { ShipmentService } from '../services/shipment.service';
 import { Shipment } from '../schemas/shipment.schema';
-
+import { CreateShipmentDTO, UpdateShipmentDTO } from '../dtos/shipment.dto';
 @Controller('api/shipments')
 export class ShipmentController {
   constructor(private readonly shipmentService: ShipmentService) { }
 
   @Post()
-  async create(@Body() createShipmentDto: any): Promise<Shipment> {
+  async create(@Body() createShipmentDto: CreateShipmentDTO): Promise<Shipment> {
     return this.shipmentService.create(createShipmentDto);
   }
 
@@ -24,7 +24,7 @@ export class ShipmentController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateShipmentDto: any,
+    @Body() updateShipmentDto: UpdateShipmentDTO,
   ): Promise<Shipment> {
     return this.shipmentService.update(id, updateShipmentDto);
   }

@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { WorkScheduleService } from '../services/work-schedule.service';
 import { WorkSchedule } from '../schemas/work-schedule.schema';
-
+import { CreateWorkScheduleDTO, UpdateWorkScheduleDTO } from '../dtos/work-schedule.dto';
 @Controller('work-schedules')
 export class WorkScheduleController {
   constructor(private readonly workScheduleService: WorkScheduleService) { }
 
   @Post()
-  create(@Body() createWorkScheduleDto: any) {
+  create(@Body() createWorkScheduleDto: CreateWorkScheduleDTO) {
     return this.workScheduleService.create(createWorkScheduleDto);
   }
 
@@ -37,7 +37,7 @@ export class WorkScheduleController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateWorkScheduleDto: any) {
+  update(@Param('id') id: string, @Body() updateWorkScheduleDto: UpdateWorkScheduleDTO) {
     return this.workScheduleService.update(id, updateWorkScheduleDto);
   }
 

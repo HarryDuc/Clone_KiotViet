@@ -1,9 +1,9 @@
-export class BlogCategoryDTO {
+export class BlogCategoriesDTO {
   storeId: string;
   name: string;
   slug: string;
   description: string;
-  parentCategory: string;
+  parentCategories: string;
   order: number;
   status: string;
   seo: { metaTitle: string; metaDescription: string };
@@ -11,12 +11,12 @@ export class BlogCategoryDTO {
   description_en: string; // Thêm
 }
 
-export class CreateBlogCategoryDTO {
+export class CreateBlogCategoriesDTO {
   storeId: string;
   name: string;
   slug: string;
   description: string;
-  parentCategory: string;
+  parentCategories: string;
   order: number;
   status: string;
   seo: { metaTitle: string; metaDescription: string };
@@ -24,11 +24,11 @@ export class CreateBlogCategoryDTO {
   description_en?: string; // Tùy chọn
 }
 
-export class UpdateBlogCategoryDTO {
+export class UpdateBlogCategoriesDTO {
   name?: string;
   slug?: string;
   description?: string;
-  parentCategory?: string;
+  parentCategories?: string;
   order?: number;
   status?: string;
   seo?: { metaTitle?: string; metaDescription?: string };

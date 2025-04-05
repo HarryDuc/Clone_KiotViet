@@ -19,12 +19,12 @@ export class UserService {
   
     // Lấy userId lớn nhất từ database
     const lastUser = await this.userModel.findOne().sort({ userId: -1 }).exec();
-    let newUserId = 'USR0001'; // Giá trị mặc định nếu chưa có user nào
+    let newUserId = 'USR00001'; // Giá trị mặc định nếu chưa có user nào
   
     if (lastUser && lastUser.userId) {
       const lastNumber = parseInt(lastUser.userId.replace('USR', ''), 10);
       const nextNumber = lastNumber + 1;
-      newUserId = `USR${nextNumber.toString().padStart(4, '0')}`;
+      newUserId = `USR${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);

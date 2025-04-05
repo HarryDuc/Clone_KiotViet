@@ -2,21 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Return } from '../schemas/return.schema';
-
+import { CreateReturnDTO, UpdateReturnDTO } from '../dtos/return.dto';
 @Injectable()
 export class ReturnService {
   constructor(
     @InjectModel('Returns') private ReturnModel: Model<Return>,
   ) { }
 
-  async create(createReturnDto: any): Promise<Return> {
+  async create(createReturnDto: CreateReturnDTO): Promise<Return> {
     const lastReturn = await this.ReturnModel.findOne().sort({ returnId: -1 }).exec();
-    let newReturnId = 'RT0001';
+    let newReturnId = 'RT00001';
   
     if (lastReturn && lastReturn.returnId) {
       const lastNumber = parseInt(lastReturn.returnId.replace('RT', ''), 10);
       const nextNumber = lastNumber + 1;
-      newReturnId = `RT${nextNumber.toString().padStart(4, '0')}`;
+      newReturnId = `RT${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdReturn = new this.ReturnModel({
@@ -39,7 +39,7 @@ export class ReturnService {
     return Return;
   }
 
-  async update(id: string, updateReturnDto: any): Promise<Return> {
+  async update(id: string, updateReturnDto: UpdateReturnDTO): Promise<Return> {
     const Return = await this.ReturnModel
       .findByIdAndUpdate(id, updateReturnDto, { new: true })
       .exec();

@@ -2,22 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Attendance } from '../schemas/attendance.schema';
-import { CreateAttendanceDto } from '../dtos/create-attendance.dto';
-import { UpdateAttendanceDto } from '../dtos/update-attendance.dto';
+import { CreateAttendanceDTO, UpdateAttendanceDTO } from '../dtos/attendance.dto';
 
 @Injectable()
 export class AttendanceService {
   constructor(@InjectModel('Attendances') private attendanceModel: Model<Attendance>) {}
 
   // Thêm mới attendance
-  async create(createAttendance: CreateAttendanceDto): Promise<Attendance> {
+  async create(createAttendance: CreateAttendanceDTO): Promise<Attendance> {
     const lastUser = await this.attendanceModel.findOne().sort({ attendanceId: -1 }).exec();
-    let newAttendanceId = 'ATT0001';
+    let newAttendanceId = 'ATT00001';
 
     if (lastUser && lastUser.attendanceId) {
       const lastNumber = parseInt(lastUser.attendanceId.replace('ATT', ''), 10);
       const nextNumber = lastNumber + 1;
-      newAttendanceId = `ATT${nextNumber.toString().padStart(4, '0')}`;
+      newAttendanceId = `ATT${nextNumber.toString().padStart(5, '0')}`;
     }
 
     const createdAttendance = new this.attendanceModel({
@@ -42,7 +41,7 @@ export class AttendanceService {
   }
 
   // Cập nhật attendance
-  async update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<Attendance> {
+  async update(id: string, updateAttendanceDto: UpdateAttendanceDTO): Promise<Attendance> {
     const updatedAttendance = await this.attendanceModel.findByIdAndUpdate(id, updateAttendanceDto, { new: true }).exec();
     if (!updatedAttendance) {
       throw new Error(`Attendance with ID ${id} not found`);

@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { DepartmentService } from '../services/department.service';
+import { CreateDepartmentDTO, UpdateDepartmentDTO } from '../dtos/department.dto';
 import { Department } from '../schemas/department.schema';
 
 @Controller('api/departments')
@@ -7,7 +8,7 @@ export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) { }
 
   @Post()
-  async create(@Body() createDepartmentDto: any): Promise<Department> {
+  async create(@Body() createDepartmentDto: CreateDepartmentDTO): Promise<Department> {
     return this.departmentService.create(createDepartmentDto);
   }
 
@@ -22,8 +23,8 @@ export class DepartmentController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBrandDto: any) {
-    return this.departmentService.update(id, updateBrandDto);
+  update(@Param('id') id: string, @Body() updateDepartmentDto: UpdateDepartmentDTO) {
+    return this.departmentService.update(id, updateDepartmentDto);
   }
 
   @Delete(':id')

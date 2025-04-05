@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CustomerLoyaltyPoints } from './schemas/customer-loyalty-points.schema';
+import { CreateCustomerLoyaltyPointsDTO, UpdateCustomerLoyaltyPointsDTO } from '../dtos/customer-loyalty-point.dto';
+import { CustomerLoyaltyPoints } from '../schemas/customer-loyalty-points.schema';
 
 @Injectable()
 export class CustomerLoyaltyPointsService {
@@ -9,7 +10,7 @@ export class CustomerLoyaltyPointsService {
     @InjectModel(CustomerLoyaltyPoints.name) private customerLoyaltyPointsModel: Model<CustomerLoyaltyPoints>,
   ) { }
 
-  async create(createCustomerLoyaltyPointsDto: any): Promise<CustomerLoyaltyPoints> {
+  async create(createCustomerLoyaltyPointsDto: CreateCustomerLoyaltyPointsDTO): Promise<CustomerLoyaltyPoints> {
     const createdPoints = new this.customerLoyaltyPointsModel(createCustomerLoyaltyPointsDto);
     return createdPoints.save();
   }
@@ -36,7 +37,7 @@ export class CustomerLoyaltyPointsService {
     return points;
   }
 
-  async update(id: string, updateCustomerLoyaltyPointsDto: any): Promise<CustomerLoyaltyPoints> {
+  async update(id: string, updateCustomerLoyaltyPointsDto: UpdateCustomerLoyaltyPointsDTO): Promise<CustomerLoyaltyPoints> {
     const points = await this.customerLoyaltyPointsModel
       .findByIdAndUpdate(id, updateCustomerLoyaltyPointsDto, { new: true })
       .populate('customer')

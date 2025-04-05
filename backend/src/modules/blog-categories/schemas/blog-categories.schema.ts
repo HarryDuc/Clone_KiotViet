@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
 @Schema({ collection: 'BlogCategories' })
-export class BlogCategory extends Document {
+export class BlogCategories extends Document {
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
   storeId: Types.ObjectId;
 
@@ -35,4 +35,4 @@ export class BlogCategory extends Document {
   description_en: string; // Mô tả tiếng Anh
 }
 
-export const BlogCategorySchema = SchemaFactory.createForClass(BlogCategory);
+export const BlogCategoriesSchema = SchemaFactory.createForClass(BlogCategories);

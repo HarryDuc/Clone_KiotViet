@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
 import { HolidayService } from '../services/holiday.service';
 import { Holiday } from '../schemas/holiday.schema';
-
+import { CreateHolidayDTO, UpdateHolidayDTO } from '../dtos/holiday.dto';
 @Controller('api/holidays')
 export class HolidayController {
   constructor(private readonly holidayService: HolidayService) { }
 
   @Post()
-  async create(@Body() createHolidayDto: any): Promise<Holiday> {
+  async create(@Body() createHolidayDto: CreateHolidayDTO): Promise<Holiday> {
     return this.holidayService.create(createHolidayDto);
   }
 
@@ -24,7 +24,7 @@ export class HolidayController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateHolidayDto: any,
+    @Body() updateHolidayDto: UpdateHolidayDTO,
   ): Promise<Holiday> {
     return this.holidayService.update(id, updateHolidayDto);
   }

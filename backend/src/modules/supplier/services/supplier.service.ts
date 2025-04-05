@@ -2,22 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Supplier } from '../schemas/supplier.schema';
-import { Product } from '../../product/schemas/product.schema';
-
+import { CreateSupplierDTO, UpdateSupplierDTO } from '../dto/supplier.dto';
 @Injectable()
 export class SupplierService {
   constructor(
     @InjectModel('Suppliers') private supplierModel: Model<Supplier>,
   ) { }
 
-  async create(createSupplierDto: any): Promise<Supplier> {
+  async create(createSupplierDto: CreateSupplierDTO): Promise<Supplier> {
     const lastSupplier = await this.supplierModel.findOne().sort({ supplierId: -1 }).exec();
-    let newSupplierId = 'SSE0001';
+    let newSupplierId = 'SPR00001';
   
     if (lastSupplier && lastSupplier.supplierId) {
-      const lastNumber = parseInt(lastSupplier.supplierId.replace('SSE', ''), 10);
+      const lastNumber = parseInt(lastSupplier.supplierId.replace('SPR', ''), 10);
       const nextNumber = lastNumber + 1;
-      newSupplierId = `SSE${nextNumber.toString().padStart(4, '0')}`;
+      newSupplierId = `SPR${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdSupplier = new this.supplierModel({
@@ -39,7 +38,7 @@ export class SupplierService {
     return supplier;
   }
 
-  async update(id: string, updateSupplierDto: any): Promise<Supplier> {
+  async update(id: string, updateSupplierDto: UpdateSupplierDTO): Promise<Supplier> {
     const supplier = await this.supplierModel
       .findByIdAndUpdate(id, updateSupplierDto, { new: true })
       .populate('group')

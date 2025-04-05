@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { InvoiceService } from '../services/invoice.service';
 import { Invoice } from '../schemas/invoice.schema';
-
+import { CreateInvoiceDTO, UpdateInvoiceDTO } from '../dtos/invoice.dto';
 @Controller('api/invoices')
 export class InvoiceController {
   constructor(private readonly invoiceService: InvoiceService) { }
 
   @Post()
-  create(@Body() createInvoiceDto: any) {
+  create(@Body() createInvoiceDto: CreateInvoiceDTO) {
     return this.invoiceService.create(createInvoiceDto);
   }
 
@@ -22,7 +22,7 @@ export class InvoiceController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInvoiceDto: any) {
+  update(@Param('id') id: string, @Body() updateInvoiceDto: UpdateInvoiceDTO) {
     return this.invoiceService.update(id, updateInvoiceDto);
   }
 

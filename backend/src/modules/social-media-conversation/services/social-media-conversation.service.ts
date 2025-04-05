@@ -1,15 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SocialMediaConversation } from './schemas/social-media-conversation.schema';
-
+import { SocialMediaConversation } from '../schemas/social-media-conversation.schema';
+import { CreateSocialMediaConversationDTO, UpdateSocialMediaConversationDTO } from '../dtos/social-media-conversation.dto';
 @Injectable()
 export class SocialMediaConversationService {
   constructor(
-    @InjectModel(SocialMediaConversation.name) private conversationModel: Model<SocialMediaConversation>,
+    @InjectModel('SocialMediaConversations') private conversationModel: Model<SocialMediaConversation>,
   ) { }
 
-  async create(createConversationDto: any): Promise<SocialMediaConversation> {
+  async create(createConversationDto: CreateSocialMediaConversationDTO): Promise<SocialMediaConversation> {
     const createdConversation = new this.conversationModel(createConversationDto);
     return createdConversation.save();
   }
@@ -38,7 +38,7 @@ export class SocialMediaConversationService {
     return conversation;
   }
 
-  async update(id: string, updateConversationDto: any): Promise<SocialMediaConversation> {
+  async update(id: string, updateConversationDto: UpdateSocialMediaConversationDTO): Promise<SocialMediaConversation> {
     const conversation = await this.conversationModel
       .findByIdAndUpdate(id, updateConversationDto, { new: true })
       .populate('branch')

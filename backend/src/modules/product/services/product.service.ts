@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Product } from '../schemas/product.schema';
-
+import { CreateProductDTO, UpdateProductDTO } from '../dtos/product.schema';
 @Injectable()
 export class ProductService {
   constructor(
     @InjectModel('Products') private productModel: Model<Product>,
   ) { }
 
-  async create(createProductDto: any): Promise<Product> {
+  async create(createProductDto: CreateProductDTO): Promise<Product> {
     const lastUser = await this.productModel.findOne().sort({ productId: -1 }).exec();
     let newProductId = 'SP0001';
   
@@ -72,7 +72,7 @@ export class ProductService {
     }
   }
 
-  async update(id: string, updateProductDto: any): Promise<Product | null> {
+  async update(id: string, updateProductDto: UpdateProductDTO): Promise<Product | null> {
     try {
       const product = await this.productModel
         .findByIdAndUpdate(id, updateProductDto, { new: true })

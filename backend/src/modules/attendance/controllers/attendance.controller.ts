@@ -1,15 +1,14 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { AttendanceService } from '../services/attendance.service';
-import { CreateAttendanceDto } from '../dtos/create-attendance.dto';
-import { UpdateAttendanceDto } from '../dtos/update-attendance.dto';
 import { Attendance } from '../schemas/attendance.schema';
+import { CreateAttendanceDTO, UpdateAttendanceDTO } from '../dtos/attendance.dto';
 
 @Controller('api/attendances')
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) { }
 
   @Post()
-  async create(@Body() createAttendanceDto: CreateAttendanceDto): Promise<Attendance> {
+  async create(@Body() createAttendanceDto: CreateAttendanceDTO): Promise<Attendance> {
     return this.attendanceService.create(createAttendanceDto);
   }
 
@@ -24,7 +23,7 @@ export class AttendanceController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto): Promise<Attendance> {
+  async update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDTO): Promise<Attendance> {
     return this.attendanceService.update(id, updateAttendanceDto);
   }
 

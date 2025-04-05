@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
-import { SocialMediaConversationService } from './social-media-conversation.service';
-import { SocialMediaConversation } from './social-media-conversation.schema';
-
+import { SocialMediaConversation } from '../schemas/social-media-conversation.schema';
+import { SocialMediaConversationService } from '../services/social-media-conversation.service';
+import { CreateSocialMediaConversationDTO, UpdateSocialMediaConversationDTO } from '../dtos/social-media-conversation.dto';
 @Controller('social-media-conversations')
 export class SocialMediaConversationController {
   constructor(private readonly conversationService: SocialMediaConversationService) { }
 
   @Post()
-  async create(@Body() createConversationDto: any): Promise<SocialMediaConversation> {
+  async create(@Body() createConversationDto: CreateSocialMediaConversationDTO): Promise<SocialMediaConversation> {
     return this.conversationService.create(createConversationDto);
   }
 
@@ -30,7 +30,7 @@ export class SocialMediaConversationController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateConversationDto: any,
+    @Body() updateConversationDto: UpdateSocialMediaConversationDTO,
   ): Promise<SocialMediaConversation> {
     return this.conversationService.update(id, updateConversationDto);
   }
@@ -39,18 +39,6 @@ export class SocialMediaConversationController {
   async remove(@Param('id') id: string): Promise<SocialMediaConversation> {
     return this.conversationService.remove(id);
   }
-
-  // @Post(':id/messages')
-  // async addMessage(
-  //   @Param('id') id: string,
-  //   @Body() message: any,
-  // ): Promise<SocialMediaConversation> {
-  //   const conversation = await this.conversationService.findOne(id);
-  //   conversation.messages.push(message);
-  //   conversation.metadata.lastMessageAt = new Date();
-  //   conversation.metadata.unreadCount += 1;
-  //   return this.conversationService.update(id, conversation);
-  // }
 
   @Put(':id/assign')
   async assignTo(
@@ -68,8 +56,4 @@ export class SocialMediaConversationController {
     return this.conversationService.update(id, { status });
   }
 
-  @Put(':id/read')
-  async markAsRead(@Param('id') id: string): Promise<SocialMediaConversation> {
-    return this.conversationService.update(id, { 'metadata.unreadCount': 0 });
-  }
 }

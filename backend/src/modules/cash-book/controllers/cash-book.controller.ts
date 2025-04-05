@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { CashBookService } from '../services/cash-book.service';
 import { CashBook } from '../schemas/cash-book.schema';
+import { CreateCashBookDTO, UpdateCashBookDTO } from '../dtos/cash-book.dto';
 
 @Controller('api/cash-books')
 export class CashBookController {
   constructor(private readonly cashBookService: CashBookService) { }
 
   @Post()
-  async create(@Body() createCashBookDto: any): Promise<CashBook> {
+  async create(@Body() createCashBookDto: CreateCashBookDTO): Promise<CashBook> {
     return this.cashBookService.create(createCashBookDto);
   }
 
@@ -28,7 +29,7 @@ export class CashBookController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateCashBookDto: any,
+    @Body() updateCashBookDto: UpdateCashBookDTO,
   ): Promise<CashBook> {
     return this.cashBookService.update(id, updateCashBookDto);
   }

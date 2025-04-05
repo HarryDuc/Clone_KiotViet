@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { MarketplaceListing } from './schemas/marketplace-listing.schema';
-
+import { MarketplaceListing } from '../schemas/marketplace-listing.schema';
+import { CreateMarketplaceListingDTO, UpdateMarketplaceListingDTO } from '../dtos/marketplace-listing.dto';
 @Injectable()
 export class MarketplaceListingService {
   constructor(
@@ -10,7 +10,7 @@ export class MarketplaceListingService {
     private marketplaceListingModel: Model<MarketplaceListing>,
   ) {}
 
-  async create(createMarketplaceListingDto: any): Promise<MarketplaceListing> {
+  async create(createMarketplaceListingDto: CreateMarketplaceListingDTO): Promise<MarketplaceListing> {
     const createdListing = new this.marketplaceListingModel(createMarketplaceListingDto);
     return createdListing.save();
   }
@@ -27,7 +27,7 @@ export class MarketplaceListingService {
     return listing;
   }
 
-  async update(id: string, updateMarketplaceListingDto: any): Promise<MarketplaceListing> {
+  async update(id: string, updateMarketplaceListingDto: UpdateMarketplaceListingDTO): Promise<MarketplaceListing> {
     const updatedListing = await this.marketplaceListingModel
       .findByIdAndUpdate(id, updateMarketplaceListingDto, { new: true })
       .exec();

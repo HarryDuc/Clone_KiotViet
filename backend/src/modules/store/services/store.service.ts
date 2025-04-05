@@ -2,14 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Store } from '../schemas/store.schema';
-
+import { CreateStoreDTO, UpdateStoreDTO } from '../dtos/store.dto';
 @Injectable()
 export class StoreService {
   constructor(
     @InjectModel('Stores') private storeModel: Model<Store>,
   ) {}
 
-  async create(createStoreDto: any): Promise<Store> {
+  async create(createStoreDto: CreateStoreDTO): Promise<Store> {
     const lastStore = await this.storeModel.findOne().sort({ storeId: -1 }).exec();
     let newStoreId = 'ST0001';
   
@@ -39,7 +39,7 @@ export class StoreService {
     return store;
   }
 
-  async update(id: string, updateStoreDto: any): Promise<Store> {
+  async update(id: string, updateStoreDto: UpdateStoreDTO): Promise<Store> {
     const store = await this.storeModel
       .findByIdAndUpdate(id, updateStoreDto, { new: true })
       .populate('servicePackage')

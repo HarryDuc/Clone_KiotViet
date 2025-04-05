@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { WorkSchedule } from './schemas/work-schedule.schema';
+import { WorkSchedule } from '../schemas/work-schedule.schema';
+import { CreateWorkScheduleDTO, UpdateWorkScheduleDTO } from '../dtos/work-schedule.dto';
 
 @Injectable()
 export class WorkScheduleService {
@@ -10,9 +11,22 @@ export class WorkScheduleService {
     private workScheduleModel: Model<WorkSchedule>,
   ) { }
 
-  async create(createWorkScheduleDto: any): Promise<WorkSchedule> {
-    const createdSchedule = new this.workScheduleModel(createWorkScheduleDto);
-    return createdSchedule.save();
+  async create(createWorkScheduleDto: CreateWorkScheduleDTO): Promise<WorkSchedule> {
+    const lastWorkSchedule = await this.workScheduleModel.findOne().sort({ scheduleId: -1 }).exec();
+    let newScheduleId = 'SCH00001';
+  
+    if (lastWorkSchedule && lastWorkSchedule.scheduleId) {
+      const lastNumber = parseInt(lastWorkSchedule.scheduleId.replace('SCH', ''), 10);
+      const nextNumber = lastNumber + 1;
+      newScheduleId = `SCH${nextNumber.toString().padStart(5, '0')}`;
+    }
+  
+    const createdWorkSchedule = new this.workScheduleModel({
+      ...createWorkScheduleDto,
+      scheduleId: newScheduleId
+    });
+  
+    return createdWorkSchedule.save();
   }
 
   async findAll(): Promise<WorkSchedule[]> {
@@ -27,7 +41,7 @@ export class WorkScheduleService {
     return schedule;
   }
 
-  async update(id: string, updateWorkScheduleDto: any): Promise<WorkSchedule> {
+  async update(id: string, updateWorkScheduleDto: UpdateWorkScheduleDTO): Promise<WorkSchedule> {
     const schedule = await this.workScheduleModel
       .findByIdAndUpdate(id, updateWorkScheduleDto, { new: true })
       .exec();
@@ -80,14 +94,13 @@ export class WorkScheduleService {
       throw new NotFoundException(`Work schedule with ID ${id} not found`);
     }
 
-    const existingScheduleIndex = schedule.specialSchedules.findIndex(
+    const existingScheduleIndex = (schedule as any).specialSchedules.findIndex(
       s => s.date.getTime() === specialSchedule.date.getTime()
     );
-
     if (existingScheduleIndex >= 0) {
-      schedule.specialSchedules[existingScheduleIndex] = specialSchedule;
+      (schedule as any).specialSchedules[existingScheduleIndex] = specialSchedule;
     } else {
-      schedule.specialSchedules.push(specialSchedule);
+      (schedule as any).specialSchedules.push(specialSchedule);
     }
 
     return schedule.save();

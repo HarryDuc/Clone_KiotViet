@@ -1,15 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { InventoryCheck } from './schemas/inventory-check.schema';
+import { InventoryCheck } from '../schemas/inventory-check.schema';
+import { CreateInventoryCheckDTO, UpdateInventoryCheckDTO } from '../dtos/inventory-check.dto';
 
 @Injectable()
 export class InventoryCheckService {
   constructor(
-    @InjectModel(InventoryCheck.name) private inventoryCheckModel: Model<InventoryCheck>,
+    @InjectModel('InventoryChecks') private inventoryCheckModel: Model<InventoryCheck>,
   ) { }
 
-  async create(createInventoryCheckDto: any): Promise<InventoryCheck> {
+  async create(createInventoryCheckDto: CreateInventoryCheckDTO): Promise<InventoryCheck> {
     const createdCheck = new this.inventoryCheckModel(createInventoryCheckDto);
     return createdCheck.save();
   }
@@ -36,7 +37,7 @@ export class InventoryCheckService {
     return check;
   }
 
-  async update(id: string, updateInventoryCheckDto: any): Promise<InventoryCheck> {
+  async update(id: string, updateInventoryCheckDto: UpdateInventoryCheckDTO): Promise<InventoryCheck> {
     const check = await this.inventoryCheckModel
       .findByIdAndUpdate(id, updateInventoryCheckDto, { new: true })
       .populate('branch')

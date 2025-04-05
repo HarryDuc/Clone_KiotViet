@@ -4,7 +4,7 @@ import { ProductController } from './controllers/product.controller';
 import { ProductService } from './services/product.service';
 import { ProductSchema } from './schemas/product.schema';
 import { BrandModule } from '../brand/brand.module';
-import { CategoriesModule } from '../category/categories.module';
+import { CategoriesModule } from '../categories/categories.module';
 
 @Module({
   imports: [

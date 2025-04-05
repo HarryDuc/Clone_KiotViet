@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { BlogPostService } from '../services/blog-post.service';
 import { BlogPost } from '../schemas/blog-post.schema';
+import { CreateBlogPostDTO, UpdateBlogPostDTO } from '../dtos/blog-category.dto';
 
 @Controller('api/blog-posts')
 export class BlogPostController {
   constructor(private readonly blogPostService: BlogPostService) { }
 
   @Post()
-  async create(@Body() createBlogPostDto: any): Promise<BlogPost> {
+  async create(@Body() createBlogPostDto: CreateBlogPostDTO): Promise<BlogPost> {
     return this.blogPostService.create(createBlogPostDto);
   }
 
@@ -21,7 +22,7 @@ export class BlogPostController {
     return this.blogPostService.findOne(id);
   }
 
-  @Get('slug/:slug')
+  @Get(':slug')
   async findBySlug(@Param('slug') slug: string): Promise<BlogPost> {
     return this.blogPostService.findBySlug(slug);
   }
@@ -29,7 +30,7 @@ export class BlogPostController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateBlogPostDto: any,
+    @Body() updateBlogPostDto: UpdateBlogPostDTO,
   ): Promise<BlogPost> {
     return this.blogPostService.update(id, updateBlogPostDto);
   }

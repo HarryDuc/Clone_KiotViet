@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { PurchaseOrderService } from '../services/purchase-orders.service';
 import { PurchaseOrder } from '../schemas/purchase-orders.schema';
-
+import { CreatePurchaseOrderDTO, UpdatePurchaseOrderDTO } from '../dtos/purchase-order.dto';
 @Controller('api/purchase-orders')
 export class PurchaseOrderController {
   constructor(private readonly purchaseOrderService: PurchaseOrderService) { }
 
   @Post()
-  async create(@Body() createBranchDto: any): Promise<PurchaseOrder> {
-    return this.purchaseOrderService.create(createBranchDto);
+  async create(@Body() createPurchaseOrderDto: CreatePurchaseOrderDTO): Promise<PurchaseOrder> {
+    return this.purchaseOrderService.create(createPurchaseOrderDto);
   }
 
   @Get()
@@ -22,7 +22,7 @@ export class PurchaseOrderController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatepurchaseOrderDto: any) {
+  update(@Param('id') id: string, @Body() updatepurchaseOrderDto: UpdatePurchaseOrderDTO) {
     return this.purchaseOrderService.update(id, updatepurchaseOrderDto);
   }
 

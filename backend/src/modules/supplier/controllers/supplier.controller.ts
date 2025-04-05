@@ -1,13 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SupplierService } from '../services/supplier.service';
-import { Supplier } from '../schemas/supplier.schema';
-
+import { CreateSupplierDTO, UpdateSupplierDTO } from '../dto/supplier.dto';
 @Controller('api/suppliers')
 export class SupplierController {
   constructor(private readonly supplierService: SupplierService) { }
 
   @Post()
-  create(@Body() createSupplierDto: any) {
+  create(@Body() createSupplierDto: CreateSupplierDTO) {
     return this.supplierService.create(createSupplierDto);
   }
 
@@ -22,7 +21,7 @@ export class SupplierController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSupplierDto: any) {
+  update(@Param('id') id: string, @Body() updateSupplierDto: UpdateSupplierDTO) {
     return this.supplierService.update(id, updateSupplierDto);
   }
 

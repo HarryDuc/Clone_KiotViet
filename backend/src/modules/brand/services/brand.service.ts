@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Brand } from '../schemas/brand.schema';
+import { CreateBrandDTO, UpdateBrandDTO } from '../dtos/brand.dto';
 
 @Injectable()
 export class BrandService {
@@ -9,21 +10,21 @@ export class BrandService {
     @InjectModel('Brands') private brandModel: Model<Brand>,
   ) { }
 
-  async create(createBrandDto: any): Promise<Brand> {
+  async create(createBrandDto: CreateBrandDTO): Promise<Brand> {
     const lastBrand = await this.brandModel.findOne().sort({ brandId: -1 }).exec();
-    let newBrandId = 'BR0001';
-  
+    let newBrandId = 'BR00001';
+
     if (lastBrand && lastBrand.brandId) {
       const lastNumber = parseInt(lastBrand.brandId.replace('BR', ''), 10);
       const nextNumber = lastNumber + 1;
-      newBrandId = `BR${nextNumber.toString().padStart(4, '0')}`;
+      newBrandId = `BR${nextNumber.toString().padStart(5, '0')}`;
     }
-  
+
     const createdBrand = new this.brandModel({
       ...createBrandDto,
       brandId: newBrandId
     });
-  
+
     return createdBrand.save();
   }
 
@@ -39,7 +40,7 @@ export class BrandService {
     return brand;
   }
 
-  async update(id: string, updateBrandDto: any): Promise<Brand> {
+  async update(id: string, updateBrandDto: UpdateBrandDTO): Promise<Brand> {
     const brand = await this.brandModel
       .findByIdAndUpdate(id, updateBrandDto, { new: true })
       .exec();

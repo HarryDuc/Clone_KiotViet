@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CustomerGroupService } from '../services/customer-group.service';
-import { CustomerGroup } from '../schemas/customer-group.schema';
+import { CreateCustomerGroupDTO, UpdateCustomerGroupDTO } from '../dtos/customer-group.dto';
 
 @Controller('api/customer-groups')
 export class CustomerGroupController {
   constructor(private readonly customerGroupService: CustomerGroupService) { }
 
   @Post()
-  create(@Body() createCustomerGroupDto: any) {
+  create(@Body() createCustomerGroupDto: CreateCustomerGroupDTO) {
     return this.customerGroupService.create(createCustomerGroupDto);
   }
 
@@ -22,7 +22,7 @@ export class CustomerGroupController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerGroupDto: any) {
+  update(@Param('id') id: string, @Body() updateCustomerGroupDto: UpdateCustomerGroupDTO) {
     return this.customerGroupService.update(id, updateCustomerGroupDto);
   }
 

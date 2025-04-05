@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ServicePackage } from '../schemas/service-package.schems';
+import { CreateServicePackageDTO, UpdateServicePackageDTO } from '../dtos/service-package.dto';
 
 @Injectable()
 export class ServicePackageService {
@@ -9,14 +10,14 @@ export class ServicePackageService {
     @InjectModel('ServicePackages') private ServicePackageModel: Model<ServicePackage>,
   ) { }
 
-  async create(createServicePackageDto: any): Promise<ServicePackage> {
+  async create(createServicePackageDto: CreateServicePackageDTO): Promise<ServicePackage> {
     const lastServicePackage = await this.ServicePackageModel.findOne().sort({ packageId: -1 }).exec();
-    let newServicePackageId = 'SVP0001';
+    let newServicePackageId = 'SVP00001';
   
     if (lastServicePackage && lastServicePackage.packageId) {
       const lastNumber = parseInt(lastServicePackage.packageId.replace('SVP', ''), 10);
       const nextNumber = lastNumber + 1;
-      newServicePackageId = `SVP${nextNumber.toString().padStart(4, '0')}`;
+      newServicePackageId = `SVP${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdServicePackage = new this.ServicePackageModel({
@@ -39,7 +40,7 @@ export class ServicePackageService {
     return ServicePackage;
   }
 
-  async update(id: string, updateServicePackageDto: any): Promise<ServicePackage> {
+  async update(id: string, updateServicePackageDto: UpdateServicePackageDTO): Promise<ServicePackage> {
     const ServicePackage = await this.ServicePackageModel
       .findByIdAndUpdate(id, updateServicePackageDto, { new: true })
       .exec();

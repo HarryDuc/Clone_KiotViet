@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PurchaseOrder, PurchaseOrderSchema } from './schemas/purchase-orders.schema';
+import { PurchaseOrderSchema } from './schemas/purchase-orders.schema';
 import { PurchaseOrderController } from './controllers/purchase-orders.controller';
 import { PurchaseOrderService } from './services/purchase-orders.service';
 

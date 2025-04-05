@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BranchModule } from './modules/branch/branch.module';
 import { UserModule } from './modules/auth/user.module'
 import { BrandModule } from './modules/brand/brand.module';
-import { CategoriesModule } from './modules/category/categories.module';
+import { CategoriesModule } from './modules/categories/categories.module';
 import { AttendanceModule } from './modules/attendance/attendance.module';
 import { CashBookModule } from './modules/cash-book/cash-book.module';
 import { CarrierModule } from './modules/carrier/carrier.module';

@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
 import { PriceListService } from '../services/price-list.service';
-import { PriceList } from './price-list.schema';
+import { CreatePriceListDTO, UpdatePriceListDTO } from '../dtos/price-list.dto';
+import { PriceList } from '../schemas/price-list.schema';
 
 @Controller('price-lists')
 export class PriceListController {
   constructor(private readonly priceListService: PriceListService) { }
 
   @Post()
-  async create(@Body() createPriceListDto: any): Promise<PriceList> {
+  async create(@Body() createPriceListDto: CreatePriceListDTO): Promise<PriceList> {
     return this.priceListService.create(createPriceListDto);
   }
 
@@ -30,7 +31,7 @@ export class PriceListController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() updatePriceListDto: any,
+    @Body() updatePriceListDto: UpdatePriceListDTO,
   ): Promise<PriceList> {
     return this.priceListService.update(id, updatePriceListDto);
   }
@@ -50,27 +51,5 @@ export class PriceListController {
   async deactivate(@Param('id') id: string): Promise<PriceList> {
     const updateDto = { status: 'inactive' };
     return this.priceListService.update(id, updateDto);
-  }
-
-  @Post(':id/products')
-  async addProducts(
-    @Param('id') id: string,
-    @Body() products: any[],
-  ): Promise<PriceList> {
-    const priceList = await this.priceListService.findOne(id);
-    priceList.products = [...priceList.products, ...products];
-    return this.priceListService.update(id, priceList);
-  }
-
-  @Delete(':id/products/:productId')
-  async removeProduct(
-    @Param('id') id: string,
-    @Param('productId') productId: string,
-  ): Promise<PriceList> {
-    const priceList = await this.priceListService.findOne(id);
-    priceList.products = priceList.products.filter(
-      (p: any) => p.product.toString() !== productId,
-    );
-    return this.priceListService.update(id, priceList);
   }
 }

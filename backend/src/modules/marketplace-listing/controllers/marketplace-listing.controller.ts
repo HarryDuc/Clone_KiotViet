@@ -1,13 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { MarketplaceListingService } from '../services/marketplace-listing.service';
-import { MarketplaceListing } from './schemas/marketplace-listing.schema';
-
+import { CreateMarketplaceListingDTO, UpdateMarketplaceListingDTO } from '../dtos/marketplace-listing.dto';
 @Controller('marketplace-listings')
 export class MarketplaceListingController {
   constructor(private readonly marketplaceListingService: MarketplaceListingService) { }
 
   @Post()
-  create(@Body() createMarketplaceListingDto: any) {
+  create(@Body() createMarketplaceListingDto: CreateMarketplaceListingDTO) {
     return this.marketplaceListingService.create(createMarketplaceListingDto);
   }
 
@@ -22,7 +21,7 @@ export class MarketplaceListingController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMarketplaceListingDto: any) {
+  update(@Param('id') id: string, @Body() updateMarketplaceListingDto: UpdateMarketplaceListingDTO) {
     return this.marketplaceListingService.update(id, updateMarketplaceListingDto);
   }
 

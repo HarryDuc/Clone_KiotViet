@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CustomerLoyaltyPointsService } from '../services/customer-loyalty-points.service';
-import { CustomerLoyaltyPoints } from '../schemas/customer-loyalty-points.schema';
+import { CreateCustomerLoyaltyPointsDTO, UpdateCustomerLoyaltyPointsDTO } from '../dtos/customer-loyalty-point.dto';
 
 @Controller('api/customer-loyalty-points')
 export class CustomerLoyaltyPointsController {
   constructor(private readonly customerLoyaltyPointsService: CustomerLoyaltyPointsService) { }
 
   @Post()
-  create(@Body() customerLoyaltyPointsService: any) {
+  create(@Body() customerLoyaltyPointsService: CreateCustomerLoyaltyPointsDTO) {
     return this.customerLoyaltyPointsService.create(customerLoyaltyPointsService);
   }
 
@@ -22,7 +22,7 @@ export class CustomerLoyaltyPointsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerLoyaltyPointsDto: any) {
+  update(@Param('id') id: string, @Body() updateCustomerLoyaltyPointsDto: UpdateCustomerLoyaltyPointsDTO) {
     return this.customerLoyaltyPointsService.update(id, updateCustomerLoyaltyPointsDto);
   }
 

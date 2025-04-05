@@ -1,13 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { EmployeeService } from '../services/employee.service';
-import { Employee } from '../schemas/employee.schema';
-
+import { CreateEmployeeDTO, UpdateEmployeeDTO } from '../dtos/employee.dto';
 @Controller('api/employees')
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) { }
 
   @Post()
-  create(@Body() createEmployeeDto: any) {
+  create(@Body() createEmployeeDto: CreateEmployeeDTO) {
     return this.employeeService.create(createEmployeeDto);
   }
 
@@ -22,7 +21,7 @@ export class EmployeeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEmployeeDto: any) {
+  update(@Param('id') id: string, @Body() updateEmployeeDto: UpdateEmployeeDTO) {
     return this.employeeService.update(id, updateEmployeeDto);
   }
 

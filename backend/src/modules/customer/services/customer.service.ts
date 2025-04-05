@@ -2,21 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Customer } from '../schemas/customer.schema';
-
+import { CreateCustomerDTO, UpdateCustomerDTO } from '../dtos/customer.dto';
 @Injectable()
 export class CustomerService {
   constructor(
     @InjectModel('Customers') private customerModel: Model<Customer>,
   ) { }
 
-  async create(createCustomerDto: any): Promise<Customer> {
+  async create(createCustomerDto: CreateCustomerDTO): Promise<Customer> {
     const lastCustomer = await this.customerModel.findOne().sort({ customerId: -1 }).exec();
-    let newCustomerId = 'KH0001';
+    let newCustomerId = 'KH00001';
   
     if (lastCustomer && lastCustomer.customerId) {
       const lastNumber = parseInt(lastCustomer.customerId.replace('KH', ''), 10);
       const nextNumber = lastNumber + 1;
-      newCustomerId = `KH${nextNumber.toString().padStart(4, '0')}`;
+      newCustomerId = `KH${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdCustomer = new this.customerModel({
@@ -39,7 +39,7 @@ export class CustomerService {
     return customer;
   }
 
-  async update(id: string, updateCustomerDto: any): Promise<Customer> {
+  async update(id: string, updateCustomerDto: UpdateCustomerDTO): Promise<Customer> {
     const customer = await this.customerModel
       .findByIdAndUpdate(id, updateCustomerDto, { new: true })
       .populate('group')

@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CommissionSetting } from '../schemas/commission-setting.schema';
+import { CreateCommissionSettingDTO } from '../dtos/commisson-setting.dto';
 
 @Injectable()
 export class CommissionSettingService {
@@ -10,21 +11,20 @@ export class CommissionSettingService {
     private commissionSettingModel: Model<CommissionSetting>,
   ) {}
 
-  async create(createCommissionSettingDto: any): Promise<CommissionSetting> {
+  async create(createCommissionSettingDto: CreateCommissionSettingDTO): Promise<CommissionSetting> {
     // Convert string IDs to ObjectIds in details array
     if (createCommissionSettingDto.details) {
-      createCommissionSettingDto.details =
-        createCommissionSettingDto.details.map((detail) => ({
-          ...detail,
-          productId: new Types.ObjectId(detail.productId),
-        }));
+      createCommissionSettingDto.details = createCommissionSettingDto.details.map((detail) => ({
+        ...detail,
+        productId: detail.productId.toString()
+      }));
     }
 
     const lastCommissionSetting = await this.commissionSettingModel
       .findOne()
       .sort({ commissionId: -1 })
       .exec();
-    let newCommissionSettingId = 'CMS0001';
+    let newCommissionSettingId = 'CMS00001';
 
     if (lastCommissionSetting && lastCommissionSetting.commissionId) {
       const lastNumber = parseInt(
@@ -32,7 +32,7 @@ export class CommissionSettingService {
         10,
       );
       const nextNumber = lastNumber + 1;
-      newCommissionSettingId = `CS${nextNumber.toString().padStart(4, '0')}`;
+      newCommissionSettingId = `CMS${nextNumber.toString().padStart(5, '0')}`;
     }
 
     const createdCommissionSetting = new this.commissionSettingModel({
@@ -59,14 +59,14 @@ export class CommissionSettingService {
 
   async update(
     id: string,
-    updateCommissionSettingDto: any,
+    updateCommissionSettingDto: CreateCommissionSettingDTO,
   ): Promise<CommissionSetting> {
     // Convert string IDs to ObjectIds in details array if present
     if (updateCommissionSettingDto.details) {
       updateCommissionSettingDto.details =
         updateCommissionSettingDto.details.map((detail) => ({
           ...detail,
-          productId: new Types.ObjectId(detail.productId),
+          productId: detail.productId.toString()
         }));
     }
 

@@ -9,6 +9,9 @@ export class Tier {
   @Prop({ required: true })
   minPoints: number;
 
+  @Prop() // Thêm trường maxPoints
+  maxPoints?: number; // Số điểm tối đa của cấp bậc (tùy chọn nếu không có giới hạn trên)
+
   @Prop({
     type: [
       {
@@ -25,6 +28,9 @@ export const TierSchema = SchemaFactory.createForClass(Tier);
 
 @Schema()
 export class Reward {
+  @Prop({ required: true, unique: true }) // Thêm rewardId để định danh
+  rewardId: string;
+
   @Prop({ required: true })
   name: string;
 
@@ -37,16 +43,20 @@ export class Reward {
   @Prop()
   image: string;
 
-  @Prop()
+  @Prop({ default: 0 })
   stock: number;
 
   @Prop({ enum: ['Có sẵn', 'Hết hàng', 'Không hoạt động'], default: 'Có sẵn' })
   status: string;
+
+  // Gợi ý nâng cấp
+  @Prop({ type: Date })
+  expiryDate?: Date; // Ngày hết hạn phần thưởng
 }
 
 export const RewardSchema = SchemaFactory.createForClass(Reward);
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, collection: 'LoyaltyPrograms' })
 export class LoyaltyProgram extends Document {
   @Prop({ type: Types.ObjectId, ref: 'Stores', required: true })
   storeId: Types.ObjectId;
@@ -69,10 +79,10 @@ export class LoyaltyProgram extends Document {
     },
   })
   pointRules: {
-    earnRate: number;
-    minPoints: number;
-    pointValue: number;
-    expiryDays: number;
+    earnRate: number; // Tỷ lệ kiếm điểm (ví dụ: 1 điểm mỗi 1000 VNĐ)
+    minPoints: number; // Điểm tối thiểu để sử dụng
+    pointValue: number; // Giá trị quy đổi (ví dụ: 1 điểm = 100 VNĐ)
+    expiryDays: number; // Số ngày điểm hết hạn
   };
 
   @Prop({ type: [TierSchema] })
@@ -87,6 +97,7 @@ export class LoyaltyProgram extends Document {
       totalPointsIssued: { type: Number, default: 0 },
       totalPointsRedeemed: { type: Number, default: 0 },
       totalRewardsRedeemed: { type: Number, default: 0 },
+      totalRevenueFromLoyalty: { type: Number, default: 0 }, // Thêm
     },
   })
   statistics: {
@@ -94,13 +105,20 @@ export class LoyaltyProgram extends Document {
     totalPointsIssued: number;
     totalPointsRedeemed: number;
     totalRewardsRedeemed: number;
+    totalRevenueFromLoyalty: number; // Doanh thu từ chương trình
   };
+
+  // Gợi ý nâng cấp
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Customers' }] })
+  members?: Types.ObjectId[]; // Danh sách khách hàng tham gia
 }
 
 export const LoyaltyProgramSchema = SchemaFactory.createForClass(LoyaltyProgram);
 
+// Indexes (giữ nguyên và bổ sung)
 LoyaltyProgramSchema.index({ storeId: 1 });
 LoyaltyProgramSchema.index({ status: 1 });
 LoyaltyProgramSchema.index({ 'tiers.minPoints': 1 });
 LoyaltyProgramSchema.index({ 'rewards.points': 1 });
 LoyaltyProgramSchema.index({ 'rewards.status': 1 });
+LoyaltyProgramSchema.index({ 'rewards.rewardId': 1 }); // Thêm index cho rewardId

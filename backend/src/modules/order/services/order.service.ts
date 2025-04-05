@@ -11,12 +11,12 @@ export class OrderService {
 
   async create(createOrderDto: any): Promise<Order> {
     const lastOrder = await this.orderModel.findOne().sort({ orderId: -1 }).exec();
-    let newOrderId = 'HD0001';
+    let newOrderId = 'HD00001';
   
     if (lastOrder && lastOrder.orderId) {
       const lastNumber = parseInt(lastOrder.orderId.replace('HD', ''), 10);
       const nextNumber = lastNumber + 1;
-      newOrderId = `HD${nextNumber.toString().padStart(4, '0')}`;
+      newOrderId = `HD${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdOrder = new this.orderModel({

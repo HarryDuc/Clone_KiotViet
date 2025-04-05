@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CashBook } from '../schemas/cash-book.schema';
+import { CreateCashBookDTO, UpdateCashBookDTO } from '../dtos/cash-book.dto';
 
 @Injectable()
 export class CashBookService {
@@ -9,14 +10,14 @@ export class CashBookService {
     @InjectModel('CashBooks') private cashBookModel: Model<CashBook>,
   ) { }
 
-  async create(createCashBookDto: any): Promise<CashBook> {
+  async create(createCashBookDto: CreateCashBookDTO): Promise<CashBook> {
     const lastCashBook = await this.cashBookModel.findOne().sort({ cashBookId: -1 }).exec();
-    let newCashBookId = 'CB0001';
+    let newCashBookId = 'CB00001';
   
     if (lastCashBook && lastCashBook.cashBookId) {
       const lastNumber = parseInt(lastCashBook.cashBookId.replace('CB', ''), 10);
       const nextNumber = lastNumber + 1;
-      newCashBookId = `CB${nextNumber.toString().padStart(4, '0')}`;
+      newCashBookId = `CB${nextNumber.toString().padStart(5, '0')}`;
     }
   
     const createdCashBook = new this.cashBookModel({
@@ -49,7 +50,7 @@ export class CashBookService {
     return cashBook;
   }
 
-  async update(id: string, updateCashBookDto: any): Promise<CashBook> {
+  async update(id: string, updateCashBookDto: UpdateCashBookDTO): Promise<CashBook> {
     const cashBook = await this.cashBookModel
       .findByIdAndUpdate(id, updateCashBookDto, { new: true })
       .populate('branch')

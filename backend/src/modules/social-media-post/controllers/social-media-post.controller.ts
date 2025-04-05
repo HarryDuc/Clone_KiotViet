@@ -1,13 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
-import { SocialMediaPostService } from './social-media-post.service';
-import { SocialMediaPost } from './social-media-post.schema';
-
+import { SocialMediaPostService } from '../services/social-media-post.service';
+import { CreateSocialMediaPostDTO, UpdateSocialMediaPostDTO } from '../dtos/social-media-post.dto';
 @Controller('social-media-posts')
 export class SocialMediaPostController {
   constructor(private readonly socialMediaPostService: SocialMediaPostService) { }
 
   @Post()
-  create(@Body() createSocialMediaPostDto: any) {
+  create(@Body() createSocialMediaPostDto: CreateSocialMediaPostDTO) {
     return this.socialMediaPostService.create(createSocialMediaPostDto);
   }
 
@@ -21,23 +20,13 @@ export class SocialMediaPostController {
     return this.socialMediaPostService.findByStore(storeId);
   }
 
-  @Get('channel/:channelId')
-  findByChannel(@Param('channelId') channelId: string) {
-    return this.socialMediaPostService.findByChannel(channelId);
-  }
-
-  @Get('scheduled')
-  findScheduledPosts() {
-    return this.socialMediaPostService.findScheduledPosts();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.socialMediaPostService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSocialMediaPostDto: any) {
+  update(@Param('id') id: string, @Body() updateSocialMediaPostDto: UpdateSocialMediaPostDTO) {
     return this.socialMediaPostService.update(id, updateSocialMediaPostDto);
   }
 

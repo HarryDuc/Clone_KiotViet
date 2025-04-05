@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CarrierGroupService } from '../services/carrier-group.service';
 import { CarrierGroup } from '../schemas/carrier-group.schema';
+import { CreateCarrierGroupDTO, UpdateCarrierGroupDTO } from '../dtos/carrier-group.dto';
 
 @Controller('api/carriers-groups')
 export class CarrierGroupController {
   constructor(private readonly carriersService: CarrierGroupService) { }
 
   @Post()
-  async create(@Body() createCarrierGroupDto: any): Promise<CarrierGroup> {
+  async create(@Body() createCarrierGroupDto: CreateCarrierGroupDTO): Promise<CarrierGroup> {
     return this.carriersService.create(createCarrierGroupDto);
   }
 
@@ -22,7 +23,7 @@ export class CarrierGroupController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCarrierGroupDto: any) {
+  update(@Param('id') id: string, @Body() updateCarrierGroupDto: UpdateCarrierGroupDTO) {
     return this.carriersService.update(id, updateCarrierGroupDto);
   }
 

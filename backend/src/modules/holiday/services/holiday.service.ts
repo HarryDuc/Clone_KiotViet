@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Holiday } from '../schemas/holiday.schema';
+import { CreateHolidayDTO, UpdateHolidayDTO } from '../dtos/holiday.dto';
 
 @Injectable()
 export class HolidayService {
@@ -10,7 +11,7 @@ export class HolidayService {
     private holidayModel: Model<Holiday>,
   ) { }
 
-  async create(createHolidayDto: any): Promise<Holiday> {
+  async create(createHolidayDto: CreateHolidayDTO): Promise<Holiday> {
     const created = new this.holidayModel(createHolidayDto);
     return created.save();
   }
@@ -27,7 +28,7 @@ export class HolidayService {
     return holiday;
   }
 
-  async update(id: string, updateHolidayDto: any): Promise<Holiday> {
+  async update(id: string, updateHolidayDto: UpdateHolidayDTO): Promise<Holiday> {
     const holiday = await this.holidayModel
       .findByIdAndUpdate(id, updateHolidayDto, { new: true })
       .exec();

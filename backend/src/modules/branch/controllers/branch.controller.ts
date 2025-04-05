@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { BranchService } from '../services/branch.service';
 import { Branch } from '../schemas/branch.schema';
-import { CreateBranchDto } from '../dtos/branch.dto';
+import { CreateBranchDTO, UpdateBranchDTO } from '../dtos/branch.dto';
 
 @Controller('api/branches')
 export class BranchController {
   constructor(private readonly branchService: BranchService) { }
 
   @Post()
-  async create(@Body() createBranchDto: CreateBranchDto): Promise<Branch> {
+  async create(@Body() createBranchDto: CreateBranchDTO): Promise<Branch> {
     return this.branchService.create(createBranchDto);
   }
 
@@ -23,7 +23,7 @@ export class BranchController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBranchDto: any) {
+  update(@Param('id') id: string, @Body() updateBranchDto: UpdateBranchDTO) {
     return this.branchService.update(id, updateBranchDto);
   }
 
